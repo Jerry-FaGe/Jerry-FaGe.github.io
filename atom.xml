@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Jerry_FaGe&#39;s Blog</title>
-  
+  <icon>https://www.gravatar.com/avatar/7c04d9c34984e73102245aec3975f679</icon>
   <subtitle>啥都往里塞的记事本儿</subtitle>
   <link href="http://yoursite.com/atom.xml" rel="self"/>
   
@@ -11,7 +11,7 @@
   
   <author>
     <name>Jerry_FaGe</name>
-    
+    <email>jerry_fage@foxmail.com</email>
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
