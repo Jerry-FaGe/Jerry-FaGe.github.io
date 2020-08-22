@@ -6,7 +6,7 @@
   <link href="http://yoursite.com/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-08-21T07:54:37.974Z</updated>
+  <updated>2020-08-22T06:18:35.944Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>About Me</title>
+    <link href="http://yoursite.com/2020/08/21/about/"/>
+    <id>http://yoursite.com/2020/08/21/about/</id>
+    <published>2020-08-21T22:04:54.000Z</published>
+    <updated>2020-08-22T06:18:35.944Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;姓名：Jerry&lt;br&gt;现居：厦门&lt;br&gt;GitHub:  Jerry-FaGw&lt;br&gt;twitter: @Jerry619092968&lt;br&gt;QQ: 619092968&lt;br&gt;微信:</summary>
+        
+      
+    
+    
+    
+    
+    <category term="随笔" scheme="http://yoursite.com/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>Hello World</title>
