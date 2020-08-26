@@ -9,7 +9,7 @@ description: ''
 keywords: "离谱"
 email: jerry_fage@foxmail.com
 author: Jerry_FaGe
-language: zh-Hans
+language: zh-CN
 timezone: Asia/Shanghai
 
 # URL
@@ -123,3 +123,12 @@ deploy:
   type: git
   repo: https://github.com/Jerry-FaGe/Jerry-FaGe.github.io
   branch: master
+
+# admin
+admin:
+  deployCommand: ./hexo-d.sh
+# hexo-admin默认参数
+metadata:
+  updated:
+  comments: true
+  permalink:

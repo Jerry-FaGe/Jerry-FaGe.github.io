@@ -6,7 +6,7 @@ menu:
   标签: /tags
   旅行: /tags/旅行/
   相册: /photo
-  关于我: /2020/about
+  关于我: /2020/08/21/about/
 
 # 站点次标题和打字动效
 # https://github.com/mattboldt/typed.js
@@ -168,8 +168,8 @@ icp:
 # 启用Valine必须先创建leancloud应用， 获取 id|key 填入即可
 leancloud:
   enable: true
-  app_id: #
-  app_key: #
+  app_id: 0uTtIMwzaQc4hq6vPMhsiqbw-gzGzoHsz #
+  app_key: ttyiwMFWJHGOV9J5ypUexmfm #
 # Valine配置
 valine:
   enable: true # 是否启用
