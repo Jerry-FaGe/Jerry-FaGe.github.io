@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="utf-8" />
+   
+  <meta name="keywords" content="离谱" />
+   
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    Sign in with Apple（苹果授权登陆）python服务端code验证 |  
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+  
+
+<link rel="alternate" href="/atom.xml" title="Jerry_FaGe's Blog" type="application/atom+xml">
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+      <canvas width="1777" height="841"
+        style="position: fixed; left: 0px; top: 0px; z-index: 99999; pointer-events: none;"></canvas>
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-Sign-in-with-Apple（苹果授权登陆）python服务端code验证"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  Sign in with Apple（苹果授权登陆）python服务端code验证
+</h1>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/08/25/Sign-in-with-Apple%EF%BC%88%E8%8B%B9%E6%9E%9C%E6%8E%88%E6%9D%83%E7%99%BB%E9%99%86%EF%BC%89python%E6%9C%8D%E5%8A%A1%E7%AB%AFcode%E9%AA%8C%E8%AF%81/" class="article-date">
+  <time datetime="2020-08-25T21:56:30.000Z" itemprop="datePublished">2020-08-26</time>
+</a>   
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">2.3k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">9 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>废话不多说相信很多人都是因为苹果的坑爹政策才被要求了解苹果登录的流程，本文不涉及前端操作（因为我不会），只介绍后端是如何验证的。</p>
+<h2 id="1-你会从前端得到什么"><a href="#1-你会从前端得到什么" class="headerlink" title="1.你会从前端得到什么"></a>1.你会从前端得到什么</h2><p>这里是通过 RESTful API 接口来获取数据，所以我不会管前端是咋获取的，我只管接收和处理数据</p>
+<pre><code>----&gt;&gt; User Id - 000592.729afa20xxxxxxx9929f3958f03c6c9e.0948
+
+----&gt;&gt; User Name - givenName: Lu familyName: Xs 
+
+----&gt;&gt; User Email - 494xxx875@qq.com
+
+----&gt;&gt; Real User Status - 1
+
+----&gt;&gt; Identity Token eyJraWQiOiJxxxxxxxxxxxxxxxnIjoiUlMyNTYifQ.eyJpc3M
+
+----&gt;&gt; authorizationCode ca57c019ae48c4a42xxxxxxxxxxe9e80b.0.nvzs.HTxxxxxxxxxxxE64NZpbWEeALQ</code></pre>
+<a id="more"></a>
+<ul>
+<li><code>User Id</code> 坑爹的来了，这个ID其实和你费老大劲后面绕了一大大大圈解析出来的那个sub是一样的，但你还是得搞，为了所谓的安全性</li>
+<li><code>User Name</code> 顾名思义用户名，不过这个用户名是可以由用户自由指定的（甚至可以为空），不一定是用户在苹果的真实用户名</li>
+<li><code>User Email</code> 这个邮箱也可以是伪造的，如果用户登录时拒绝提供真实的邮箱账号，苹果会生成虚拟的邮箱账号（固定后缀 @privaterelay.appleid.com）</li>
+<li><code>Identity Token</code> 用于传给开发者后台服务器，然后开发者服务器再向苹果的身份验证服务端验证，本次授权登录请求数据的有效性和真实性。是一个经过签名的 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/JSON_Web_Token">JSON Web Token(JWT)</a> ，详见 <a target="_blank" rel="noopener" href="https://developer.apple.com/documentation/signinwithapplerestapi">Sign In with Apple REST API</a></li>
+<li><code>authorizationCode</code> code验证方式的主要参数，后面会用到</li>
+</ul>
+<p>现在我们已经从前端获取到了一些关键信息，注意 <code>User Name</code>，<code>User Email</code>只有在用户第一次授权的时候才能拿到，所以如果用得上的话要及时储存起来。</p>
+<h2 id="2-服务端向苹果请求验证"><a href="#2-服务端向苹果请求验证" class="headerlink" title="2.服务端向苹果请求验证"></a>2.服务端向苹果请求验证</h2><p>接下来我们需要拼接从前端获取的参数，用POST方法访问苹果提供的 <a target="_blank" rel="noopener" href="https://appleid.apple.com/auth/token">https://appleid.apple.com/auth/token</a> 接口，接口相关信息苹果有提供 <a target="_blank" rel="noopener" href="https://developer.apple.com/documentation/sign_in_with_apple/generate_and_validate_tokens">Generate and validate tokens</a> 。</p>
+<p>下面着重介绍几个参数及其获取方法。首先先看下该接口需要的参数，如下</p>
+<pre><code>client_id： string (必要) 您的应用程序的标识符（应用程序ID或服务ID）。该标识符不得包含您的团队ID，以帮助减轻敏感数据对最终用户的影响。授权代码和刷新令牌验证请求均需要此参数。
+
+client_secret： string (必要) 开发人员生成的秘密JSON Web令牌，使用与您的开发人员帐户关联的“使用Apple登录”私钥。授权代码和刷新令牌验证请求均需要此参数。
+
+code： string 授权响应中收到的授权代码已发送到您的应用。该代码仅供一次性使用，有效期为五分钟。授权参数验证请求需要此参数。
+
+grant_type： string (Required) 授予类型确定客户端应用程序如何与验证服务器交互。授权代码和刷新令牌验证请求均需要此参数。要进行授权码验证，请使用。对于刷新令牌验证请求，请使用 authorization_coderefresh_token。
+
+refresh_token： string 授权请求期间从验证服务器收到的刷新令牌。刷新令牌验证请求需要此参数。
+
+redirect_uri： string 在授权用户使用您的应用程序（如果适用）时，授权请求中提供的目标URI。URI必须使用HTTPS协议，包括域名，并且不能包含IP地址或localhost。授权参数验证请求需要此参数。</code></pre>
+<p>其中 <code>client_id</code> 为app的 <code>bundle identifier</code> ， <code>code</code> 即为手机端获取到的 <code>authorizationCode</code> 信息， <code>grant_type</code> 传入固定字符串 <code>authorization_code</code>  即可。还剩下一个必要参数 <code>client_secret</code> 那么这个参数相对麻烦点，需要我们自己生成。client_secret参数是一个JWT，singature部分使用非对称加密 RSASSA【RSA签名算法】 和 ECDSA【椭圆曲线数据签名算法】。</p>
+<p><strong>生成 client_secret 之前，我们需要做如下工作</strong></p>
+<ul>
+<li>获取 APP 的 <code>bundleID</code></li>
+<li>获取开发者账号的 <code>TeamID</code><br><img src="/images/pasted-1.png" alt="upload successful"></li>
+<li>创建 privateKey，获取到 <code>Key ID</code> 和 <code>私钥</code><br><img src="/images/pasted-2.png" alt="upload successful"></li>
+</ul>
+<p><img src="/images/pasted-3.png" alt="upload successful"></p>
+<p>创建完之后把私钥下载下来，并保存好，<strong>注意，私钥只能下载一次。</strong></p>
+<p>拿到上面所有信息之后，可以通过如下代码生成 <code>client_secret</code> ，代码为 Ruby 代码，确保已安装ruby环境。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs Ruby"><span class="hljs-keyword">require</span> <span class="hljs-string">&quot;jwt&quot;</span><br><br>key_file = <span class="hljs-string">&quot;/Your/path/to/AuthKey_XXXXX.p8&quot;</span> <span class="hljs-comment"># 私钥文件地址</span><br>team_id = <span class="hljs-string">&quot;KXXXXXGBU&quot;</span> <span class="hljs-comment"># Team ID</span><br>client_id = <span class="hljs-string">&quot;XXXXXXX&quot;</span> <span class="hljs-comment"># App Bundle ID</span><br>key_id = <span class="hljs-string">&quot;KXXXXXXZ8&quot;</span> <span class="hljs-comment"># 私钥的Key ID</span><br>validity_period = <span class="hljs-number">180</span> <span class="hljs-comment"># In days. Max 180 (6 months) according to Apple docs.</span><br><br>private_key = OpenSSL::PKey::EC.new IO.read key_file<br><br>token = JWT.encode(<br>    &#123;<br>        <span class="hljs-symbol">iss:</span> team_id,<br>        <span class="hljs-symbol">iat:</span> Time.now.to_i,<br>        <span class="hljs-symbol">exp:</span> Time.now.to_i + <span class="hljs-number">86400</span> * validity_period,<br>        <span class="hljs-symbol">aud:</span> <span class="hljs-string">&quot;https://appleid.apple.com&quot;</span>,<br>        <span class="hljs-symbol">sub:</span> client_id<br>    &#125;,<br>    private_key,<br>    <span class="hljs-string">&quot;ES256&quot;</span>,<br>    header_fields=<br>    &#123;<br>        <span class="hljs-symbol">kid:</span> key_id <br>    &#125;<br>)<br>puts token<br></code></pre></td></tr></table></figure>
+
+<p>创建文件 <code>secret_gen.rb</code> ，把上面代码粘贴进去，执行 <code>ruby secret_gen.rb</code> 即可生成 <code>client_secret</code></p>
+<p>代码中这个 <code>key_file</code> 需要指定刚才下载的文件的地址</p>
+<p>到这里， <code>https://appleid.apple.com/auth/token</code>  的三个必需参数已经全部获得，用这些参数构造一个 post data ，类似下面这样</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs JSON">&#123;<br>    &#x27;client_id&#x27;: 上面的Bundle ID,<br>    &#x27;client_secret&#x27;: 上面的client_secret,<br>    &#x27;code&#x27;: 前端传的authorizationCode,<br>    &#x27;grant_type&#x27;: &quot;authorization_code&quot;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>带上这个 post data 用 POST 方法访问 <code>https://appleid.apple.com/auth/token</code> ，你会得到类似下面的返回数据</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs JSON">&#123;<br>    <span class="hljs-attr">&quot;access_token&quot;</span>: <span class="hljs-string">&quot;一个token，此处省略&quot;</span>,<br>    <span class="hljs-attr">&quot;token_type&quot;</span>: <span class="hljs-string">&quot;Bearer&quot;</span>,<br>    <span class="hljs-attr">&quot;expires_in&quot;</span>: <span class="hljs-number">3600</span>,<br>    <span class="hljs-attr">&quot;refresh_token&quot;</span>: <span class="hljs-string">&quot;一个token，此处省略&quot;</span>,<br>    <span class="hljs-attr">&quot;id_token&quot;</span>: <span class="hljs-string">&quot;结果是JWT，字符串形式，此处省略&quot;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>参数解释看这个<a target="_blank" rel="noopener" href="https://developer.apple.com/documentation/sign_in_with_apple/tokenresponse">文档</a></p>
+<p>其中 <code>id_token</code> 里面就是我们需要的数据了，这也是 <code>JWT</code> 数据，需要进行解密，TM的这其实就是前端能获取到的token醉了。</p>
+<p>原理讲完了上代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs Python"><span class="hljs-keyword">import</span> requests<br><br>APPLE_CODE_URL = <span class="hljs-string">&#x27;https://appleid.apple.com/auth/token&#x27;</span><br>BUNDLE_ID = <span class="hljs-string">&quot;上面的Bundle ID&quot;</span><br>client_sec = <span class="hljs-string">&quot;上面的client_secret&quot;</span><br>GRAND_TYPE = <span class="hljs-string">&#x27;authorization_code&#x27;</span><br>code = <span class="hljs-string">&quot;前端传的authorizationCode&quot;</span><br><br>post_data = &#123;<br>        <span class="hljs-string">&#x27;client_id&#x27;</span>: BUNDLE_ID,<br>        <span class="hljs-string">&#x27;client_secret&#x27;</span>: client_sec,<br>        <span class="hljs-string">&#x27;code&#x27;</span>: code,<br>        <span class="hljs-string">&#x27;grant_type&#x27;</span>: GRAND_TYPE,<br>        <span class="hljs-string">&#x27;scope&#x27;</span>: <span class="hljs-string">&#x27;name&#x27;</span><br>        &#125;<br><br>login_req = requests.post(url=APPLE_CODE_URL, data=post_data).json()<br>id_token = login_req[<span class="hljs-string">&#x27;id_token&#x27;</span>]<br>print(id_token)<br></code></pre></td></tr></table></figure>
+<h2 id="3-解密-JWT"><a href="#3-解密-JWT" class="headerlink" title="3.解密 JWT"></a>3.解密 JWT</h2><p>为什么标题要叫解密JEWT而不是解密id_token呢，因为这个方法同样也适用于token验证方式中的 <code>Identity Token</code> 解密，TMD这俩就是一个东西不能解密都出鬼了</p>
+<p>JWT格式（以.点号分隔）：</p>
+<ul>
+<li>header: 包括了key id 与加密算法</li>
+<li>payload:<ul>
+<li>iss: 签发机构，苹果</li>
+<li>aud: 接收者，目标app</li>
+<li>exp: 过期时间</li>
+<li>iat: 签发时间</li>
+<li>sub: 用户id</li>
+<li>c_hash: 一个哈希数列</li>
+<li>auth_time: 签名时间</li>
+</ul>
+</li>
+<li>signature: 用于验证JWT的签名</li>
+</ul>
+<p>header（解码后）:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs JSON">&#123;<br>    <span class="hljs-attr">&quot;kid&quot;</span>:<span class="hljs-string">&quot;AIDOPK1&quot;</span>, <span class="hljs-comment">//密钥id标识</span><br>    <span class="hljs-attr">&quot;alg&quot;</span>:<span class="hljs-string">&quot;RS256&quot;</span> <span class="hljs-comment">//RS256算法对JWT进行的签名。（RSA 256 + SHA 256）</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>payload（解码后）:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs JSON">&#123;<br>    <span class="hljs-attr">&quot;iss&quot;</span>:<span class="hljs-string">&quot;https://appleid.apple.com&quot;</span>,<span class="hljs-comment">//签发者</span><br>    <span class="hljs-attr">&quot;aud&quot;</span>:<span class="hljs-string">&quot;com.fun.AppleLogin&quot;</span>,<span class="hljs-comment">//目标受众</span><br>    <span class="hljs-attr">&quot;exp&quot;</span>:<span class="hljs-number">1568721769</span>,<span class="hljs-comment">//过期时间</span><br>    <span class="hljs-attr">&quot;iat&quot;</span>:<span class="hljs-number">1568721169</span>,<span class="hljs-comment">//The issued at registered claim key 签发时间</span><br>    <span class="hljs-attr">&quot;sub&quot;</span>:<span class="hljs-string">&quot;000580.087c554dce35466fa85c5a5d594d528a.0801&quot;</span>, <span class="hljs-comment">//苹果 userid</span><br>    <span class="hljs-attr">&quot;c_hash&quot;</span>:<span class="hljs-string">&quot;z_JcDlpW3B2p7q1GCgkRZQ&quot;</span>, <span class="hljs-comment">//一个哈希数列，作用未知</span><br>    <span class="hljs-attr">&quot;auth_time&quot;</span>:<span class="hljs-number">1568721169</span> <span class="hljs-comment">//签名时间</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>首先我们要用GET方法访问苹果的固定接口 <a target="_blank" rel="noopener" href="https://appleid.apple.com/auth/keys">https://appleid.apple.com/auth/keys</a>获取 <code>Public Key</code> 公钥，<a target="_blank" rel="noopener" href="https://developer.apple.com/documentation/sign_in_with_apple/fetch_apple_s_public_key_for_verifying_token_signature">文档点这儿</a></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs JSON">&#123;<br>    <span class="hljs-attr">&quot;keys&quot;</span>: [<br>        &#123;<br>            <span class="hljs-attr">&quot;kty&quot;</span>: <span class="hljs-string">&quot;RSA&quot;</span>,<br>            <span class="hljs-attr">&quot;kid&quot;</span>: <span class="hljs-string">&quot;AIDOPK1&quot;</span>,<br>            <span class="hljs-attr">&quot;use&quot;</span>: <span class="hljs-string">&quot;sig&quot;</span>,<br>            <span class="hljs-attr">&quot;alg&quot;</span>: <span class="hljs-string">&quot;RS256&quot;</span>,<br>            <span class="hljs-attr">&quot;n&quot;</span>: <span class="hljs-string">&quot;lxrwmuYSAsTfn-lUu4goZSXBD9ackM9OJuwUVQHmbZo6GW4Fu_auUdN5zI7Y1dEDfgt7m7QXWbHuMD01HLnD4eRtY-RNwCWdjNfEaY_esUPY3OVMrNDI15Ns13xspWS3q-13kdGv9jHI28P87RvMpjz_JCpQ5IM44oSyRnYtVJO-320SB8E2Bw92pmrenbp67KRUzTEVfGU4-obP5RZ09OxvCr1io4KJvEOjDJuuoClF66AT72WymtoMdwzUmhINjR0XSqK6H0MdWsjw7ysyd_JhmqX5CAaT9Pgi0J8lU_pcl215oANqjy7Ob-VMhug9eGyxAWVfu_1u6QJKePlE-w&quot;</span>,<br>            <span class="hljs-attr">&quot;e&quot;</span>: <span class="hljs-string">&quot;AQAB&quot;</span><br>        &#125;<br>    ]<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>我们可以通过这个 <code>Public Key</code> 去对 <code>id_token</code> 或者手机端获取到的 <code>identityToken</code> (JWT 信息)进行解码，以获取 <code>header</code> 及 <code>payload</code></p>
+<p>注意这个 <code>Public Key</code> 不只有一个，应该先通过token中的 <code>header</code> 中的 <code>kid</code> ，然后结合苹果公钥中的 <code>kid</code> ，拿到相应的 <code>Public Key</code></p>
+<p>上代码：</p>
+<p>没有 <code>PyJWT</code> 包的先装一个</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ pip install PyJWT<br></code></pre></td></tr></table></figure>
+<p>代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs Python"><span class="hljs-keyword">from</span> jwt.algorithms <span class="hljs-keyword">import</span> RSAAlgorithm<br><br>TOKEN_URL = <span class="hljs-string">&#x27;https://appleid.apple.com/auth/keys&#x27;</span><br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">decode_jwt</span>(<span class="hljs-params">token</span>):</span><br>    <span class="hljs-comment"># 从苹果那里拿公钥</span><br>    key_req = requests.get(TOKEN_URL).json()<br>    <span class="hljs-comment"># 从data那里拿到token的加密方式</span><br>    head = jwt.get_unverified_header(token)<br>    token_key = head[<span class="hljs-string">&#x27;kid&#x27;</span>]<br>    <span class="hljs-comment"># 找到相对应的公钥，一般会发布多个公钥</span><br>    <span class="hljs-keyword">for</span> pub_key <span class="hljs-keyword">in</span> key_req[<span class="hljs-string">&#x27;keys&#x27;</span>]:<br>        <span class="hljs-keyword">if</span> pub_key[<span class="hljs-string">&#x27;kid&#x27;</span>] == token_key:<br>            key_core = simplejson.dumps(pub_key)<br>            <span class="hljs-comment"># 打包公钥</span><br>            key = RSAAlgorithm.from_jwk(key_core)<br>            alg = pub_key[<span class="hljs-string">&#x27;alg&#x27;</span>]<br>            <span class="hljs-keyword">break</span><br>    <span class="hljs-keyword">else</span>:<br>        print(<span class="hljs-string">&#x27;Unable to find public key&#x27;</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">None</span><br>    <span class="hljs-comment"># 使用公钥来解密</span><br>    claims = jwt.decode(token, key=key, verify=<span class="hljs-literal">True</span>, algorithms=[alg], audience=BUNDLE_ID)<br>    <span class="hljs-keyword">return</span> claims<br></code></pre></td></tr></table></figure>
+<p>解码后的信息如下</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs JSON">&#123;<br>    <span class="hljs-attr">&quot;iss&quot;</span>: <span class="hljs-string">&quot;https://appleid.apple.com&quot;</span>,<br>    <span class="hljs-attr">&quot;aud&quot;</span>: <span class="hljs-string">&quot;这个对应app的bundleid&quot;</span>,<br>    <span class="hljs-attr">&quot;exp&quot;</span>: <span class="hljs-number">1598335182</span>,<br>    <span class="hljs-attr">&quot;iat&quot;</span>: <span class="hljs-number">1598334582</span>,<br>    <span class="hljs-attr">&quot;sub&quot;</span>: <span class="hljs-string">&quot;这个字段和手机端获取的user信息相同&quot;</span>,<br>    <span class="hljs-attr">&quot;at_hash&quot;</span>: <span class="hljs-string">&quot;_DsVyGBEMQx5HIi3uyf-UQ&quot;</span>,<br>    <span class="hljs-attr">&quot;email&quot;</span>: <span class="hljs-string">&quot;XXXXXXXX@qq.com&quot;</span>,<br>    <span class="hljs-attr">&quot;email_verified&quot;</span>: <span class="hljs-string">&quot;true&quot;</span>,<br>    <span class="hljs-attr">&quot;auth_time&quot;</span>: <span class="hljs-number">1598334492</span>,<br>    <span class="hljs-attr">&quot;nonce_supported&quot;</span>: True<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>里面的 <code>sub</code> 就是用户apple账号登录在该程序中的唯一标识了（类似 <code>openid</code> ），我们可以把它存到程序的数据库中与用户信息做映射，用于标识用户身份。</p>
+<h2 id="4-参考链接"><a href="#4-参考链接" class="headerlink" title="4.参考链接"></a>4.参考链接</h2><p><a target="_blank" rel="noopener" href="https://www.yuque.com/zhanglong/bb0s5d/cxbh7n">Sign In With Apple 从登陆到服务器验证</a></p>
+<p><a target="_blank" rel="noopener" href="https://ihtcboy.com/2019/09/16/2019-09-16_Sign-in-with-Apple/">Sign in with Apple 登录详解</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Tommey_Chang/article/details/106770207?utm_medium=distribute.pc_relevant.none-task-blog-title-1&spm=1001.2101.3001.4242">Python后端实现苹果ID登陆</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/wpf199402076118/article/details/99677412">Sign in with Apple（苹果授权登陆）</a></p>
+<p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000020786994?utm_source=tag-newest">Sign in with Apple NODE，web端接入苹果第三方登录</a></p>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          打赏
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/08/25/Sign-in-with-Apple%EF%BC%88%E8%8B%B9%E6%9E%9C%E6%8E%88%E6%9D%83%E7%99%BB%E9%99%86%EF%BC%89python%E6%9C%8D%E5%8A%A1%E7%AB%AFcode%E9%AA%8C%E8%AF%81/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+    
+      <a href="/2020/08/22/hello-world/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">Hello World</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "0uTtIMwzaQc4hq6vPMhsiqbw-gzGzoHsz",
+    app_key: "ttyiwMFWJHGOV9J5ypUexmfm",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2018-2020
+        <i class="ri-heart-fill heart_icon"></i> Jerry_FaGe
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
+        <span class="division">|</span>
+        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="Jerry_FaGe&#39;s Blog"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%97%85%E8%A1%8C/">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/photo">相册</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2020/08/21/about/">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+
+<script src="/js/clickBoom2.js"></script>
+
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="52"
+        src="//music.163.com/outchain/player?type=2&id=1332897128&auto=0&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
+  </div>
+</body>
+
+</html>

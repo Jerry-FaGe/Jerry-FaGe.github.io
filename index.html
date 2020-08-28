@@ -107,6 +107,68 @@
     
     
     <article
+  id="post-Sign-in-with-Apple（苹果授权登陆）python服务端code验证"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/08/25/Sign-in-with-Apple%EF%BC%88%E8%8B%B9%E6%9E%9C%E6%8E%88%E6%9D%83%E7%99%BB%E9%99%86%EF%BC%89python%E6%9C%8D%E5%8A%A1%E7%AB%AFcode%E9%AA%8C%E8%AF%81/"
+    >Sign in with Apple（苹果授权登陆）python服务端code验证</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/08/25/Sign-in-with-Apple%EF%BC%88%E8%8B%B9%E6%9E%9C%E6%8E%88%E6%9D%83%E7%99%BB%E9%99%86%EF%BC%89python%E6%9C%8D%E5%8A%A1%E7%AB%AFcode%E9%AA%8C%E8%AF%81/" class="article-date">
+  <time datetime="2020-08-25T21:56:30.000Z" itemprop="datePublished">2020-08-26</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>废话不多说相信很多人都是因为苹果的坑爹政策才被要求了解苹果登录的流程，本文不涉及前端操作（因为我不会），只介绍后端是如何验证的。</p>
+<h2 id="1-你会从前端得到什么"><a href="#1-你会从前端得到什么" class="headerlink" title="1.你会从前端得到什么"></a>1.你会从前端得到什么</h2><p>这里是通过 RESTful API 接口来获取数据，所以我不会管前端是咋获取的，我只管接收和处理数据</p>
+<pre><code>----&gt;&gt; User Id - 000592.729afa20xxxxxxx9929f3958f03c6c9e.0948
+
+----&gt;&gt; User Name - givenName: Lu familyName: Xs 
+
+----&gt;&gt; User Email - 494xxx875@qq.com
+
+----&gt;&gt; Real User Status - 1
+
+----&gt;&gt; Identity Token eyJraWQiOiJxxxxxxxxxxxxxxxnIjoiUlMyNTYifQ.eyJpc3M
+
+----&gt;&gt; authorizationCode ca57c019ae48c4a42xxxxxxxxxxe9e80b.0.nvzs.HTxxxxxxxxxxxE64NZpbWEeALQ</code></pre> 
+      <a class="article-more-link" href="/2020/08/25/Sign-in-with-Apple%EF%BC%88%E8%8B%B9%E6%9E%9C%E6%8E%88%E6%9D%83%E7%99%BB%E9%99%86%EF%BC%89python%E6%9C%8D%E5%8A%A1%E7%AB%AFcode%E9%AA%8C%E8%AF%81/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
   id="post-hello-world"
   class="article article-type-post"
   itemscope
@@ -134,10 +196,10 @@
     <div class="article-entry" itemprop="articleBody">
        
   <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure>
 
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure>
 
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a> 
       <a class="article-more-link" href="/2020/08/22/hello-world/"
