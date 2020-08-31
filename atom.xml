@@ -6,7 +6,7 @@
   <link href="http://yoursite.com/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-08-28T01:50:40.906Z</updated>
+  <updated>2020-08-31T06:40:11.779Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://yoursite.com/2020/08/25/Sign-in-with-Apple%EF%BC%88%E8%8B%B9%E6%9E%9C%E6%8E%88%E6%9D%83%E7%99%BB%E9%99%86%EF%BC%89python%E6%9C%8D%E5%8A%A1%E7%AB%AFcode%E9%AA%8C%E8%AF%81/"/>
     <id>http://yoursite.com/2020/08/25/Sign-in-with-Apple%EF%BC%88%E8%8B%B9%E6%9E%9C%E6%8E%88%E6%9D%83%E7%99%BB%E9%99%86%EF%BC%89python%E6%9C%8D%E5%8A%A1%E7%AB%AFcode%E9%AA%8C%E8%AF%81/</id>
     <published>2020-08-25T21:56:30.000Z</published>
-    <updated>2020-08-28T01:50:40.906Z</updated>
+    <updated>2020-08-31T06:40:11.779Z</updated>
     
     
     <summary type="html">&lt;p&gt;废话不多说相信很多人都是因为苹果的坑爹政策才被要求了解苹果登录的流程，本文不涉及前端操作（因为我不会），只介绍后端是如何验证的。&lt;/p&gt;
@@ -40,6 +40,16 @@
     
     
     
+    <category term="教程" scheme="http://yoursite.com/categories/%E6%95%99%E7%A8%8B/"/>
+    
+    
+    <category term="Sign in with Apple" scheme="http://yoursite.com/tags/Sign-in-with-Apple/"/>
+    
+    <category term="Python" scheme="http://yoursite.com/tags/Python/"/>
+    
+    <category term="后端" scheme="http://yoursite.com/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="第三方登录" scheme="http://yoursite.com/tags/%E7%AC%AC%E4%B8%89%E6%96%B9%E7%99%BB%E5%BD%95/"/>
     
   </entry>
   

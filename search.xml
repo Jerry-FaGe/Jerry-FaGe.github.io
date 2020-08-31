@@ -98,6 +98,15 @@ redirect_uri： string 在授权用户使用您的应用程序（如果适用）
 <p><a href="https://blog.csdn.net/wpf199402076118/article/details/99677412">Sign in with Apple（苹果授权登陆）</a></p>
 <p><a href="https://segmentfault.com/a/1190000020786994?utm_source=tag-newest">Sign in with Apple NODE，web端接入苹果第三方登录</a></p>
 ]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>Sign in with Apple</tag>
+        <tag>Python</tag>
+        <tag>后端</tag>
+        <tag>第三方登录</tag>
+      </tags>
   </entry>
   <entry>
     <title>About Me</title>
