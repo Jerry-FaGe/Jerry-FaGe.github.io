@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>Sign in with Apple（苹果授权登陆）python服务端code验证</title>
-    <url>/2020/08/25/Sign-in-with-Apple%EF%BC%88%E8%8B%B9%E6%9E%9C%E6%8E%88%E6%9D%83%E7%99%BB%E9%99%86%EF%BC%89python%E6%9C%8D%E5%8A%A1%E7%AB%AFcode%E9%AA%8C%E8%AF%81/</url>
+    <url>/qfn3m6/</url>
     <content><![CDATA[<p>废话不多说相信很多人都是因为苹果的坑爹政策才被要求了解苹果登录的流程，本文不涉及前端操作（因为我不会），只介绍后端是如何验证的。</p>
 <h2 id="1-你会从前端得到什么"><a href="#1-你会从前端得到什么" class="headerlink" title="1.你会从前端得到什么"></a>1.你会从前端得到什么</h2><p>这里是通过 RESTful API 接口来获取数据，所以我不会管前端是咋获取的，我只管接收和处理数据</p>
 <pre><code>----&gt;&gt; User Id - 000592.729afa20xxxxxxx9929f3958f03c6c9e.0948
@@ -110,7 +110,7 @@ redirect_uri： string 在授权用户使用您的应用程序（如果适用）
   </entry>
   <entry>
     <title>About Me</title>
-    <url>/2020/08/21/about/</url>
+    <url>//about/</url>
     <content><![CDATA[<p>姓名：Jerry<br>现居：厦门<br>GitHub:  Jerry-FaGe<br>twitter: @Jerry619092968<br>QQ: 619092968<br>微信: w619092968<a id="more"></a></p>
 ]]></content>
       <categories>
@@ -122,7 +122,7 @@ redirect_uri： string 在授权用户使用您的应用程序（如果适用）
   </entry>
   <entry>
     <title>Hello World</title>
-    <url>/2020/08/22/hello-world/</url>
+    <url>/qfgcn1/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure>
 
