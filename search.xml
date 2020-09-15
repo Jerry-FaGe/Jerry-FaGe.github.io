@@ -60,7 +60,7 @@ redirect_uri： string 在授权用户使用您的应用程序（如果适用）
 <p>其中 <code>id_token</code> 里面就是我们需要的数据了，这也是 <code>JWT</code> 数据，需要进行解密，TM的这其实就是前端能获取到的token醉了。</p>
 <p>原理讲完了上代码：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">APPLE_CODE_URL = <span class="string">&#x27;https://appleid.apple.com/auth/token&#x27;</span></span><br><span class="line">BUNDLE_ID = <span class="string">&quot;上面的Bundle ID&quot;</span></span><br><span class="line">client_sec = <span class="string">&quot;上面的client_secret&quot;</span></span><br><span class="line">GRAND_TYPE = <span class="string">&#x27;authorization_code&#x27;</span></span><br><span class="line">code = <span class="string">&quot;前端传的authorizationCode&quot;</span></span><br><span class="line"></span><br><span class="line">post_data = &#123;</span><br><span class="line">        <span class="string">&#x27;client_id&#x27;</span>: BUNDLE_ID,</span><br><span class="line">        <span class="string">&#x27;client_secret&#x27;</span>: client_sec,</span><br><span class="line">        <span class="string">&#x27;code&#x27;</span>: code,</span><br><span class="line">        <span class="string">&#x27;grant_type&#x27;</span>: GRAND_TYPE,</span><br><span class="line">        <span class="string">&#x27;scope&#x27;</span>: <span class="string">&#x27;name&#x27;</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">login_req = requests.post(url=APPLE_CODE_URL, data=post_data).json()</span><br><span class="line">id_token = login_req[<span class="string">&#x27;id_token&#x27;</span>]</span><br><span class="line">print(id_token)</span><br></pre></td></tr></table></figure>
-<h2 id="3-解密-JWT"><a href="#3-解密-JWT" class="headerlink" title="3.解密 JWT"></a>3.解密 JWT</h2><p>为什么标题要叫解密JEWT而不是解密id_token呢，因为这个方法同样也适用于token验证方式中的 <code>Identity Token</code> 解密，TMD这俩就是一个东西不能解密都出鬼了</p>
+<h2 id="3-解密-JWT"><a href="#3-解密-JWT" class="headerlink" title="3.解密 JWT"></a>3.解密 JWT</h2><p>为什么标题要叫解密JWT而不是解密id_token呢，因为这个方法同样也适用于token验证方式中的 <code>Identity Token</code> 解密，TMD这俩就是一个东西不能解密都出鬼了</p>
 <p>JWT格式（以.点号分隔）：</p>
 <ul>
 <li>header: 包括了key id 与加密算法</li>
@@ -124,16 +124,16 @@ redirect_uri： string 在授权用户使用您的应用程序（如果适用）
     <title>Hello World</title>
     <url>/qfgcn1/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span></code></pre>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
 
 <p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="hljs bash">$ hexo server</code></pre>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
 
 <p>More info: <a href="https://hexo.io/docs/server.html">Server</a><a id="more"></a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="hljs bash">$ hexo generate</code></pre>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
 
 <p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="hljs bash">$ hexo deploy</code></pre>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
