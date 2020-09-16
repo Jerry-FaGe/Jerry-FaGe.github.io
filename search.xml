@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>About Me</title>
+    <url>//about/</url>
+    <content><![CDATA[<p>姓名：Jerry<br>现居：厦门<br>GitHub:  Jerry-FaGe<br>twitter: @Jerry619092968<br>QQ: 619092968<br>微信: w619092968<a id="more"></a></p>
+]]></content>
+      <categories>
+        <category>杂谈</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Sign in with Apple（苹果授权登陆）python服务端code验证</title>
     <url>/qfn3m6/</url>
     <content><![CDATA[<p>废话不多说相信很多人都是因为苹果的坑爹政策才被要求了解苹果登录的流程，本文不涉及前端操作（因为我不会），只介绍后端是如何验证的。</p>
@@ -106,18 +118,6 @@ redirect_uri： string 在授权用户使用您的应用程序（如果适用）
         <tag>Python</tag>
         <tag>后端</tag>
         <tag>第三方登录</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>About Me</title>
-    <url>//about/</url>
-    <content><![CDATA[<p>姓名：Jerry<br>现居：厦门<br>GitHub:  Jerry-FaGe<br>twitter: @Jerry619092968<br>QQ: 619092968<br>微信: w619092968<a id="more"></a></p>
-]]></content>
-      <categories>
-        <category>杂谈</category>
-      </categories>
-      <tags>
-        <tag>随笔</tag>
       </tags>
   </entry>
   <entry>
