@@ -42,7 +42,7 @@ function loadWidget(config) {
 	let userAction = false,
 		userActionTimer,
 		messageTimer,
-		messageArray = ["好久不见，日子过得好快呢……", "大坏蛋！你都多久没理人家了呀，嘤嘤嘤～", "嗨～快来逗我玩吧！", "拿小拳拳锤你胸口！", "记得把小家加入 Adblock 白名单哦！"];
+		messageArray = ["好久不见，日子过得好快呢……", "大坏蛋！你都多久没理人家了呀，嘤嘤嘤～", "嗨～快来逗我玩吧！", "拿小拳拳锤你胸口！", "记得把人家加入 Adblock 白名单哦！"];
 	window.addEventListener("mousemove", () => userAction = true);
 	window.addEventListener("keydown", () => userAction = true);
 	setInterval(() => {
@@ -162,8 +162,8 @@ function loadWidget(config) {
 			modelTexturesId = localStorage.getItem("modelTexturesId");
 		if (modelId === null) {
 			// 首次访问加载 指定模型 的 指定材质
-			modelId = 5; // 模型 ID
-			modelTexturesId = 1; // 材质 ID
+			modelId = 1; // 模型 ID
+			modelTexturesId = 0; // 材质 ID
 		}
 		loadModel(modelId, modelTexturesId);
 		fetch(waifuPath)
@@ -227,14 +227,14 @@ function loadWidget(config) {
 			if (!modelList) await loadModelList();
 			const target = randomSelection(modelList.models[modelId]);
 			loadlive2d("live2d", `${cdnPath}model/${target}/index.json`);
-			showMessage("我的新衣服好看嘛？", 4000, 10);
+			showMessage("我的新衣服好看嘛？发哥买的！", 4000, 10);
 		} else {
 			// 可选 "rand"(随机), "switch"(顺序)
 			fetch(`${apiPath}rand_textures/?id=${modelId}-${modelTexturesId}`)
 				.then(response => response.json())
 				.then(result => {
 					if (result.textures.id === 1 && (modelTexturesId === 1 || modelTexturesId === 0)) showMessage("我还没有其他衣服呢！", 4000, 10);
-					else loadModel(modelId, result.textures.id, "我的新衣服好看嘛？");
+					else loadModel(modelId, result.textures.id, "我的新衣服好看嘛？发哥买的！");
 				});
 		}
 	}
