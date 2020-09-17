@@ -36,6 +36,11 @@
   <% } %>
   <%- partial('google-analytics') %>
   <%- partial('baidu-analytics') %>
+  <% if (theme.live2d){ %>
+  <!--自定义看板娘-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
+  <script src="/live2d-widget/autoload.js"></script>
+  <% } %>
 </head>
 
 </html>

@@ -6,7 +6,7 @@ menu:
   标签: /tags
   旅行: /tags/旅行/
   相册: /photo
-  关于我: /2020/08/21/about/
+  关于我: /about/
 
 # 站点次标题和打字动效
 # https://github.com/mattboldt/typed.js
@@ -79,7 +79,7 @@ reward_wording: "请我喝杯咖啡吧~"
 # 支付宝二维码图片地址，跟你设置logo的方式一样。比如：/images/alipay.jpg
 alipay: /images/alipay.jpg
 # 微信二维码图片地址
-weixin: /images/wechat.jpg
+weixin: /images/wechat.png
 
 # 版权声明
 # 版权声明type设定：0-关闭版权声明； 1-文章对应的md文件里有copyright: true属性，才有版权声明； 2-所有文章均有版权声明
@@ -162,6 +162,8 @@ icp:
   url: "http://www.beian.miit.gov.cn/" # 备案链接
   text: "浙ICP备88888888" # 备案信息
 
+live2d: true
+
 # 评论：1、Valine(推荐)；2、Gitalk；3、MiniValine
 
 # 1、Valine[一款快速、简洁且高效的无后端评论系统](https://github.com/xCss/Valine)
@@ -224,3 +226,5 @@ minivaline:
     - https://cdn.jsdelivr.net/gh/MiniValine/tieba@latest
     - https://cdn.jsdelivr.net/gh/MiniValine/twemoji@latest
     - https://cdn.jsdelivr.net/gh/MiniValine/weibo@latest
+
+

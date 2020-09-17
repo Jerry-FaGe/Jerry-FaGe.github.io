@@ -5,6 +5,7 @@ categories:
   - 杂谈
 author: Jerry_FaGe
 date: 2020-08-21 22:04:00
+permalink: /about/
 ---
 姓名：Jerry
 现居：厦门

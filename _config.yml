@@ -16,7 +16,8 @@ timezone: Asia/Shanghai
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://yoursite.com
 root: /
-permalink: :year/:month/:day/:title/
+permalink: :date_abbr/
+# permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
   trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
@@ -42,13 +43,13 @@ external_link:
   exclude: ''
 filename_case: 0
 render_drafts: false
-post_asset_folder: false
+post_asset_folder: true
 relative_link: false
 future: true
 highlight:
   enable: true
   line_number: true
-  auto_detect: false
+  auto_detect: false # 自动检测代码块的语言
   tab_replace: ''
   wrap: true
   hljs: false
@@ -121,12 +122,14 @@ feed:
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: https://github.com/Jerry-FaGe/Jerry-FaGe.github.io
+  repo:
+      github: git@github.com:Jerry-FaGe/Jerry-FaGe.github.io.git
+      gitee: git@gitee.com:Jerry_FaGe/Jerry_FaGe.git
   branch: master
 
 # admin
 admin:
-  deployCommand: ./hexo-d.sh
+  deployCommand: 'hexo-d.sh'
 # hexo-admin默认参数
 metadata:
   updated:

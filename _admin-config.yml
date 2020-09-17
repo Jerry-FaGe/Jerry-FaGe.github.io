@@ -1,4 +1,5 @@
 options:
+  nineyaImageFilePath: true
   lineNumbers: true
 editor:
   lineNumbers: true
