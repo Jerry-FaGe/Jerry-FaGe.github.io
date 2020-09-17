@@ -100,7 +100,7 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: ayer
+theme: ayer # hexo-theme-sakuraplus # ayer
 
 # hexo-generator-searchdb
 search:
