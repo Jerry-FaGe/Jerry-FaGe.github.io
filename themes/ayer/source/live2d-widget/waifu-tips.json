@@ -30,7 +30,7 @@
 		"selector": ".nav-item a[href='/about/']",
 		"text": ["你想知道我家主人是谁吗？", "这里有一些关于我家主人的秘密哦，要不要看看呢？", "发现主人出没地点！", "这是我家主人(*´∇｀*)"]
 	}, {
-		"selector": ".nav-item a[href='/tags",
+		"selector": ".nav-item a[href='/tags']",
 		"text": ["点击就可以看文章的标签啦！", "点击来查看所有标签哦。"]
 	}, {
 		"selector": ".nav-item a[href='/categories']",
@@ -42,7 +42,7 @@
 		"selector": ".menu-item-friends a",
 		"text": ["这是我的朋友们哦ヾ(◍°∇°◍)ﾉﾞ", "要去大佬们的家看看吗？", "要去拜访一下我的朋友们吗？"]
 	}, {
-		"selector": ".nav-item-search",
+		"selector": "i.ri-search-line",
 		"text": ["找不到想看的内容？搜索看看吧！", "在找什么东西呢，需要帮忙吗？"]
 	}, {
 		"selector": ".menu-item a",
@@ -87,7 +87,7 @@
 		"selector": ".article-title, archive-article-title",
 		"text": ["要看看 <span>{text}</span> 这篇文章吗？"]
 	}, {
-		"selector": "a[rel='contents']",
+		"selector": "a.article-more-link",
 		"text": ["点击来阅读全文哦。"]
 	}, {
 		"selector": "a[itemprop='discussionUrl']",
