@@ -14,7 +14,7 @@ timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: http://jerry-fage.github.io
 root: /
 permalink: :date_abbr/
 # permalink: :year/:month/:day/:title/
@@ -100,7 +100,7 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: ayer # hexo-theme-sakuraplus # ayer
+theme: butterfly
 
 # hexo-generator-searchdb
 search:
