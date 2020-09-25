@@ -13,6 +13,10 @@
 - class_name: 网站
   class_desc: 值得推荐的网站
   link_list:
+    - name: BlackCodeClub
+      link: https://black-code-magic.github.io/
+      avatar: 
+      descr: 黑色代码魔术社官方网站
     - name: Youtube
       link: https://www.youtube.com/
       avatar: https://i.loli.net/2020/05/14/9ZkGg8v3azHJfM1.png

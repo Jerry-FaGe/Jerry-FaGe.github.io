@@ -13,7 +13,7 @@ updated:
 permalink:
 ---
 废话不多说相信很多人都是因为苹果的坑爹政策才被要求了解苹果登录的流程，本文不涉及前端操作（因为我不会），只介绍后端是如何验证的。
-## 1.你会从前端得到什么
+## 你会从前端得到什么
 这里是通过 RESTful API 接口来获取数据，所以我不会管前端是咋获取的，我只管接收和处理数据
 
 	---->> User Id - 000592.729afa20xxxxxxx9929f3958f03c6c9e.0948
@@ -35,7 +35,7 @@ permalink:
 * `authorizationCode` code验证方式的主要参数，后面会用到
 
 现在我们已经从前端获取到了一些关键信息，注意 `User Name`，`User Email`只有在用户第一次授权的时候才能拿到，所以如果用得上的话要及时储存起来。
-## 2.服务端向苹果请求验证
+## 服务端向苹果请求验证
 接下来我们需要拼接从前端获取的参数，用POST方法访问苹果提供的 <https://appleid.apple.com/auth/token> 接口，接口相关信息苹果有提供 [Generate and validate tokens](https://developer.apple.com/documentation/sign_in_with_apple/generate_and_validate_tokens) 。
 
 下面着重介绍几个参数及其获取方法。首先先看下该接口需要的参数，如下
@@ -145,7 +145,7 @@ login_req = requests.post(url=APPLE_CODE_URL, data=post_data).json()
 id_token = login_req['id_token']
 print(id_token)
 ```
-## 3.解密 JWT
+## 解密 JWT
 为什么标题要叫解密JWT而不是解密id_token呢，因为这个方法同样也适用于token验证方式中的 `Identity Token` 解密，TMD这俩就是一个东西不能解密都出鬼了
 
 JWT格式（以.点号分隔）：
@@ -247,7 +247,7 @@ def decode_jwt(token):
 }
 ```
 里面的 `sub` 就是用户apple账号登录在该程序中的唯一标识了（类似 `openid` ），我们可以把它存到程序的数据库中与用户信息做映射，用于标识用户身份。
-## 4.参考链接
+## 参考链接
 [Sign In With Apple 从登陆到服务器验证](https://www.yuque.com/zhanglong/bb0s5d/cxbh7n)
 
 [Sign in with Apple 登录详解](https://ihtcboy.com/2019/09/16/2019-09-16_Sign-in-with-Apple/)

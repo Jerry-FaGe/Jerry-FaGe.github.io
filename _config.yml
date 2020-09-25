@@ -129,7 +129,7 @@ deploy:
 
 # admin
 admin:
-  deployCommand: 'hexo-d.sh'
+  deployCommand: 'hexo-g.sh'
 # hexo-admin默认参数
 metadata:
   updated:

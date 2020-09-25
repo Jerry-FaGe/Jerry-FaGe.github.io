@@ -1,6 +1,8 @@
 ---
-title: categories
+title: 分类
+date: 2020-08-22 03:40:07
 type: "categories"
 layout: "categories"
-date: 2020-08-22 03:40:07
+comments: false
+aplayer: true
 ---
