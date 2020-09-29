@@ -135,3 +135,7 @@ metadata:
   updated:
   comments: true
   permalink:
+
+# hexo-tag-aplayer
+aplayer:
+  meting: true
