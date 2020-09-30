@@ -16,7 +16,7 @@ menu:
     - 照片 || /photo/ || fas fa-images
     - 电影 || /movies/ || fas fa-video
   友链: /link/ || fas fa-link
-  关于我: /about/ || fas fa-heart
+  关于我: /about/ || fas fa-heart faa-pulse animated
 
 # Hide the child menu items in mobile sidebar
 hide_sidebar_menu_child: false
@@ -847,8 +847,6 @@ inject:
   # - <link rel="stylesheet" href="/xxx.css">
     - <link rel="stylesheet" href="/css/mycss.css">
     - <link rel="stylesheet" href="/css/background.css">
-    # 鼠标雪花
-    - <link reL="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js">
     # 元素动画
     - <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/font-awesome-animation.min.css">
     # 外挂标签
@@ -857,6 +855,8 @@ inject:
     # - <script src="xxxx"></script>
     - <script src="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@master/xkTool/v3.1.1/xkTool.js"></script>
     - <script src="/js/myjs.js"></script>
+    # 鼠标雪花
+    - <script src="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js"></script>
 
 # CDN
 # Don't modify the following settings unless you know how they work
