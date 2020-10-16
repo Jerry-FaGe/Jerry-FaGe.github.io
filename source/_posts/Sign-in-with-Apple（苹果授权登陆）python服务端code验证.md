@@ -1,6 +1,5 @@
 title: Sign in with Apple（苹果授权登陆）python服务端code验证
 author: Jerry_FaGe
-comments: true
 tags:
   - Sign in with Apple
   - Python
@@ -9,7 +8,7 @@ tags:
 categories:
   - 教程
 date: 2020-08-26 05:56:30
-updated:
+comments: true
 permalink:
 ---
 废话不多说相信很多人都是因为苹果的坑爹政策才被要求了解苹果登录的流程，本文不涉及前端操作（因为我不会），只介绍后端是如何验证的。

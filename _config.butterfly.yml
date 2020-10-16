@@ -851,12 +851,16 @@ inject:
     - <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/font-awesome-animation.min.css">
     # 外挂标签
     - <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/tags.css">
+    # live 2D
+    - <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
   bottom:
     # - <script src="xxxx"></script>
     - <script src="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@master/xkTool/v3.1.1/xkTool.js"></script>
     - <script src="/js/myjs.js"></script>
     # 鼠标雪花
     - <script src="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js"></script>
+    # live 2D
+    - <script src="/live2d-widget/autoload.js"></script>
 
 # CDN
 # Don't modify the following settings unless you know how they work
