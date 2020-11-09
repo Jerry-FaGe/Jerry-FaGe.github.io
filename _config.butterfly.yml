@@ -1,3 +1,4 @@
+# A
 # Main menu navigation (導航目錄)
 # --------------------------------------
 
@@ -16,7 +17,7 @@ menu:
     - 照片 || /photo/ || fas fa-images
     - 电影 || /movies/ || fas fa-video
   友链: /link/ || fas fa-link
-  关于我: /about/ || fas fa-heart faa-pulse animated
+  关于我: /about/ || fas fa-heart card-announcement-animation
 
 # Hide the child menu items in mobile sidebar
 hide_sidebar_menu_child: false
@@ -68,7 +69,7 @@ local_search:
 
 ##侧边栏歌单
 aplayer:
-  enable: true
+  enable: false
   js:
     - https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.js
     - https://cdn.jsdelivr.net/npm/meting@1.2.0/dist/Meting.min.js
@@ -787,7 +788,7 @@ pjax:
 # Inject the css and script (aplayer/meting)
 aplayerInject:
   enable: false
-  per_page: true
+  per_page: false
 
 # Snackbar (Toast Notification 彈窗)
 # https://github.com/polonel/SnackBar
@@ -905,9 +906,9 @@ CDN:
   busuanzi: //busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js
 
   # background effect
-  canvas_ribbon: /js/third-party/canvas-ribbon.js
-  canvas_ribbon_piao: /js/third-party/piao.js
-  canvas_nest: /js/third-party/canvas-nest.js
+  canvas_ribbon: https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js
+  canvas_fluttering_ribbon: https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js
+  canvas_nest: https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js
 
   lazyload: https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js
   instantpage: https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js
@@ -924,11 +925,10 @@ CDN:
   snackbar: https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js
 
   # effect
-  anime: https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js
-  activate_power_mode: /js/third-party/activate-power-mode.js
-  fireworks: /js/third-party/fireworks.js
-  click_heart: /js/third-party/click_heart.js
-  ClickShowText: /js/third-party/ClickShowText.js
+  activate_power_mode: https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js
+  fireworks: https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js
+  click_heart: https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js
+  ClickShowText: https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-show-text.min.js
 
   # fontawesome
   fontawesome: https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css
@@ -949,3 +949,5 @@ CDN:
   prismjs_js: https://cdn.jsdelivr.net/npm/prismjs/prism.min.js
   prismjs_lineNumber_js: https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js
   prismjs_autoloader: https://cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js
+
+  artitalk: https://cdn.jsdelivr.net/npm/artitalk
