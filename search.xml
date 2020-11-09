@@ -1,10 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>About Me</title>
+    <url>//about/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>姓名：Jerry<br>现居：厦门<br>GitHub:  Jerry-FaGe<br>twitter: @Jerry619092968<br>QQ: 619092968<br>微信: w619092968<a id="more"></a></p>
+]]></content>
+      <categories>
+        <category>杂谈</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/qfcqq0/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a><a id="more"></a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>Sign in with Apple（苹果授权登陆）python服务端code验证</title>
     <url>/qfn3m6/</url>
-    <content><![CDATA[<p>废话不多说相信很多人都是因为苹果的坑爹政策才被要求了解苹果登录的流程，本文不涉及前端操作（因为我不会），只介绍后端是如何验证的。</p>
-<h2 id="1-你会从前端得到什么"><a href="#1-你会从前端得到什么" class="headerlink" title="1.你会从前端得到什么"></a>1.你会从前端得到什么</h2><p>这里是通过 RESTful API 接口来获取数据，所以我不会管前端是咋获取的，我只管接收和处理数据</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>废话不多说相信很多人都是因为苹果的坑爹政策才被要求了解苹果登录的流程，本文不涉及前端操作（因为我不会），只介绍后端是如何验证的。</p>
+<h2 id="你会从前端得到什么"><a href="#你会从前端得到什么" class="headerlink" title="你会从前端得到什么"></a>你会从前端得到什么</h2><p>这里是通过 RESTful API 接口来获取数据，所以我不会管前端是咋获取的，我只管接收和处理数据</p>
 <pre><code>----&gt;&gt; User Id - 000592.729afa20xxxxxxx9929f3958f03c6c9e.0948
 
 ----&gt;&gt; User Name - givenName: Lu familyName: Xs 
@@ -25,7 +55,7 @@
 <li><code>authorizationCode</code> code验证方式的主要参数，后面会用到</li>
 </ul>
 <p>现在我们已经从前端获取到了一些关键信息，注意 <code>User Name</code>，<code>User Email</code>只有在用户第一次授权的时候才能拿到，所以如果用得上的话要及时储存起来。</p>
-<h2 id="2-服务端向苹果请求验证"><a href="#2-服务端向苹果请求验证" class="headerlink" title="2.服务端向苹果请求验证"></a>2.服务端向苹果请求验证</h2><p>接下来我们需要拼接从前端获取的参数，用POST方法访问苹果提供的 <a href="https://appleid.apple.com/auth/token">https://appleid.apple.com/auth/token</a> 接口，接口相关信息苹果有提供 <a href="https://developer.apple.com/documentation/sign_in_with_apple/generate_and_validate_tokens">Generate and validate tokens</a> 。</p>
+<h2 id="服务端向苹果请求验证"><a href="#服务端向苹果请求验证" class="headerlink" title="服务端向苹果请求验证"></a>服务端向苹果请求验证</h2><p>接下来我们需要拼接从前端获取的参数，用POST方法访问苹果提供的 <a href="https://appleid.apple.com/auth/token">https://appleid.apple.com/auth/token</a> 接口，接口相关信息苹果有提供 <a href="https://developer.apple.com/documentation/sign_in_with_apple/generate_and_validate_tokens">Generate and validate tokens</a> 。</p>
 <p>下面着重介绍几个参数及其获取方法。首先先看下该接口需要的参数，如下</p>
 <pre><code>client_id： string (必要) 您的应用程序的标识符（应用程序ID或服务ID）。该标识符不得包含您的团队ID，以帮助减轻敏感数据对最终用户的影响。授权代码和刷新令牌验证请求均需要此参数。
 
@@ -60,7 +90,7 @@ redirect_uri： string 在授权用户使用您的应用程序（如果适用）
 <p>其中 <code>id_token</code> 里面就是我们需要的数据了，这也是 <code>JWT</code> 数据，需要进行解密，TM的这其实就是前端能获取到的token醉了。</p>
 <p>原理讲完了上代码：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">APPLE_CODE_URL = <span class="string">&#x27;https://appleid.apple.com/auth/token&#x27;</span></span><br><span class="line">BUNDLE_ID = <span class="string">&quot;上面的Bundle ID&quot;</span></span><br><span class="line">client_sec = <span class="string">&quot;上面的client_secret&quot;</span></span><br><span class="line">GRAND_TYPE = <span class="string">&#x27;authorization_code&#x27;</span></span><br><span class="line">code = <span class="string">&quot;前端传的authorizationCode&quot;</span></span><br><span class="line"></span><br><span class="line">post_data = &#123;</span><br><span class="line">        <span class="string">&#x27;client_id&#x27;</span>: BUNDLE_ID,</span><br><span class="line">        <span class="string">&#x27;client_secret&#x27;</span>: client_sec,</span><br><span class="line">        <span class="string">&#x27;code&#x27;</span>: code,</span><br><span class="line">        <span class="string">&#x27;grant_type&#x27;</span>: GRAND_TYPE,</span><br><span class="line">        <span class="string">&#x27;scope&#x27;</span>: <span class="string">&#x27;name&#x27;</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">login_req = requests.post(url=APPLE_CODE_URL, data=post_data).json()</span><br><span class="line">id_token = login_req[<span class="string">&#x27;id_token&#x27;</span>]</span><br><span class="line">print(id_token)</span><br></pre></td></tr></table></figure>
-<h2 id="3-解密-JWT"><a href="#3-解密-JWT" class="headerlink" title="3.解密 JWT"></a>3.解密 JWT</h2><p>为什么标题要叫解密JWT而不是解密id_token呢，因为这个方法同样也适用于token验证方式中的 <code>Identity Token</code> 解密，TMD这俩就是一个东西不能解密都出鬼了</p>
+<h2 id="解密-JWT"><a href="#解密-JWT" class="headerlink" title="解密 JWT"></a>解密 JWT</h2><p>为什么标题要叫解密JWT而不是解密id_token呢，因为这个方法同样也适用于token验证方式中的 <code>Identity Token</code> 解密，TMD这俩就是一个东西不能解密都出鬼了</p>
 <p>JWT格式（以.点号分隔）：</p>
 <ul>
 <li>header: 包括了key id 与加密算法</li>
@@ -92,7 +122,7 @@ redirect_uri： string 在授权用户使用您的应用程序（如果适用）
 <p>解码后的信息如下</p>
 <figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;iss&quot;</span>: <span class="string">&quot;https://appleid.apple.com&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;aud&quot;</span>: <span class="string">&quot;这个对应app的bundleid&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;exp&quot;</span>: <span class="number">1598335182</span>,</span><br><span class="line">    <span class="attr">&quot;iat&quot;</span>: <span class="number">1598334582</span>,</span><br><span class="line">    <span class="attr">&quot;sub&quot;</span>: <span class="string">&quot;这个字段和手机端获取的user信息相同&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;at_hash&quot;</span>: <span class="string">&quot;_DsVyGBEMQx5HIi3uyf-UQ&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;email&quot;</span>: <span class="string">&quot;XXXXXXXX@qq.com&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;email_verified&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;auth_time&quot;</span>: <span class="number">1598334492</span>,</span><br><span class="line">    <span class="attr">&quot;nonce_supported&quot;</span>: True</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>里面的 <code>sub</code> 就是用户apple账号登录在该程序中的唯一标识了（类似 <code>openid</code> ），我们可以把它存到程序的数据库中与用户信息做映射，用于标识用户身份。</p>
-<h2 id="4-参考链接"><a href="#4-参考链接" class="headerlink" title="4.参考链接"></a>4.参考链接</h2><p><a href="https://www.yuque.com/zhanglong/bb0s5d/cxbh7n">Sign In With Apple 从登陆到服务器验证</a></p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="https://www.yuque.com/zhanglong/bb0s5d/cxbh7n">Sign In With Apple 从登陆到服务器验证</a></p>
 <p><a href="https://ihtcboy.com/2019/09/16/2019-09-16_Sign-in-with-Apple/">Sign in with Apple 登录详解</a></p>
 <p><a href="https://blog.csdn.net/Tommey_Chang/article/details/106770207?utm_medium=distribute.pc_relevant.none-task-blog-title-1&spm=1001.2101.3001.4242">Python后端实现苹果ID登陆</a></p>
 <p><a href="https://blog.csdn.net/wpf199402076118/article/details/99677412">Sign in with Apple（苹果授权登陆）</a></p>
@@ -107,35 +137,5 @@ redirect_uri： string 在授权用户使用您的应用程序（如果适用）
         <tag>后端</tag>
         <tag>第三方登录</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>About Me</title>
-    <url>//about/</url>
-    <content><![CDATA[<p>姓名：Jerry<br>现居：厦门<br>GitHub:  Jerry-FaGe<br>twitter: @Jerry619092968<br>QQ: 619092968<br>微信: w619092968<a id="more"></a></p>
-]]></content>
-      <categories>
-        <category>杂谈</category>
-      </categories>
-      <tags>
-        <tag>随笔</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/qfgcn1/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a><a id="more"></a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
   </entry>
 </search>

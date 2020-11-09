@@ -3,11 +3,11 @@
   <title>Jerry_FaGe&#39;s Blog</title>
   <icon>https://www.gravatar.com/avatar/7c04d9c34984e73102245aec3975f679</icon>
   <subtitle>啥都往里塞的记事本儿</subtitle>
-  <link href="http://yoursite.com/atom.xml" rel="self"/>
+  <link href="http://jerry-fage.github.io/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
-  <updated>2020-09-04T07:31:36.377Z</updated>
-  <id>http://yoursite.com/</id>
+  <link href="http://jerry-fage.github.io/"/>
+  <updated>2020-10-26T01:24:52.521Z</updated>
+  <id>http://jerry-fage.github.io/</id>
   
   <author>
     <name>Jerry_FaGe</name>
@@ -18,14 +18,14 @@
   
   <entry>
     <title>Sign in with Apple（苹果授权登陆）python服务端code验证</title>
-    <link href="http://yoursite.com/qfn3m6/"/>
-    <id>http://yoursite.com/qfn3m6/</id>
+    <link href="http://jerry-fage.github.io/qfn3m6/"/>
+    <id>http://jerry-fage.github.io/qfn3m6/</id>
     <published>2020-08-25T21:56:30.000Z</published>
-    <updated>2020-09-04T07:31:36.377Z</updated>
+    <updated>2020-10-26T01:24:52.521Z</updated>
     
     
     <summary type="html">&lt;p&gt;废话不多说相信很多人都是因为苹果的坑爹政策才被要求了解苹果登录的流程，本文不涉及前端操作（因为我不会），只介绍后端是如何验证的。&lt;/p&gt;
-&lt;h2 id=&quot;1-你会从前端得到什么&quot;&gt;&lt;a href=&quot;#1-你会从前端得到什么&quot; class=&quot;headerlink&quot; title=&quot;1.你会从前端得到什么&quot;&gt;&lt;/a&gt;1.你会从前端得到什么&lt;/h2&gt;&lt;p&gt;这里是通过 RESTful API 接口来获取数据，所以我不会管前端是咋获取的，我只管接收和处理数据&lt;/p&gt;
+&lt;h2 id=&quot;你会从前端得到什么&quot;&gt;&lt;a href=&quot;#你会从前端得到什么&quot; class=&quot;headerlink&quot; title=&quot;你会从前端得到什么&quot;&gt;&lt;/a&gt;你会从前端得到什么&lt;/h2&gt;&lt;p&gt;这里是通过 RESTful API 接口来获取数据，所以我不会管前端是咋获取的，我只管接收和处理数据&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;----&amp;gt;&amp;gt; User Id - 000592.729afa20xxxxxxx9929f3958f03c6c9e.0948
 
 ----&amp;gt;&amp;gt; User Name - givenName: Lu familyName: Xs 
@@ -40,25 +40,25 @@
     
     
     
-    <category term="教程" scheme="http://yoursite.com/categories/%E6%95%99%E7%A8%8B/"/>
+    <category term="教程" scheme="http://jerry-fage.github.io/categories/%E6%95%99%E7%A8%8B/"/>
     
     
-    <category term="Sign in with Apple" scheme="http://yoursite.com/tags/Sign-in-with-Apple/"/>
+    <category term="Sign in with Apple" scheme="http://jerry-fage.github.io/tags/Sign-in-with-Apple/"/>
     
-    <category term="Python" scheme="http://yoursite.com/tags/Python/"/>
+    <category term="Python" scheme="http://jerry-fage.github.io/tags/Python/"/>
     
-    <category term="后端" scheme="http://yoursite.com/tags/%E5%90%8E%E7%AB%AF/"/>
+    <category term="后端" scheme="http://jerry-fage.github.io/tags/%E5%90%8E%E7%AB%AF/"/>
     
-    <category term="第三方登录" scheme="http://yoursite.com/tags/%E7%AC%AC%E4%B8%89%E6%96%B9%E7%99%BB%E5%BD%95/"/>
+    <category term="第三方登录" scheme="http://jerry-fage.github.io/tags/%E7%AC%AC%E4%B8%89%E6%96%B9%E7%99%BB%E5%BD%95/"/>
     
   </entry>
   
   <entry>
     <title>Hello World</title>
-    <link href="http://yoursite.com/qfgcn1/"/>
-    <id>http://yoursite.com/qfgcn1/</id>
-    <published>2020-08-22T06:28:13.250Z</published>
-    <updated>2020-08-22T06:28:13.250Z</updated>
+    <link href="http://jerry-fage.github.io/qfcqq0/"/>
+    <id>http://jerry-fage.github.io/qfcqq0/</id>
+    <published>2020-08-20T07:42:00.000Z</published>
+    <updated>2020-09-25T08:36:19.545Z</updated>
     
     
     <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
@@ -76,20 +76,20 @@
   
   <entry>
     <title>About Me</title>
-    <link href="http://yoursite.com/about/"/>
-    <id>http://yoursite.com/about/</id>
-    <published>2020-08-21T14:04:00.000Z</published>
-    <updated>2020-08-31T07:44:00.885Z</updated>
+    <link href="http://jerry-fage.github.io/about/"/>
+    <id>http://jerry-fage.github.io/about/</id>
+    <published>2020-08-17T14:04:00.000Z</published>
+    <updated>2020-10-14T02:50:20.594Z</updated>
     
     
     <summary type="html">&lt;p&gt;姓名：Jerry&lt;br&gt;现居：厦门&lt;br&gt;GitHub:  Jerry-FaGe&lt;br&gt;twitter: @Jerry619092968&lt;br&gt;QQ: 619092968&lt;br&gt;微信: w619092968</summary>
     
     
     
-    <category term="杂谈" scheme="http://yoursite.com/categories/%E6%9D%82%E8%B0%88/"/>
+    <category term="杂谈" scheme="http://jerry-fage.github.io/categories/%E6%9D%82%E8%B0%88/"/>
     
     
-    <category term="随笔" scheme="http://yoursite.com/tags/%E9%9A%8F%E7%AC%94/"/>
+    <category term="随笔" scheme="http://jerry-fage.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   

@@ -1,68 +1,255 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>页面没有找到 | Jerry_FaGe's Blog</title><meta name="keywords" content="离谱"><meta name="author" content="Jerry_FaGe,jerry_fage@foxmail.com"><meta name="copyright" content="Jerry_FaGe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta property="og:type" content="website">
+<meta property="og:title" content="Jerry_FaGe&#39;s Blog">
+<meta property="og:url" content="http://jerry-fage.github.io/404.html">
+<meta property="og:site_name" content="Jerry_FaGe&#39;s Blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://jerry-fage.github.io/img/avatar.png">
+<meta property="article:author" content="Jerry_FaGe">
+<meta property="article:tag" content="离谱">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://jerry-fage.github.io/img/avatar.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://jerry-fage.github.io/404"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="google-site-verification" content="n6csgQ_PkDct6sF2XcDI9HzRDs_wfsvDOk9lDJc0EYU"/><meta name="msvalidate.01" content="64a22c063e917d0707e4668c8896a95b"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: Jerry_FaGe","link":"链接: ","source":"来源: Jerry_FaGe's Blog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  ClickShowText: {"text":"不灭之握,相位猛冲,致命节奏,风暴聚集,绝对专注,能量倾泻,气定神闲","fontSize":"15px"},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-right"},
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: true
+};
 
-<head>
-	<meta charset="UTF-8">
-	<title>404</title>
-	<meta name="keywords" content="Hexo,Ayer,404,Design">
-	<meta name="description" content="hexo theme ayer page 404.">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-	<style>
-		html,
-		figure {
-			margin: 0;
-			padding: 0;
-			overflow-x: hidden;
-		}
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
 
-		body {
-			margin: 20px;
-			overflow: hidden;
-		}
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
 
-		h1,
-		h3 {
-			width: 100%;
-			text-align: center;
-			color: #403e3e;
-		}
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
 
-		h3 a {
-			color: #0681d0;
-		}
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: false,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2020-11-09 17:55:08'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
 
-		.forrestgump img {
-			width: 52rem;
-			margin-left: 50%;
-			transform: translateX(-50%);
-			border-radius: 5%;
-			opacity: .8;
-		}
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = '1'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><link rel="stylesheet" href="/css/mycss.css"><link rel="stylesheet" href="/css/background.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/font-awesome-animation.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/tags.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"><meta name="generator" content="Hexo 5.0.2"><link rel="alternate" href="/atom.xml" title="Jerry_FaGe's Blog" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="error-wrap"><div class="error-content"><div class="error-img" style="background-image: url(https://i.loli.net/2020/05/19/aKOcLiyPl2JQdFD.png)"></div><div class="error-info"><h1 class="error_title">404</h1><div class="error_subtitle">Page Not Found</div><a class="button--animated" href="/"><i class="fas fa-rocket"></i>回到主页</a></div></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
 
-		@media screen and (max-width: 768px) {
-			.forrestgump img {
-				width: 100%;
-			}
-		}
-	</style>
-</head>
+  }
+}
+window.addEventListener('load',()=> {preloader.endLoading()})</script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.17.0/js/md5.min.js"></script><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
 
-<body>
-	<div class="notfound">
-		<a class="notfound-link" href="/">
-			<img width="40"
-				src="data:image/png;base64,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">
-		</a>
-		<figure class="forrestgump">
-			<figcaption>
-				<h1>404<br>Not Found!</h1>
-				<h3>Life was like a journey on the sea, you never know what you're going to get.</h3>
-				<h3>亲，获取不到该路径的页面呢，请检查一下哦，可能你还需要仔细阅读 <a href="https://hexo.io/docs/">Hexo</a> 和 <a
-						href="https://shen-yu.gitee.io/2019/ayer/">Ayer</a> 的说明文档~</h3>
-			</figcaption>
-			<img src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/404.jpg">
-		</figure>
-	</div>
-</body>
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+    content = content.replace(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|jpeg|gif|png|webp)/g, '') // remove image link
+    content = content.replace(/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gi, '') // remove url
 
-</html>
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getIcon = (icon, mail) => {
+    if (icon) return icon 
+    let defaultIcon = ''
+    let iconUrl = `https://gravatar.loli.net/avatar/${md5(mail.toLowerCase()) + defaultIcon}`
+    return iconUrl
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    for (let i = 0; i < array.length; i++) {
+      result += '<div class=\'aside-list-item\'>'
+
+      if (true) {
+        result += `<a href='${array[i].url}' class="thumbnail"><img src='${getIcon(array[i].avatar, array[i].mail)}' alt='${array[i].nick}'></a>`
+      }
+
+      result += `<div class='content'>
+      <a class='comment' href='${array[i].url}'>${array[i].content}</a>
+      <div class='name'><span>${array[i].nick}</span><time> / ${btf.diffDate(array[i].date, true)}</time></div>
+      </div></div>`
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom.innerHTML= result
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const getValineData = () => {
+      let serverURL = ''
+      if (false) {
+        serverURL = ''
+      } else {
+        serverURL = 'https://0uTtIMwz.api.lncldglobal.com'
+      }
+
+    var settings = {
+      "url": `${serverURL}/1.1/classes/Comment?limit=6&order=-createdAt`,
+      "method": "GET",
+      "timeout": 0,
+      "headers": {
+        "X-LC-Id": '0uTtIMwzaQc4hq6vPMhsiqbw-gzGzoHsz',
+        "X-LC-Key": 'ttyiwMFWJHGOV9J5ypUexmfm',
+        "Content-Type": "application/json"
+      },
+    }
+
+    $.ajax(settings).done((response) => {
+      var valineArray = []
+      response.results.forEach((e)=>{
+        valineArray.push({
+          'avatar': e.QQAvatar,
+          'content': changeContent(e.comment),
+          'mail': e.mail,
+          'nick': e.nick,
+          'url': e.url,
+          'date': e.createdAt,
+        })
+      })
+      
+      saveToLocal.set('leancloud-newest-comments', JSON.stringify(valineArray), 10/(60*24))
+      generateHtml(valineArray)
+
+    }).fail(()=>{
+      const $dom = document.querySelector('#card-newest-comments .aside-list')
+      $dom.innerHTML= "无法获取资料，请确认相关配置是否正确"
+    })
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('leancloud-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getValineData()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script src="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@master/xkTool/v3.1.1/xkTool.js"></script><script src="/js/myjs.js"></script><script src="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js"></script><script src="/live2d-widget/autoload.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-show-text.min.js" async="async" mobile="false"></script></div></body></html>
