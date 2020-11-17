@@ -12,6 +12,15 @@ xiaokang.randomBanner(
     true // 是否开启滤镜 默认不开启
 );
 
+// 手机状态下工具栏默认不展开
+xiaokang.mobileSidebar();
+
+// mac 代码框绿色按钮放大
+xiaokang.codeFull();
+
+// 点击目录输出锚点
+xiaokang.consoleAnchor();
+
 // 欺诈标题
 xiaokang.cheatTitle();
 
