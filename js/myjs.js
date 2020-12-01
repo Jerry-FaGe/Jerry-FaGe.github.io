@@ -4,16 +4,16 @@ var xiaokang = new xkTool(
 );
 
 // 随机头图
-xiaokang.randomBanner(
-    "https://cdn.jsdelivr.net/gh/yunwanjia-cloud/banner/", // 前半部分网址
-    "-min.jpg", // 后半部分网址
-    1, // 随机数开始范围
-    57, // 随机数结束范围
-    true // 是否开启滤镜 默认不开启
-);
+// xiaokang.randomBanner(
+//     "https://cdn.jsdelivr.net/gh/yunwanjia-cloud/banner/", // 前半部分网址
+//     "-min.jpg", // 后半部分网址
+//     1, // 随机数开始范围
+//     57, // 随机数结束范围
+//     true // 是否开启滤镜 默认不开启
+// );
 
 // 手机状态下工具栏默认不展开
-xiaokang.mobileSidebar();
+// xiaokang.mobileSidebar();
 
 // mac 代码框绿色按钮放大
 xiaokang.codeFull();
