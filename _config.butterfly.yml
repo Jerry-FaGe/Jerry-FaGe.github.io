@@ -110,7 +110,7 @@ favicon: /img/favicon.png
 
 # Avatar (頭像)
 avatar:
-  img: /img/avatar.png
+  img: https://i1.hdslb.com/bfs/face/3376cd6d51bcaaea6c83134df8b36daac814167e.jpg_1024x1024.jpg
   effect: false
 
 # the banner image of home page
