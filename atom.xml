@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Jerry_FaGe&#39;s Blog</title>
+  <icon>https://www.gravatar.com/avatar/7c04d9c34984e73102245aec3975f679</icon>
+  <subtitle>啥都往里塞的记事本儿</subtitle>
+  <link href="http://jerry-fage.github.io/atom.xml" rel="self"/>
+  
+  <link href="http://jerry-fage.github.io/"/>
+  <updated>2023-01-30T16:26:26.030Z</updated>
+  <id>http://jerry-fage.github.io/</id>
+  
+  <author>
+    <name>Jerry_FaGe</name>
+    <email>jerry_fage@foxmail.com</email>
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>致爱莉希雅</title>
+    <link href="http://jerry-fage.github.io/posts/b7d85702.html"/>
+    <id>http://jerry-fage.github.io/posts/b7d85702.html</id>
+    <published>2023-01-28T16:11:32.000Z</published>
+    <updated>2023-01-30T16:26:26.030Z</updated>
+    
+    
+    <summary type="html">“某一日，祂从天坠落。人们抬头仰望，于是看见了星空。”</summary>
+    
+    
+    
+    
+    <category term="爱莉希雅" scheme="http://jerry-fage.github.io/tags/%E7%88%B1%E8%8E%89%E5%B8%8C%E9%9B%85/"/>
+    
+    <category term="摘录" scheme="http://jerry-fage.github.io/tags/%E6%91%98%E5%BD%95/"/>
+    
+    <category term="《崩环三》" scheme="http://jerry-fage.github.io/tags/%E3%80%8A%E5%B4%A9%E7%8E%AF%E4%B8%89%E3%80%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>暂时做一些东西的备份</title>
+    <link href="http://jerry-fage.github.io/posts/628a9e28.html"/>
+    <id>http://jerry-fage.github.io/posts/628a9e28.html</id>
+    <published>2023-01-05T16:23:48.000Z</published>
+    <updated>2023-01-30T15:43:50.871Z</updated>
+    
+    
+    <summary type="html">有东西被加密了, 请输入密码查看.</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>这是第三篇凑数博客</title>
+    <link href="http://jerry-fage.github.io/posts/cbbbdc3.html"/>
+    <id>http://jerry-fage.github.io/posts/cbbbdc3.html</id>
+    <published>2022-12-29T09:57:28.000Z</published>
+    <updated>2023-01-30T15:43:50.876Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;这是第三篇凑数博客&lt;/p&gt;
+</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>这是第二篇凑数博客</title>
+    <link href="http://jerry-fage.github.io/posts/a2def012.html"/>
+    <id>http://jerry-fage.github.io/posts/a2def012.html</id>
+    <published>2022-12-29T09:57:17.000Z</published>
+    <updated>2023-01-30T15:43:50.877Z</updated>
+    
+    
+    <summary type="html">有东西被加密了, 请输入密码查看.</summary>
+    
+    
+    
+    
+    <category term="小秘密" scheme="http://jerry-fage.github.io/tags/%E5%B0%8F%E7%A7%98%E5%AF%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Sign in with Apple（苹果授权登陆）python服务端code验证</title>
+    <link href="http://jerry-fage.github.io/posts/3a8940f.html"/>
+    <id>http://jerry-fage.github.io/posts/3a8940f.html</id>
+    <published>2020-08-25T21:56:30.000Z</published>
+    <updated>2023-01-30T16:20:06.602Z</updated>
+    
+    
+    <summary type="html">后端接入苹果第三方登录的教程</summary>
+    
+    
+    
+    <category term="教程" scheme="http://jerry-fage.github.io/categories/%E6%95%99%E7%A8%8B/"/>
+    
+    
+    <category term="Sign in with Apple" scheme="http://jerry-fage.github.io/tags/Sign-in-with-Apple/"/>
+    
+    <category term="Python" scheme="http://jerry-fage.github.io/tags/Python/"/>
+    
+    <category term="后端" scheme="http://jerry-fage.github.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="第三方登录" scheme="http://jerry-fage.github.io/tags/%E7%AC%AC%E4%B8%89%E6%96%B9%E7%99%BB%E5%BD%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://jerry-fage.github.io/posts/4a17b156.html"/>
+    <id>http://jerry-fage.github.io/posts/4a17b156.html</id>
+    <published>2020-08-20T07:42:00.000Z</published>
+    <updated>2023-01-30T15:43:50.873Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;Quick-Start&quot;&gt;&lt;a href=&quot;#Quick-Start&quot; class=&quot;headerlink&quot; title=&quot;Quick Start&quot;&gt;&lt;/a&gt;Quick Start&lt;/h2&gt;&lt;h3 id=&quot;Create-a-new-post&quot;&gt;&lt;a href=&quot;#Create-a-new-post&quot; class=&quot;headerlink&quot; title=&quot;Create a new post&quot;&gt;&lt;/a&gt;Create a new post&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo new &lt;span class=&quot;string&quot;&gt;&amp;quot;My New Post&amp;quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/writing.html&quot;&gt;Writing&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Run-server&quot;&gt;&lt;a href=&quot;#Run-server&quot; class=&quot;headerlink&quot; title=&quot;Run server&quot;&gt;&lt;/a&gt;Run server&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo server&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/server.html&quot;&gt;Server&lt;/a&gt;</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>About Me</title>
+    <link href="http://jerry-fage.github.io/about/"/>
+    <id>http://jerry-fage.github.io/about/</id>
+    <published>2020-08-17T14:04:00.000Z</published>
+    <updated>2022-12-29T10:28:00.000Z</updated>
+    
+    
+    <summary type="html">关于我的一些事</summary>
+    
+    
+    
+    <category term="杂谈" scheme="http://jerry-fage.github.io/categories/%E6%9D%82%E8%B0%88/"/>
+    
+    
+    <category term="随笔" scheme="http://jerry-fage.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+</feed>

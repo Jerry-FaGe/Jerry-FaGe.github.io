@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Sign in with Apple（苹果授权登陆）python服务端code验证</title>
+    <url>/posts/3a8940f.html</url>
+    <content><![CDATA[<p>废话不多说相信很多人都是因为苹果的坑爹政策才被要求了解苹果登录的流程，本文不涉及前端操作（因为我不会），只介绍后端是如何验证的。</p>
+<h2 id="你会从前端得到什么"><a href="#你会从前端得到什么" class="headerlink" title="你会从前端得到什么"></a>你会从前端得到什么</h2><p>这里是通过 RESTful API 接口来获取数据，所以我不会管前端是咋获取的，我只管接收和处理数据</p>
+<pre><code>----&gt;&gt; User Id - 000592.729afa20xxxxxxx9929f3958f03c6c9e.0948
+
+----&gt;&gt; User Name - givenName: Lu familyName: Xs 
+
+----&gt;&gt; User Email - 494xxx875@qq.com
+
+----&gt;&gt; Real User Status - 1
+
+----&gt;&gt; Identity Token eyJraWQiOiJxxxxxxxxxxxxxxxnIjoiUlMyNTYifQ.eyJpc3M
+
+----&gt;&gt; authorizationCode ca57c019ae48c4a42xxxxxxxxxxe9e80b.0.nvzs.HTxxxxxxxxxxxE64NZpbWEeALQ
+</code></pre><span id="more"></span>
+<ul>
+<li><code>User Id</code> 坑爹的来了，这个ID其实和你费老大劲后面绕了一大大大圈解析出来的那个sub是一样的，但你还是得搞，为了所谓的安全性</li>
+<li><code>User Name</code> 顾名思义用户名，不过这个用户名是可以由用户自由指定的（甚至可以为空），不一定是用户在苹果的真实用户名</li>
+<li><code>User Email</code> 这个邮箱也可以是伪造的，如果用户登录时拒绝提供真实的邮箱账号，苹果会生成虚拟的邮箱账号（固定后缀 @privaterelay.appleid.com）</li>
+<li><code>Identity Token</code> 用于传给开发者后台服务器，然后开发者服务器再向苹果的身份验证服务端验证，本次授权登录请求数据的有效性和真实性。是一个经过签名的 <a href="https://en.wikipedia.org/wiki/JSON_Web_Token">JSON Web Token(JWT)</a> ，详见 <a href="https://developer.apple.com/documentation/signinwithapplerestapi">Sign In with Apple REST API</a></li>
+<li><code>authorizationCode</code> code验证方式的主要参数，后面会用到</li>
+</ul>
+<p>现在我们已经从前端获取到了一些关键信息，注意 <code>User Name</code>，<code>User Email</code>只有在用户第一次授权的时候才能拿到，所以如果用得上的话要及时储存起来。</p>
+<h2 id="服务端向苹果请求验证"><a href="#服务端向苹果请求验证" class="headerlink" title="服务端向苹果请求验证"></a>服务端向苹果请求验证</h2><p>接下来我们需要拼接从前端获取的参数，用POST方法访问苹果提供的 <a href="https://appleid.apple.com/auth/token">https://appleid.apple.com/auth/token</a> 接口，接口相关信息苹果有提供 <a href="https://developer.apple.com/documentation/sign_in_with_apple/generate_and_validate_tokens">Generate and validate tokens</a> 。</p>
+<p>下面着重介绍几个参数及其获取方法。首先先看下该接口需要的参数，如下</p>
+<pre><code>client_id： string (必要) 您的应用程序的标识符（应用程序ID或服务ID）。该标识符不得包含您的团队ID，以帮助减轻敏感数据对最终用户的影响。授权代码和刷新令牌验证请求均需要此参数。
+
+client_secret： string (必要) 开发人员生成的秘密JSON Web令牌，使用与您的开发人员帐户关联的“使用Apple登录”私钥。授权代码和刷新令牌验证请求均需要此参数。
+
+code： string 授权响应中收到的授权代码已发送到您的应用。该代码仅供一次性使用，有效期为五分钟。授权参数验证请求需要此参数。
+
+grant_type： string (Required) 授予类型确定客户端应用程序如何与验证服务器交互。授权代码和刷新令牌验证请求均需要此参数。要进行授权码验证，请使用。对于刷新令牌验证请求，请使用 authorization_coderefresh_token。
+
+refresh_token： string 授权请求期间从验证服务器收到的刷新令牌。刷新令牌验证请求需要此参数。
+
+redirect_uri： string 在授权用户使用您的应用程序（如果适用）时，授权请求中提供的目标URI。URI必须使用HTTPS协议，包括域名，并且不能包含IP地址或localhost。授权参数验证请求需要此参数。
+</code></pre><p>其中 <code>client_id</code> 为app的 <code>bundle identifier</code> ， <code>code</code> 即为手机端获取到的 <code>authorizationCode</code> 信息， <code>grant_type</code> 传入固定字符串 <code>authorization_code</code>  即可。还剩下一个必要参数 <code>client_secret</code> 那么这个参数相对麻烦点，需要我们自己生成。client_secret参数是一个JWT，singature部分使用非对称加密 RSASSA【RSA签名算法】 和 ECDSA【椭圆曲线数据签名算法】。</p>
+<p><strong>生成 client_secret 之前，我们需要做如下工作</strong></p>
+<ul>
+<li>获取 APP 的 <code>bundleID</code></li>
+<li>获取开发者账号的 <code>TeamID</code><br><img src="/images/pasted-1.png" alt="upload successful"></li>
+<li>创建 privateKey，获取到 <code>Key ID</code> 和 <code>私钥</code><br><img src="/images/pasted-2.png" alt="upload successful"></li>
+</ul>
+<p><img src="/images/pasted-3.png" alt="upload successful"></p>
+<p>创建完之后把私钥下载下来，并保存好，<strong>注意，私钥只能下载一次。</strong></p>
+<p>拿到上面所有信息之后，可以通过如下代码生成 <code>client_secret</code> ，代码为 Ruby 代码，确保已安装ruby环境。</p>
+<figure class="highlight ruby"><table><tr><td class="code"><pre><span class="line"><span class="keyword">require</span> <span class="string">&quot;jwt&quot;</span></span><br><span class="line"></span><br><span class="line">key_file = <span class="string">&quot;/Your/path/to/AuthKey_XXXXX.p8&quot;</span> <span class="comment"># 私钥文件地址</span></span><br><span class="line">team_id = <span class="string">&quot;KXXXXXGBU&quot;</span> <span class="comment"># Team ID</span></span><br><span class="line">client_id = <span class="string">&quot;XXXXXXX&quot;</span> <span class="comment"># App Bundle ID</span></span><br><span class="line">key_id = <span class="string">&quot;KXXXXXXZ8&quot;</span> <span class="comment"># 私钥的Key ID</span></span><br><span class="line">validity_period = <span class="number">180</span> <span class="comment"># In days. Max 180 (6 months) according to Apple docs.</span></span><br><span class="line"></span><br><span class="line">private_key = <span class="title class_">OpenSSL::PKey::EC</span>.new <span class="variable constant_">IO</span>.read key_file</span><br><span class="line"></span><br><span class="line">token = <span class="variable constant_">JWT</span>.encode(</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="symbol">iss:</span> team_id,</span><br><span class="line">		<span class="symbol">iat:</span> <span class="title class_">Time</span>.now.to_i,</span><br><span class="line">		<span class="symbol">exp:</span> <span class="title class_">Time</span>.now.to_i + <span class="number">86400</span> * validity_period,</span><br><span class="line">		<span class="symbol">aud:</span> <span class="string">&quot;https://appleid.apple.com&quot;</span>,</span><br><span class="line">		<span class="symbol">sub:</span> client_id</span><br><span class="line">	&#125;,</span><br><span class="line">	private_key,</span><br><span class="line">	<span class="string">&quot;ES256&quot;</span>,</span><br><span class="line">	header_fields=</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="symbol">kid:</span> key_id </span><br><span class="line">	&#125;</span><br><span class="line">)</span><br><span class="line">puts token</span><br></pre></td></tr></table></figure>
+<p>创建文件 <code>secret_gen.rb</code> ，把上面代码粘贴进去，执行 <code>ruby secret_gen.rb</code> 即可生成 <code>client_secret</code></p>
+<p>代码中这个 <code>key_file</code> 需要指定刚才下载的文件的地址</p>
+<p>到这里， <code>https://appleid.apple.com/auth/token</code>  的三个必需参数已经全部获得，用这些参数构造一个 post data ，类似下面这样<br><figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">	&#x27;client_id&#x27;<span class="punctuation">:</span> 上面的Bundle ID<span class="punctuation">,</span></span><br><span class="line">	&#x27;client_secret&#x27;<span class="punctuation">:</span> 上面的client_secret<span class="punctuation">,</span></span><br><span class="line">	&#x27;code&#x27;<span class="punctuation">:</span> 前端传的authorizationCode<span class="punctuation">,</span></span><br><span class="line">	&#x27;grant_type&#x27;<span class="punctuation">:</span> <span class="string">&quot;authorization_code&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure><br>带上这个 post data 用 POST 方法访问 <code>https://appleid.apple.com/auth/token</code> ，你会得到类似下面的返回数据<br><figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">	<span class="attr">&quot;access_token&quot;</span><span class="punctuation">:</span> <span class="string">&quot;一个token，此处省略&quot;</span><span class="punctuation">,</span></span><br><span class="line">	<span class="attr">&quot;token_type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Bearer&quot;</span><span class="punctuation">,</span></span><br><span class="line">	<span class="attr">&quot;expires_in&quot;</span><span class="punctuation">:</span> <span class="number">3600</span><span class="punctuation">,</span></span><br><span class="line">	<span class="attr">&quot;refresh_token&quot;</span><span class="punctuation">:</span> <span class="string">&quot;一个token，此处省略&quot;</span><span class="punctuation">,</span></span><br><span class="line">	<span class="attr">&quot;id_token&quot;</span><span class="punctuation">:</span> <span class="string">&quot;结果是JWT，字符串形式，此处省略&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure><br>参数解释看这个<a href="https://developer.apple.com/documentation/sign_in_with_apple/tokenresponse">文档</a></p>
+<p>其中 <code>id_token</code> 里面就是我们需要的数据了，这也是 <code>JWT</code> 数据，需要进行解密，TM的这其实就是前端能获取到的token醉了。</p>
+<p>原理讲完了上代码：<br><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">APPLE_CODE_URL = <span class="string">&#x27;https://appleid.apple.com/auth/token&#x27;</span></span><br><span class="line">BUNDLE_ID = <span class="string">&quot;上面的Bundle ID&quot;</span></span><br><span class="line">client_sec = <span class="string">&quot;上面的client_secret&quot;</span></span><br><span class="line">GRAND_TYPE = <span class="string">&#x27;authorization_code&#x27;</span></span><br><span class="line">code = <span class="string">&quot;前端传的authorizationCode&quot;</span></span><br><span class="line"></span><br><span class="line">post_data = &#123;</span><br><span class="line">        <span class="string">&#x27;client_id&#x27;</span>: BUNDLE_ID,</span><br><span class="line">        <span class="string">&#x27;client_secret&#x27;</span>: client_sec,</span><br><span class="line">        <span class="string">&#x27;code&#x27;</span>: code,</span><br><span class="line">		<span class="string">&#x27;grant_type&#x27;</span>: GRAND_TYPE,</span><br><span class="line">        <span class="string">&#x27;scope&#x27;</span>: <span class="string">&#x27;name&#x27;</span></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">login_req = requests.post(url=APPLE_CODE_URL, data=post_data).json()</span><br><span class="line">id_token = login_req[<span class="string">&#x27;id_token&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(id_token)</span><br></pre></td></tr></table></figure></p>
+<h2 id="解密-JWT"><a href="#解密-JWT" class="headerlink" title="解密 JWT"></a>解密 JWT</h2><p>为什么标题要叫解密JWT而不是解密id_token呢，因为这个方法同样也适用于token验证方式中的 <code>Identity Token</code> 解密，TMD这俩就是一个东西不能解密都出鬼了</p>
+<p>JWT格式（以.点号分隔）：</p>
+<ul>
+<li>header: 包括了key id 与加密算法</li>
+<li>payload:<ul>
+<li>iss: 签发机构，苹果</li>
+<li>aud: 接收者，目标app</li>
+<li>exp: 过期时间</li>
+<li>iat: 签发时间</li>
+<li>sub: 用户id</li>
+<li>c_hash: 一个哈希数列</li>
+<li>auth_time: 签名时间</li>
+</ul>
+</li>
+<li>signature: 用于验证JWT的签名</li>
+</ul>
+<p>header（解码后）:<br><figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">	<span class="attr">&quot;kid&quot;</span><span class="punctuation">:</span><span class="string">&quot;AIDOPK1&quot;</span><span class="punctuation">,</span> <span class="comment">//密钥id标识</span></span><br><span class="line">	<span class="attr">&quot;alg&quot;</span><span class="punctuation">:</span><span class="string">&quot;RS256&quot;</span> <span class="comment">//RS256算法对JWT进行的签名。（RSA 256 + SHA 256）</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure><br>payload（解码后）:<br><figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">	<span class="attr">&quot;iss&quot;</span><span class="punctuation">:</span><span class="string">&quot;https://appleid.apple.com&quot;</span><span class="punctuation">,</span><span class="comment">//签发者</span></span><br><span class="line">	<span class="attr">&quot;aud&quot;</span><span class="punctuation">:</span><span class="string">&quot;com.fun.AppleLogin&quot;</span><span class="punctuation">,</span><span class="comment">//目标受众</span></span><br><span class="line">	<span class="attr">&quot;exp&quot;</span><span class="punctuation">:</span><span class="number">1568721769</span><span class="punctuation">,</span><span class="comment">//过期时间</span></span><br><span class="line">	<span class="attr">&quot;iat&quot;</span><span class="punctuation">:</span><span class="number">1568721169</span><span class="punctuation">,</span><span class="comment">//The issued at registered claim key 签发时间</span></span><br><span class="line">    <span class="attr">&quot;sub&quot;</span><span class="punctuation">:</span><span class="string">&quot;000580.087c554dce35466fa85c5a5d594d528a.0801&quot;</span><span class="punctuation">,</span> <span class="comment">//苹果 userid</span></span><br><span class="line">	<span class="attr">&quot;c_hash&quot;</span><span class="punctuation">:</span><span class="string">&quot;z_JcDlpW3B2p7q1GCgkRZQ&quot;</span><span class="punctuation">,</span> <span class="comment">//一个哈希数列，作用未知</span></span><br><span class="line">	<span class="attr">&quot;auth_time&quot;</span><span class="punctuation">:</span><span class="number">1568721169</span> <span class="comment">//签名时间</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure><br>首先我们要用GET方法访问苹果的固定接口 <a href="https://appleid.apple.com/auth/keys">https://appleid.apple.com/auth/keys</a>获取 <code>Public Key</code> 公钥，<a href="https://developer.apple.com/documentation/sign_in_with_apple/fetch_apple_s_public_key_for_verifying_token_signature">文档点这儿</a><br><figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">	<span class="attr">&quot;keys&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">		<span class="punctuation">&#123;</span></span><br><span class="line">			<span class="attr">&quot;kty&quot;</span><span class="punctuation">:</span> <span class="string">&quot;RSA&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="attr">&quot;kid&quot;</span><span class="punctuation">:</span> <span class="string">&quot;AIDOPK1&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="attr">&quot;use&quot;</span><span class="punctuation">:</span> <span class="string">&quot;sig&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="attr">&quot;alg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;RS256&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="attr">&quot;n&quot;</span><span class="punctuation">:</span> <span class="string">&quot;lxrwmuYSAsTfn-lUu4goZSXBD9ackM9OJuwUVQHmbZo6GW4Fu_auUdN5zI7Y1dEDfgt7m7QXWbHuMD01HLnD4eRtY-RNwCWdjNfEaY_esUPY3OVMrNDI15Ns13xspWS3q-13kdGv9jHI28P87RvMpjz_JCpQ5IM44oSyRnYtVJO-320SB8E2Bw92pmrenbp67KRUzTEVfGU4-obP5RZ09OxvCr1io4KJvEOjDJuuoClF66AT72WymtoMdwzUmhINjR0XSqK6H0MdWsjw7ysyd_JhmqX5CAaT9Pgi0J8lU_pcl215oANqjy7Ob-VMhug9eGyxAWVfu_1u6QJKePlE-w&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="attr">&quot;e&quot;</span><span class="punctuation">:</span> <span class="string">&quot;AQAB&quot;</span></span><br><span class="line">		<span class="punctuation">&#125;</span></span><br><span class="line">	<span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure><br>我们可以通过这个 <code>Public Key</code> 去对 <code>id_token</code> 或者手机端获取到的 <code>identityToken</code> (JWT 信息)进行解码，以获取 <code>header</code> 及 <code>payload</code></p>
+<p>注意这个 <code>Public Key</code> 不只有一个，应该先通过token中的 <code>header</code> 中的 <code>kid</code> ，然后结合苹果公钥中的 <code>kid</code> ，拿到相应的 <code>Public Key</code></p>
+<p>上代码：</p>
+<p>没有 <code>PyJWT</code> 包的先装一个<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pip install PyJWT</span><br></pre></td></tr></table></figure><br>代码<br><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> jwt.algorithms <span class="keyword">import</span> RSAAlgorithm</span><br><span class="line"></span><br><span class="line">TOKEN_URL = <span class="string">&#x27;https://appleid.apple.com/auth/keys&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">decode_jwt</span>(<span class="params">token</span>):</span><br><span class="line">    <span class="comment"># 从苹果那里拿公钥</span></span><br><span class="line">    key_req = requests.get(TOKEN_URL).json()</span><br><span class="line">	<span class="comment"># 从data那里拿到token的加密方式</span></span><br><span class="line">	head = jwt.get_unverified_header(token)</span><br><span class="line">    token_key = head[<span class="string">&#x27;kid&#x27;</span>]</span><br><span class="line">    <span class="comment"># 找到相对应的公钥，一般会发布多个公钥</span></span><br><span class="line">    <span class="keyword">for</span> pub_key <span class="keyword">in</span> key_req[<span class="string">&#x27;keys&#x27;</span>]:</span><br><span class="line">        <span class="keyword">if</span> pub_key[<span class="string">&#x27;kid&#x27;</span>] == token_key:</span><br><span class="line">            key_core = simplejson.dumps(pub_key)</span><br><span class="line">            <span class="comment"># 打包公钥</span></span><br><span class="line">            key = RSAAlgorithm.from_jwk(key_core)</span><br><span class="line">            alg = pub_key[<span class="string">&#x27;alg&#x27;</span>]</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;Unable to find public key&#x27;</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">    <span class="comment"># 使用公钥来解密</span></span><br><span class="line">    claims = jwt.decode(token, key=key, verify=<span class="literal">True</span>, algorithms=[alg], audience=BUNDLE_ID)</span><br><span class="line">    <span class="keyword">return</span> claims</span><br></pre></td></tr></table></figure><br>解码后的信息如下<br><figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">	<span class="attr">&quot;iss&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://appleid.apple.com&quot;</span><span class="punctuation">,</span></span><br><span class="line">	<span class="attr">&quot;aud&quot;</span><span class="punctuation">:</span> <span class="string">&quot;这个对应app的bundleid&quot;</span><span class="punctuation">,</span></span><br><span class="line">	<span class="attr">&quot;exp&quot;</span><span class="punctuation">:</span> <span class="number">1598335182</span><span class="punctuation">,</span></span><br><span class="line">	<span class="attr">&quot;iat&quot;</span><span class="punctuation">:</span> <span class="number">1598334582</span><span class="punctuation">,</span></span><br><span class="line">	<span class="attr">&quot;sub&quot;</span><span class="punctuation">:</span> <span class="string">&quot;这个字段和手机端获取的user信息相同&quot;</span><span class="punctuation">,</span></span><br><span class="line">	<span class="attr">&quot;at_hash&quot;</span><span class="punctuation">:</span> <span class="string">&quot;_DsVyGBEMQx5HIi3uyf-UQ&quot;</span><span class="punctuation">,</span></span><br><span class="line">	<span class="attr">&quot;email&quot;</span><span class="punctuation">:</span> <span class="string">&quot;XXXXXXXX@qq.com&quot;</span><span class="punctuation">,</span></span><br><span class="line">	<span class="attr">&quot;email_verified&quot;</span><span class="punctuation">:</span> <span class="string">&quot;true&quot;</span><span class="punctuation">,</span></span><br><span class="line">	<span class="attr">&quot;auth_time&quot;</span><span class="punctuation">:</span> <span class="number">1598334492</span><span class="punctuation">,</span></span><br><span class="line">	<span class="attr">&quot;nonce_supported&quot;</span><span class="punctuation">:</span> True</span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure><br>里面的 <code>sub</code> 就是用户apple账号登录在该程序中的唯一标识了（类似 <code>openid</code> ），我们可以把它存到程序的数据库中与用户信息做映射，用于标识用户身份。</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="https://www.yuque.com/zhanglong/bb0s5d/cxbh7n">Sign In With Apple 从登陆到服务器验证</a></p>
+<p><a href="https://ihtcboy.com/2019/09/16/2019-09-16_Sign-in-with-Apple/">Sign in with Apple 登录详解</a></p>
+<p><a href="https://blog.csdn.net/Tommey_Chang/article/details/106770207?utm_medium=distribute.pc_relevant.none-task-blog-title-1&amp;spm=1001.2101.3001.4242">Python后端实现苹果ID登陆</a></p>
+<p><a href="https://blog.csdn.net/wpf199402076118/article/details/99677412">Sign in with Apple（苹果授权登陆）</a></p>
+<p><a href="https://segmentfault.com/a/1190000020786994?utm_source=tag-newest">Sign in with Apple NODE，web端接入苹果第三方登录</a></p>
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>Sign in with Apple</tag>
+        <tag>Python</tag>
+        <tag>后端</tag>
+        <tag>第三方登录</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>About Me</title>
+    <url>//about/</url>
+    <content><![CDATA[<blockquote>
+<h1 id="About-Me"><a href="#About-Me" class="headerlink" title="About Me"></a>About Me</h1><hr>
+<p>我的名字叫 <del>Bo良ki影</del> ，24岁。晚上2点睡，每天要睡足6个小时。睡前，我一定喝一杯温牛奶，然后做20分钟的柔软操，上了床，马上熟睡。一觉到天亮，决不把疲劳和压力，留到第二天。医生都说我很正常。<br><span id="more"></span></p>
+<ul>
+<li>爱好：<a href="https://baike.baidu.com/item/ACGN" title="贰刺猿贰刺猿">ACGN</a>、手指极限运动、安卓搞机、音乐</li>
+<li>喜欢：抽烟、喝酒、烫头（但我是个好男孩）、LL（单推东条希）、盗墓笔记、Minecraft</li>
+<li>讨厌：抖音、快手以及其他类似短视频平台以及公共场合外放的人、做自己不喜欢的事</li>
+<li>目标：后端工程师 || 全栈工程师 || 游戏开发者</li>
+<li>梦想：没有梦想，想到哪做到哪</li>
+</ul>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/meme/no-work.jpg" alt=""></p>
+<details class="toggle" style="border: 1px solid bg"><summary class="toggle-button" style="background-color: bg;color: color">此生想要完成的事情</summary><div class="toggle-content"><div class='checkbox checked'><input type="checkbox" checked="checked"/>
+            <p>活下去</p>
+            </div></div></details>
+<ul>
+<li>姓名：Jerry_FaGe</li>
+<li>现居：吉林</li>
+<li>QQ: 619092968</li>
+<li>微信: w619092968</li>
+<li>Email: <a href="jerry_fage@foxmail.com">jerry_fage@foxmail.com</a></li>
+<li>GitHub: <a href="https://github.com/Jerry-FaGe">Jerry-FaGe</a></li>
+<li>Twitter: @Jerry619092968</li>
+<li>BiliBili: <a href="https://space.bilibili.com/111990999">Jerry_FaGe</a>（传过几个视频，太凄惨了没有动力继续，现在主要用来看番和MC视频）</li>
+<li>网易云音乐: <a href="https://music.163.com/#/user/home?id=273447395">Jerry-痞孓</a>（主EDM、史诗、日系、欧美流行、不挑，好听就行）</li>
+<li>RSS: <a href="https://jerry-fage.github.io/atom.xml">https://jerry-fage.github.io/atom.xml</a>（虽然没什么用但还是整了，反正也不要钱XD）</li>
+</ul>
+<!-- GitCalendar容器 -->
+<div id="gitZone"></div>]]></content>
+      <categories>
+        <category>杂谈</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/posts/4a17b156.html</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a><span id="more"></span></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>暂时做一些东西的备份</title>
+    <url>/posts/628a9e28.html</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="6e464bfd1600556f654e2f97d5e571314e801894714573cf2949b25035b80acf">4630436162ade97ba2718b7d0c4b3b63cb3a3f659c5ca08b4bca0f584592818679e340be9a450457f9e6bf95e4b20c85c13ec9680133b3ded9668cd2c516be2d5a0dd5372e351f05bddb56989776456f20f7b664c7a9ed603319345a1722173be798e4025c1bc0a80d29fa826b208a8cb8e56c8879579104ee66fdf91648027d4cf780ba9887fd7215a74672deb0e893b3d4c404151146d581bee25214012dd136977aa9028215073a8e24d21d974d3f71cc0242b505eabf4918eedba1aa5c8903a8b0738c44bc2461c684daeb3b83536d2369c7f19c752037a7720e26e98ee22bade4692d0b089122c650ddaa0de93bcd446a9b2bbe9e9713213ec5fb3e3293d8e7e1aab690fe2134522fd5e54eaefccf5c8023bb33aa226180c4ffbd5a6bac9c1f8311da7409af81c9f2d9257c1d4709f2ab97c866ec07583c490f0211581196f47fa22867fcdc4208d56059d7ac150e6c31a8a58f5e8e388d701d108e403414f65b3881fbd23f576639405fa058fccd7b9486587f5258db5f2b290ff200523c35b8236d679b04b818ca509742c72590121c14a03c3041bd8be27f879eb07f81ff1d52e9f0f0f8daf450d94cdca9ba5d14ff74f3fcc2332b0ca78283f6a60933a3161c8d0bc0958859cd59382df485c1fb5f82af61955bac6db436cc8440bfa213755cbc9da88dcdc921f7c9b944b0e13a37656fefa10a971c5a122dacad55ce53527a113eabf03c244a82e99bcc245418bc23c3158dc55b7badbddea295c5683041c4f8142a36d253fc99a34a4e34a44a290e1651510317a881c56bd7b2e3439685808c812abaa56b5ec01e506f2f1cb5131960e6af0adfd38ffe51526bae5ba91f208c8bd458122aed38aab98e6ab0897e7edc27a8f84cfdb08ad755f291f00bcc1151567e6c88df826cb6f7e2f315ff9fd46f0ef91f8a781fdaafb97e58715d5a4bbf617a749cdbdc775e39d24c892451f0546f79d5bac5046af1b098823e595d1e74afd67559bc04a44f521e1506b9eebec70542415b316528a2c05d225072652363fd49ad3146c4605d244a99494aa352a42ad0702eb53ee1edcdf82c7b1be9aeb0b55e377ca25913f516020dcd3a8a22abe84a166e45cb9820c7ae57a42d65174fbd5fc6920c06dd1bf47d5dffe0cab302ea0899e486efb87460e075d3d0c8338e98dcc4b0c17676d55f326277785b7d790fc35d2d68f3e79043c5503c72a8f9e75428446fba052871c5b6234b28edb0828d640c75f6dfc4fa4576d2c0b7e648b75ce459dd0b9ba263359085464fa22b4dfa78b5ef5d66f0c4eb9db8ebaf5e047153be4a5ec4c0137778afb2595772ba9827e37386d4c8a2a49899bc33329056f59749a864d0cf8602fbc6c067e0b66217be3fd749413ecb06b4043b334a6e74a6fc0bded271148a54400bc1053a9a75b079fec38d39e5cfcd759333451174bf6ee841d2913c5880a008a4ad9167b8604c11d9d7fb44b554f60885afb99f2d0ede76a23c50015c73f56df77faf45813ea388fda2aa5f92bcc2876e96</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-xray">
+      <input class="hbe hbe-input-field hbe-input-field-xray" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-xray" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-xray">您好, 这里需要密码.</span>
+      </label>
+      <svg class="hbe hbe-graphic hbe-graphic-xray" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
+        <path d="M0,2.5c0,0,298.666,0,399.333,0C448.336,2.5,513.994,13,597,13c77.327,0,135-10.5,200.999-10.5c95.996,0,402.001,0,402.001,0"></path>
+      </svg>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+  </entry>
+  <entry>
+    <title>致爱莉希雅</title>
+    <url>/posts/b7d85702.html</url>
+    <content><![CDATA[<blockquote>
+<p>某一日，祂从天坠落。人们抬头仰望，于是看见了星空。<br>星月送来神的女儿，她愿成为人的伴侣。<br>长风化作她的轺车，四海落成她的园圃。<br>鸟雀衔来善的种子，百花编织爱的颂歌。<br>她便是这样降生于世，行于大地，与人类一同长大，与世界一起发芽。<br>而今，终焉之时将至。<br>而今，归去之时已至。<br>就此告别吧，美丽的世界。<br>此后，将有群星闪耀，因为我如今来过。<br>此后，将有百花绽放，因为我从未离去。<br>请将我的箭、我的花、与我的爱，织成新生的种子，带向那枯萎的大地。<br>然后，便让它开出永恒而无瑕的···人性之华吧。<br>【我名为爱莉希雅···】<br>【最初的律者，人之律者。】</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>爱莉希雅</tag>
+        <tag>摘录</tag>
+        <tag>《崩环三》</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>这是第三篇凑数博客</title>
+    <url>/posts/cbbbdc3.html</url>
+    <content><![CDATA[<p>这是第三篇凑数博客</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>这是第二篇凑数博客</title>
+    <url>/posts/a2def012.html</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="8f2c2b64b821a929e9af37e91b0857175dd67aa1b8f221472c01c9e7fdd371f6">07af130939aaaa5dcfa0bfd80f2336858965104749d41825fe0c5507a6f0a240e873bb887b5342d7953fda6195ac9408dea5da11528df0993382be60f4ef48ae</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-xray">
+      <input class="hbe hbe-input-field hbe-input-field-xray" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-xray" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-xray">您好, 这里需要密码.</span>
+      </label>
+      <svg class="hbe hbe-graphic hbe-graphic-xray" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
+        <path d="M0,2.5c0,0,298.666,0,399.333,0C448.336,2.5,513.994,13,597,13c77.327,0,135-10.5,200.999-10.5c95.996,0,402.001,0,402.001,0"></path>
+      </svg>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <tags>
+        <tag>小秘密</tag>
+      </tags>
+  </entry>
+</search>
