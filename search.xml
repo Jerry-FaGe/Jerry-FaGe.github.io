@@ -42,9 +42,13 @@ redirect_uri： string 在授权用户使用您的应用程序（如果适用）
 <p><strong>生成 client_secret 之前，我们需要做如下工作</strong></p>
 <ul>
 <li>获取 APP 的 <code>bundleID</code></li>
-<li>获取开发者账号的 <code>TeamID</code><br><img src="/images/pasted-1.png" alt="upload successful"></li>
-<li>创建 privateKey，获取到 <code>Key ID</code> 和 <code>私钥</code><br><img src="/images/pasted-2.png" alt="upload successful"></li>
+<li>获取开发者账号的 <code>TeamID</code></li>
 </ul>
+<p><img src="/images/pasted-1.png" alt="upload successful"></p>
+<ul>
+<li>创建 privateKey，获取到 <code>Key ID</code> 和 <code>私钥</code></li>
+</ul>
+<p><img src="/images/pasted-2.png" alt="upload successful"></p>
 <p><img src="/images/pasted-3.png" alt="upload successful"></p>
 <p>创建完之后把私钥下载下来，并保存好，<strong>注意，私钥只能下载一次。</strong></p>
 <p>拿到上面所有信息之后，可以通过如下代码生成 <code>client_secret</code> ，代码为 Ruby 代码，确保已安装ruby环境。</p>
@@ -91,6 +95,20 @@ redirect_uri： string 在授权用户使用您的应用程序（如果适用）
       </tags>
   </entry>
   <entry>
+    <title>Hello World</title>
+    <url>/posts/4a17b156.html</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a><span id="more"></span></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>About Me</title>
     <url>//about/</url>
     <content><![CDATA[<blockquote>
@@ -130,24 +148,10 @@ redirect_uri： string 在授权用户使用您的应用程序（如果适用）
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/posts/4a17b156.html</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a><span id="more"></span></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>暂时做一些东西的备份</title>
     <url>/posts/628a9e28.html</url>
     <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="6e464bfd1600556f654e2f97d5e571314e801894714573cf2949b25035b80acf">4630436162ade97ba2718b7d0c4b3b63cb3a3f659c5ca08b4bca0f584592818679e340be9a450457f9e6bf95e4b20c85c13ec9680133b3ded9668cd2c516be2d5a0dd5372e351f05bddb56989776456f20f7b664c7a9ed603319345a1722173be798e4025c1bc0a80d29fa826b208a8cb8e56c8879579104ee66fdf91648027d4cf780ba9887fd7215a74672deb0e893b3d4c404151146d581bee25214012dd136977aa9028215073a8e24d21d974d3f71cc0242b505eabf4918eedba1aa5c8903a8b0738c44bc2461c684daeb3b83536d2369c7f19c752037a7720e26e98ee22bade4692d0b089122c650ddaa0de93bcd446a9b2bbe9e9713213ec5fb3e3293d8e7e1aab690fe2134522fd5e54eaefccf5c8023bb33aa226180c4ffbd5a6bac9c1f8311da7409af81c9f2d9257c1d4709f2ab97c866ec07583c490f0211581196f47fa22867fcdc4208d56059d7ac150e6c31a8a58f5e8e388d701d108e403414f65b3881fbd23f576639405fa058fccd7b9486587f5258db5f2b290ff200523c35b8236d679b04b818ca509742c72590121c14a03c3041bd8be27f879eb07f81ff1d52e9f0f0f8daf450d94cdca9ba5d14ff74f3fcc2332b0ca78283f6a60933a3161c8d0bc0958859cd59382df485c1fb5f82af61955bac6db436cc8440bfa213755cbc9da88dcdc921f7c9b944b0e13a37656fefa10a971c5a122dacad55ce53527a113eabf03c244a82e99bcc245418bc23c3158dc55b7badbddea295c5683041c4f8142a36d253fc99a34a4e34a44a290e1651510317a881c56bd7b2e3439685808c812abaa56b5ec01e506f2f1cb5131960e6af0adfd38ffe51526bae5ba91f208c8bd458122aed38aab98e6ab0897e7edc27a8f84cfdb08ad755f291f00bcc1151567e6c88df826cb6f7e2f315ff9fd46f0ef91f8a781fdaafb97e58715d5a4bbf617a749cdbdc775e39d24c892451f0546f79d5bac5046af1b098823e595d1e74afd67559bc04a44f521e1506b9eebec70542415b316528a2c05d225072652363fd49ad3146c4605d244a99494aa352a42ad0702eb53ee1edcdf82c7b1be9aeb0b55e377ca25913f516020dcd3a8a22abe84a166e45cb9820c7ae57a42d65174fbd5fc6920c06dd1bf47d5dffe0cab302ea0899e486efb87460e075d3d0c8338e98dcc4b0c17676d55f326277785b7d790fc35d2d68f3e79043c5503c72a8f9e75428446fba052871c5b6234b28edb0828d640c75f6dfc4fa4576d2c0b7e648b75ce459dd0b9ba263359085464fa22b4dfa78b5ef5d66f0c4eb9db8ebaf5e047153be4a5ec4c0137778afb2595772ba9827e37386d4c8a2a49899bc33329056f59749a864d0cf8602fbc6c067e0b66217be3fd749413ecb06b4043b334a6e74a6fc0bded271148a54400bc1053a9a75b079fec38d39e5cfcd759333451174bf6ee841d2913c5880a008a4ad9167b8604c11d9d7fb44b554f60885afb99f2d0ede76a23c50015c73f56df77faf45813ea388fda2aa5f92bcc2876e96</script>
+  <script id="hbeData" type="hbeData" data-hmacdigest="966bf4bafa26d0d5d37386399148a28b161f159012db450a65cc143d38c7e8fd">4630436162ade97ba2718b7d0c4b3b63cb3a3f659c5ca08b4bca0f584592818679e340be9a450457f9e6bf95e4b20c85c13ec9680133b3ded9668cd2c516be2d5a0dd5372e351f05bddb56989776456f20f7b664c7a9ed603319345a1722173be798e4025c1bc0a80d29fa826b208a8cb8e56c8879579104ee66fdf91648027d4cf780ba9887fd7215a74672deb0e893b3d4c404151146d581bee25214012dd136977aa9028215073a8e24d21d974d3f71cc0242b505eabf4918eedba1aa5c89026512630e6d7bf5314fb1d9f1eeec31d62ec2da323cc3924c297929f1866cb27ab03f4cda714bfe2fa5c69d82cb70ad5583bdeb9e03106e9c0a3ac953fb11088c2bcf1ae7912e345cbce5103a76c1c41d35817c9b7dd121207dfc05409403575ab3d59969e065eb920ee9e8212e0b1cd95769ac72980b4ebe127f1ff00eb5672b5f03e800ebacb253d892696d4c48307ba29f71f6487d48c9fce84e96638cea34d861b21e4cf1dd21a3439310249daf34ac5190766670802a5e479808e21f5ddf823863b6bdcedaf04a4caecda836b5df2cf3f6bfca96475c4ebf300f325a0d07c41b899737029c0723e669acc14608a8381b0bd0af1f6ce912768b8070d1d80cf7ad6a2b441373597d0ef7b941e4ce5fdb2e6df14e4c1fa043d8808a29674d07e7ca1c5d2b958a167c865b6cbc8b8d1523fbe29b5312a1464b3880b5ec1e102bafb7818808a55dedb9d0dd0c4f7e6ef1956f18147fc7451b471550e1d42ff2c622ae217a1c48af131488e99a369ab4d5729db698364d4ab68d3017c8eefd7aafe985e545bf677c171f83efe20751b1d1988e51487fbdcd33cb6cf09b584fcc418537d484e6d9363c758b39fbb9a7368f4fa4e061040836333abccb67a56c11547de24946a9afcd841d6f77ccbc647d2f381392257b4017a3a476ff58afbea3e894555b7b1c6bbe72c574b9163dfe9ef3dc4baebc7f01740ca13ed35184a3d54c67342ec5162bee920c57f5dfc71f8f09a4bbcd12b227b7536a0587f4e99adff37685cc69ccf2f67b87f34f5f73c623b168b3796bdc87eebbcf9b950d645e48abccfa611ec2d6125099fd2ea99b4e626ab691727c91f2f19aa4fab38791e3691a8fa1eb1984ffae04edfa8ac772b3da542cbc4d198501b2d40b1ca9d117a25889285c065c0a810ca02cadd16a7eda0d995999db6d7f3f32ddf3dda4a234f0eb256536e2f716d6ceb759ce5f38f7f89f474428617a1b3f3d43d58d59a5edab44c010bcd9c8aaa3b07189379cf912ed2b</script>
   <div class="hbe hbe-content">
     <div class="hbe hbe-input hbe-input-xray">
       <input class="hbe hbe-input-field hbe-input-field-xray" type="password" id="hbePass">
@@ -169,6 +173,7 @@ redirect_uri： string 在授权用户使用您的应用程序（如果适用）
     <content><![CDATA[<blockquote>
 <p>某一日，祂从天坠落。人们抬头仰望，于是看见了星空。<br>星月送来神的女儿，她愿成为人的伴侣。<br>长风化作她的轺车，四海落成她的园圃。<br>鸟雀衔来善的种子，百花编织爱的颂歌。<br>她便是这样降生于世，行于大地，与人类一同长大，与世界一起发芽。<br>而今，终焉之时将至。<br>而今，归去之时已至。<br>就此告别吧，美丽的世界。<br>此后，将有群星闪耀，因为我如今来过。<br>此后，将有百花绽放，因为我从未离去。<br>请将我的箭、我的花、与我的爱，织成新生的种子，带向那枯萎的大地。<br>然后，便让它开出永恒而无瑕的···人性之华吧。<br>【我名为爱莉希雅···】<br>【最初的律者，人之律者。】</p>
 </blockquote>
+<p><br/></p>
 ]]></content>
       <tags>
         <tag>爱莉希雅</tag>

@@ -3,11 +3,11 @@
   <title>Jerry_FaGe&#39;s Blog</title>
   <icon>https://www.gravatar.com/avatar/7c04d9c34984e73102245aec3975f679</icon>
   <subtitle>啥都往里塞的记事本儿</subtitle>
-  <link href="http://jerry-fage.github.io/atom.xml" rel="self"/>
+  <link href="https://blog.jerryfage.top/atom.xml" rel="self"/>
   
-  <link href="http://jerry-fage.github.io/"/>
-  <updated>2023-01-30T16:26:26.030Z</updated>
-  <id>http://jerry-fage.github.io/</id>
+  <link href="https://blog.jerryfage.top/"/>
+  <updated>2023-01-31T07:52:24.323Z</updated>
+  <id>https://blog.jerryfage.top/</id>
   
   <author>
     <name>Jerry_FaGe</name>
@@ -18,10 +18,10 @@
   
   <entry>
     <title>致爱莉希雅</title>
-    <link href="http://jerry-fage.github.io/posts/b7d85702.html"/>
-    <id>http://jerry-fage.github.io/posts/b7d85702.html</id>
+    <link href="https://blog.jerryfage.top/posts/b7d85702.html"/>
+    <id>https://blog.jerryfage.top/posts/b7d85702.html</id>
     <published>2023-01-28T16:11:32.000Z</published>
-    <updated>2023-01-30T16:26:26.030Z</updated>
+    <updated>2023-01-31T07:52:24.323Z</updated>
     
     
     <summary type="html">“某一日，祂从天坠落。人们抬头仰望，于是看见了星空。”</summary>
@@ -29,20 +29,20 @@
     
     
     
-    <category term="爱莉希雅" scheme="http://jerry-fage.github.io/tags/%E7%88%B1%E8%8E%89%E5%B8%8C%E9%9B%85/"/>
+    <category term="爱莉希雅" scheme="https://blog.jerryfage.top/tags/%E7%88%B1%E8%8E%89%E5%B8%8C%E9%9B%85/"/>
     
-    <category term="摘录" scheme="http://jerry-fage.github.io/tags/%E6%91%98%E5%BD%95/"/>
+    <category term="摘录" scheme="https://blog.jerryfage.top/tags/%E6%91%98%E5%BD%95/"/>
     
-    <category term="《崩环三》" scheme="http://jerry-fage.github.io/tags/%E3%80%8A%E5%B4%A9%E7%8E%AF%E4%B8%89%E3%80%8B/"/>
+    <category term="《崩环三》" scheme="https://blog.jerryfage.top/tags/%E3%80%8A%E5%B4%A9%E7%8E%AF%E4%B8%89%E3%80%8B/"/>
     
   </entry>
   
   <entry>
     <title>暂时做一些东西的备份</title>
-    <link href="http://jerry-fage.github.io/posts/628a9e28.html"/>
-    <id>http://jerry-fage.github.io/posts/628a9e28.html</id>
+    <link href="https://blog.jerryfage.top/posts/628a9e28.html"/>
+    <id>https://blog.jerryfage.top/posts/628a9e28.html</id>
     <published>2023-01-05T16:23:48.000Z</published>
-    <updated>2023-01-30T15:43:50.871Z</updated>
+    <updated>2023-01-31T10:24:28.849Z</updated>
     
     
     <summary type="html">有东西被加密了, 请输入密码查看.</summary>
@@ -54,8 +54,8 @@
   
   <entry>
     <title>这是第三篇凑数博客</title>
-    <link href="http://jerry-fage.github.io/posts/cbbbdc3.html"/>
-    <id>http://jerry-fage.github.io/posts/cbbbdc3.html</id>
+    <link href="https://blog.jerryfage.top/posts/cbbbdc3.html"/>
+    <id>https://blog.jerryfage.top/posts/cbbbdc3.html</id>
     <published>2022-12-29T09:57:28.000Z</published>
     <updated>2023-01-30T15:43:50.876Z</updated>
     
@@ -76,8 +76,8 @@
   
   <entry>
     <title>这是第二篇凑数博客</title>
-    <link href="http://jerry-fage.github.io/posts/a2def012.html"/>
-    <id>http://jerry-fage.github.io/posts/a2def012.html</id>
+    <link href="https://blog.jerryfage.top/posts/a2def012.html"/>
+    <id>https://blog.jerryfage.top/posts/a2def012.html</id>
     <published>2022-12-29T09:57:17.000Z</published>
     <updated>2023-01-30T15:43:50.877Z</updated>
     
@@ -87,39 +87,39 @@
     
     
     
-    <category term="小秘密" scheme="http://jerry-fage.github.io/tags/%E5%B0%8F%E7%A7%98%E5%AF%86/"/>
+    <category term="小秘密" scheme="https://blog.jerryfage.top/tags/%E5%B0%8F%E7%A7%98%E5%AF%86/"/>
     
   </entry>
   
   <entry>
     <title>Sign in with Apple（苹果授权登陆）python服务端code验证</title>
-    <link href="http://jerry-fage.github.io/posts/3a8940f.html"/>
-    <id>http://jerry-fage.github.io/posts/3a8940f.html</id>
+    <link href="https://blog.jerryfage.top/posts/3a8940f.html"/>
+    <id>https://blog.jerryfage.top/posts/3a8940f.html</id>
     <published>2020-08-25T21:56:30.000Z</published>
-    <updated>2023-01-30T16:20:06.602Z</updated>
+    <updated>2023-01-31T09:51:54.277Z</updated>
     
     
     <summary type="html">后端接入苹果第三方登录的教程</summary>
     
     
     
-    <category term="教程" scheme="http://jerry-fage.github.io/categories/%E6%95%99%E7%A8%8B/"/>
+    <category term="教程" scheme="https://blog.jerryfage.top/categories/%E6%95%99%E7%A8%8B/"/>
     
     
-    <category term="Sign in with Apple" scheme="http://jerry-fage.github.io/tags/Sign-in-with-Apple/"/>
+    <category term="Sign in with Apple" scheme="https://blog.jerryfage.top/tags/Sign-in-with-Apple/"/>
     
-    <category term="Python" scheme="http://jerry-fage.github.io/tags/Python/"/>
+    <category term="Python" scheme="https://blog.jerryfage.top/tags/Python/"/>
     
-    <category term="后端" scheme="http://jerry-fage.github.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    <category term="后端" scheme="https://blog.jerryfage.top/tags/%E5%90%8E%E7%AB%AF/"/>
     
-    <category term="第三方登录" scheme="http://jerry-fage.github.io/tags/%E7%AC%AC%E4%B8%89%E6%96%B9%E7%99%BB%E5%BD%95/"/>
+    <category term="第三方登录" scheme="https://blog.jerryfage.top/tags/%E7%AC%AC%E4%B8%89%E6%96%B9%E7%99%BB%E5%BD%95/"/>
     
   </entry>
   
   <entry>
     <title>Hello World</title>
-    <link href="http://jerry-fage.github.io/posts/4a17b156.html"/>
-    <id>http://jerry-fage.github.io/posts/4a17b156.html</id>
+    <link href="https://blog.jerryfage.top/posts/4a17b156.html"/>
+    <id>https://blog.jerryfage.top/posts/4a17b156.html</id>
     <published>2020-08-20T07:42:00.000Z</published>
     <updated>2023-01-30T15:43:50.873Z</updated>
     
@@ -137,8 +137,8 @@
   
   <entry>
     <title>About Me</title>
-    <link href="http://jerry-fage.github.io/about/"/>
-    <id>http://jerry-fage.github.io/about/</id>
+    <link href="https://blog.jerryfage.top/about/"/>
+    <id>https://blog.jerryfage.top/about/</id>
     <published>2020-08-17T14:04:00.000Z</published>
     <updated>2022-12-29T10:28:00.000Z</updated>
     
@@ -147,10 +147,10 @@
     
     
     
-    <category term="杂谈" scheme="http://jerry-fage.github.io/categories/%E6%9D%82%E8%B0%88/"/>
+    <category term="杂谈" scheme="https://blog.jerryfage.top/categories/%E6%9D%82%E8%B0%88/"/>
     
     
-    <category term="随笔" scheme="http://jerry-fage.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    <category term="随笔" scheme="https://blog.jerryfage.top/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
