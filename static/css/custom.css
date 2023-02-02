@@ -261,3 +261,31 @@ svg.social_icon {
 [data-theme="dark"] #snow{
   display: none;
 }
+
+
+/* 宽屏适配 */
+/* 全局宽度 */
+.layout {
+  max-width: 1400px;
+}
+
+/* 侧边卡片栏宽度 */
+.aside-content {
+  max-width: 318px;
+  min-width: 300px;
+}
+
+/* 平板尺寸自适应(不启用侧边栏宽度限制) */
+@media screen and (max-width: 900px) {
+  .aside-content {
+    max-width: none !important;
+    padding: 0 5px 0 5px;
+  }
+}
+
+
+/* 加载界面头像图片 */
+.loading-img {
+  background: url(https://npm.elemecdn.com/anzhiyu-blog@2.1.1/img/avatar.webp) no-repeat center center;
+  background-size: cover;
+}
