@@ -11,7 +11,9 @@
 }
 
 #content-inner {
-    --light_bg_color:rgb(255, 255, 255, 0.9);--dark_bg_color:rgba(18, 18, 18, 0.8)}
+    --light_bg_color:rgb(255, 255, 255, 0.9);
+    --dark_bg_color:rgba(18, 18, 18, 0.8)
+}
 
 /* 所有背景（包括首页卡片、文章页、页面页等） */
 #aside_content .card-widget,#recent-posts>.recent-post-item,.layout_page>div:first-child:not(.recent-posts),.layout_post>#page,.layout_post>#post,.read-mode .layout_post>#post {
