@@ -23,6 +23,117 @@
 }
 
 
+/* 首页文章卡片 */
+#recent-posts > .recent-post-item {
+  background: var(--trans-light);
+  backdrop-filter: var(--backdrop-filter);
+  border-radius: 12px;
+  border: var(--style-border);
+}
+/* 首页侧栏卡片 */
+#aside-content .card-widget {
+  background: var(--trans-light);
+  backdrop-filter: var(--backdrop-filter);
+  border-radius: 10px;
+  border: var(--style-border);
+}
+/* 文章页、归档页、普通页面 */
+div#post,
+div#page,
+div#archive {
+  background: var(--trans-light);
+  backdrop-filter: var(--backdrop-filter);
+  border: var(--style-border);
+  border-radius: 20px;
+}
+/* 导航栏 */
+#page-header.nav-fixed #nav {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: var(--backdrop-filter);
+}
+[data-theme="dark"] #page-header.nav-fixed #nav {
+  background: rgba(0, 0, 0, 0.7) !important;
+}
+/* 夜间模式遮罩 */
+[data-theme="dark"] #recent-posts > .recent-post-item,
+[data-theme="dark"] #aside-content .card-widget,
+[data-theme="dark"] div#post,
+[data-theme="dark"] div#archive,
+[data-theme="dark"] div#page {
+  background: var(--trans-dark);
+}
+/* 夜间模式页脚页头遮罩透明 */
+[data-theme="dark"] #footer::before {
+  background: transparent !important;
+}
+[data-theme="dark"] #page-header::before {
+  background: transparent !important;
+}
+/* 阅读模式 */
+.read-mode #aside-content .card-widget {
+  background: rgba(158, 204, 171, 0.5) !important;
+}
+.read-mode div#post {
+  background: rgba(158, 204, 171, 0.5) !important;
+}
+/* 夜间模式下的阅读模式 */
+[data-theme="dark"] .read-mode #aside-content .card-widget {
+  background: rgba(25, 25, 25, 0.9) !important;
+  color: #fff;
+}
+[data-theme="dark"] .read-mode div#post {
+  background: rgba(25, 25, 25, 0.9) !important;
+  color: #fff;
+}
+
+
+/* 滚动条 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--anzhiyu-main);
+  border-radius: 2em;
+}
+::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+::-moz-selection {
+  color: #fff;
+  background-color: var(--anzhiyu-main);
+}
+
+
+/* md网站下划线 */
+/* #article-container a:hover {
+  text-decoration: none !important;
+}
+#article-container #hpp_talk p img {
+  display: inline;
+} */
+
+
+/* 音乐播放器 */
+/* 隐藏歌词 */
+/* .aplayer .aplayer-lrc {
+  display: none !important;
+} */
+.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+  left: -66px !important;
+  transition: all 0.3s;
+  /* 默认情况下缩进左侧66px，只留一点箭头部分 */
+}
+.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+  left: 0 !important;
+  transition: all 0.3s;
+  /* 鼠标悬停是左侧缩进归零，完全显示按钮 */
+}
+.aplayer.aplayer-fixed {
+  z-index: 999999 !important;
+}
+
+
 /* 文章双栏翻页按钮居中 */
 #pagination {
   width: 100%;
@@ -47,77 +158,204 @@
 }
 
 
+/* 字体配置 */
+/* @font-face {
+  font-family: Candyhome;
+  src: url(https://npm.elemecdn.com/anzhiyu-blog@1.1.6/fonts/Candyhome.ttf);
+  font-display: swap;
+  font-weight: lighter;
+} */
+@font-face {
+  font-family: ZhuZiAYuanJWD;
+  src: url(https://npm.elemecdn.com/anzhiyu-blog@1.1.6/fonts/ZhuZiAWan.woff2);
+  font-display: swap;
+  font-weight: lighter;
+}
+/* 更改一些主要元素为这个字体 */
+div#menus {
+  font-family: "ZhuZiAYuanJWD";
+}
+h1#site-title {
+  font-family: ZhuZiAYuanJWD;
+  font-size: 3em !important;
+}
+a.article-title,
+a.blog-slider__title,
+a.categoryBar-list-link,
+h1.post-title {
+  font-family: ZhuZiAYuanJWD;
+}
+
+
+/* 阿里多彩图标 */
+.iconfont {
+  font-family: "iconfont" !important;
+  /* 这里可以自定义图标大小 */
+  font-size: 3em;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+/* 菜单栏阿里多彩图标大小 */
+svg.menu_icon {
+  width: 1.28em;
+  height: 1.28em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+/* 信息栏阿里多彩图标大小 */
+svg.social_icon {
+  width: 1.15em;
+  height: 1.15em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+
+
+/* 404页面 */
+#error-wrap {
+  position: absolute;
+  top: 40%;
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+  padding: 0 1rem;
+  max-width: 1000px;
+  transform: translate(0, -50%);
+}
+#error-wrap .error-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 0 1rem;
+  height: 18rem;
+  border-radius: 8px;
+  background: var(--card-bg);
+  box-shadow: var(--card-box-shadow);
+  transition: all 0.3s;
+}
+#error-wrap .error-content .error-img {
+  box-flex: 1;
+  flex: 1;
+  height: 100%;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  background-color: var(--anzhiyu-theme);
+  background-position: center;
+  background-size: cover;
+}
+#error-wrap .error-content .error-info {
+  box-flex: 1;
+  flex: 1;
+  padding: 0.5rem;
+  text-align: center;
+  font-size: 14px;
+  font-family: Titillium Web, "PingFang SC", "Hiragino Sans GB", "Microsoft JhengHei", "Microsoft YaHei", sans-serif;
+}
+#error-wrap .error-content .error-info .error_title {
+  margin-top: -4rem;
+  font-size: 9em;
+}
+#error-wrap .error-content .error-info .error_subtitle {
+  margin-top: -3.5rem;
+  word-break: break-word;
+  font-size: 1.6em;
+}
+#error-wrap .error-content .error-info a {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.3rem 1.5rem;
+  background: var(--btn-bg);
+  color: var(--btn-color);
+}
+#body-wrap.error .aside-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  bottom: 0px;
+  position: absolute;
+  padding: 1rem;
+  width: 100%;
+  overflow: scroll;
+}
+#body-wrap.error .aside-list .aside-list-group {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+#body-wrap.error .aside-list .aside-list-item {
+  padding: 0.5rem;
+}
+#body-wrap.error .aside-list .aside-list-item img {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+#body-wrap.error .aside-list .aside-list-item .thumbnail {
+  overflow: hidden;
+  width: 230px;
+  height: 143px;
+  /* background: var(--anzhiyu-card-bg); */
+  display: flex;
+}
+#body-wrap.error .aside-list .aside-list-item .content .title {
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  line-height: 1.5;
+  justify-content: center;
+  align-items: flex-end;
+  align-content: center;
+  padding-top: 0.5rem;
+  color: white;
+}
+#body-wrap.error .aside-list .aside-list-item .content time {
+  display: -webkit-box;
+  color: white;
+}
+
+
 /* 侧边栏个人信息卡片动态渐变色 */
 #aside-content > .card-widget.card-info {
-  background: linear-gradient(
-    -45deg,
-    #e8d8b9,
-    #eccec5,
-    #a3e9eb,
-    #bdbdf0,
-    #eec1ea
-  );
-  box-shadow: 0 0 5px rgb(66, 68, 68);
+  background: linear-gradient(-45deg, #e8d8b9, #eccec5, #a3e9eb, #bdbdf0, #eec1ea);
+  background-size: 400%;
+  box-shadow: var(--anzhiyu-shadow-black);
+  animation: gradient 15s ease infinite;
   position: relative;
-  background-size: 400% 400%;
-  -webkit-animation: Gradient 10s ease infinite;
-  -moz-animation: Gradient 10s ease infinite;
-  animation: Gradient 10s ease infinite !important;
+  color: var(--anzhiyu-white);
 }
-@-webkit-keyframes Gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-@-moz-keyframes Gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-@keyframes Gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+.site-data > a .headline,
+.site-data > a .length-num {
+  color: var(--anzhiyu-white);
 }
 /* 黑夜模式适配 */
 [data-theme="dark"] #aside-content > .card-widget.card-info {
-  background: #191919ee;
+  background: var(--anzhiyu-background);
 }
 /* 个人信息Follow me按钮 */
 #aside-content > .card-widget.card-info > #card-info-btn {
-  background-color: #3eb8be;
+  /* background-color: #3eb8be; */
+  background-color: var(--anzhiyu-theme);
   border-radius: 8px;
 }
 
 
 /* 文章页H1-H6图标样式效果 */
-/* 控制小风车转动速度 4s那里可以自己调节快慢 */
+/* 控制小风车转动速度 3s那里可以自己调节快慢 */
 h1::before,
 h2::before,
 h3::before,
 h4::before,
 h5::before,
 h6::before {
-  -webkit-animation: ccc 4s linear infinite;
-  animation: ccc 4s linear infinite;
+  -webkit-animation: ccc 3s linear infinite;
+  animation: ccc 3s linear infinite;
 }
 /* 控制风车转动方向 -1turn 为逆时针转动，1turn 为顺时针转动，相同数字部分记得统一修改 */
 @-webkit-keyframes ccc {
@@ -184,7 +422,7 @@ h6::before {
 #content-inner.layout h4:hover,
 #content-inner.layout h5:hover,
 #content-inner.layout h6:hover {
-  color: var(--theme-color);
+  color: var(--anzhiyu-theme);
 }
 #content-inner.layout h1:hover::before,
 #content-inner.layout h2:hover::before,
@@ -192,45 +430,20 @@ h6::before {
 #content-inner.layout h4:hover::before,
 #content-inner.layout h5:hover::before,
 #content-inner.layout h6:hover::before {
-  color: var(--theme-color);
-  -webkit-animation: ccc 6s linear infinite;
-  animation: ccc 6s linear infinite;
+  color: var(--anzhiyu-theme);
+  -webkit-animation: ccc 5s linear infinite;
+  animation: ccc 5s linear infinite;
 }
-
-
-/* 阿里多彩图标 */
-.iconfont {
-  font-family: "iconfont" !important;
-  /* 这里可以自定义图标大小 */
-  font-size: 3em;
-  font-style: normal;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* 菜单栏阿里多彩图标大小 */
-svg.menu_icon {
-  width: 1.28em;
-  height: 1.28em;
-  vertical-align: -0.15em;
-  fill: currentColor;
-  overflow: hidden;
-}
-
-/* 信息栏阿里多彩图标大小 */
-svg.social_icon {
-  width: 1.15em;
-  height: 1.15em;
-  vertical-align: -0.15em;
-  fill: currentColor;
-  overflow: hidden;
+/* 页面设置按钮 icon 转动速度调整 */
+#rightside_config i.fas.fa-cog.fa-spin {
+  animation: fa-spin 5s linear infinite;
 }
 
 
 /*哔哩哔哩视频适配*/
 .aspect-ratio {
   position: relative;
-  width: 90%;
+  width: 100%;
   height: auto;
   padding-bottom: 75%;
   margin: 3% auto;
@@ -239,7 +452,7 @@ svg.social_icon {
 .aspect-ratio iframe {
   position: absolute;
   width: 100%;
-  height: 86%;
+  height: 100%;
   left: 0;
   top: 0;
 }
@@ -256,7 +469,6 @@ svg.social_icon {
   pointer-events: none;
   z-index: -2;
 }
-
 /* 雪花黑夜模式不显示 */
 [data-theme="dark"] #snow{
   display: none;
@@ -268,13 +480,11 @@ svg.social_icon {
 .layout {
   max-width: 1400px;
 }
-
 /* 侧边卡片栏宽度 */
 .aside-content {
   max-width: 318px;
   min-width: 300px;
 }
-
 /* 平板尺寸自适应(不启用侧边栏宽度限制) */
 @media screen and (max-width: 900px) {
   .aside-content {
@@ -286,6 +496,7 @@ svg.social_icon {
 
 /* 加载界面头像图片 */
 .loading-img {
-  background: url(https://npm.elemecdn.com/anzhiyu-blog@2.1.1/img/avatar.webp) no-repeat center center;
+  /* 安知鱼头像 https://npm.elemecdn.com/anzhiyu-blog@2.1.1/img/avatar.webp */
+  background: url(/static/img/zhifeiji.gif) no-repeat center center;
   background-size: cover;
 }
