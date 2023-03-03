@@ -6,7 +6,7 @@
   <link href="https://blog.jerryfage.top/atom.xml" rel="self"/>
   
   <link href="https://blog.jerryfage.top/"/>
-  <updated>2023-02-22T07:24:26.695Z</updated>
+  <updated>2023-03-03T08:42:25.125Z</updated>
   <id>https://blog.jerryfage.top/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ChatGPT API 简单体验</title>
+    <link href="https://blog.jerryfage.top/posts/7c5b6897.html"/>
+    <id>https://blog.jerryfage.top/posts/7c5b6897.html</id>
+    <published>2023-03-02T06:28:52.000Z</published>
+    <updated>2023-03-03T08:42:25.125Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;OpenAI 大半夜 4 点给我发邮件说 &lt;a href=&quot;https://chat.openai.com/chat&quot;&gt;ChatGPT&lt;/a&gt; 使用的模型 &lt;code&gt;gpt-3.5-turbo&lt;/code&gt; 的 API 开放了，好家伙赶紧试试。&lt;/p&gt;
+&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="教程" scheme="https://blog.jerryfage.top/categories/%E6%95%99%E7%A8%8B/"/>
+    
+    
+    <category term="AI" scheme="https://blog.jerryfage.top/tags/AI/"/>
+    
+    <category term="ChatGPT" scheme="https://blog.jerryfage.top/tags/ChatGPT/"/>
+    
+    <category term="OpenAI" scheme="https://blog.jerryfage.top/tags/OpenAI/"/>
+    
+    <category term="API" scheme="https://blog.jerryfage.top/tags/API/"/>
+    
+  </entry>
   
   <entry>
     <title>Windows 下开机自启动命令行程序并隐藏 cmd 窗口</title>
@@ -67,7 +99,7 @@
     <link href="https://blog.jerryfage.top/posts/628a9e28.html"/>
     <id>https://blog.jerryfage.top/posts/628a9e28.html</id>
     <published>2023-01-05T16:23:48.000Z</published>
-    <updated>2023-02-11T07:44:47.554Z</updated>
+    <updated>2023-03-03T09:07:49.268Z</updated>
     
     
     <summary type="html">有东西被加密了, 请输入密码查看.</summary>
@@ -113,6 +145,27 @@
     
     
     <category term="小秘密" scheme="https://blog.jerryfage.top/tags/%E5%B0%8F%E7%A7%98%E5%AF%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Markdown 语法与外挂标签写法汇总</title>
+    <link href="https://blog.jerryfage.top/posts/ddeeb867.html"/>
+    <id>https://blog.jerryfage.top/posts/ddeeb867.html</id>
+    <published>2022-08-09T10:19:03.000Z</published>
+    <updated>2022-10-23T14:00:00.000Z</updated>
+    
+    
+    <summary type="html">🥧本文汇总 Markdown 格式以及外挂标签在网页端的渲染效果，可作为文档进行查询</summary>
+    
+    
+    
+    <category term="演示" scheme="https://blog.jerryfage.top/categories/%E6%BC%94%E7%A4%BA/"/>
+    
+    
+    <category term="Markdown" scheme="https://blog.jerryfage.top/tags/Markdown/"/>
+    
+    <category term="外挂标签" scheme="https://blog.jerryfage.top/tags/%E5%A4%96%E6%8C%82%E6%A0%87%E7%AD%BE/"/>
     
   </entry>
   
