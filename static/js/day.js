@@ -122,10 +122,17 @@ var lunar = calendarFormatter.solar2lunar();
 
 //农历采用汉字计算，防止出现闰月导致问题
 
-if ((lunar["IMonthCn"] == "正月" && lunar["IDayCn"] == "初六") || (lunar["IMonthCn"] == "正月" && lunar["IDayCn"] == "初五") || (lunar["IMonthCn"] == "正月" && lunar["IDayCn"] == "初四") || (lunar["IMonthCn"] == "正月" && lunar["IDayCn"] == "初三") || (lunar["IMonthCn"] == "正月" && lunar["IDayCn"] == "初二") || (lunar["IMonthCn"] == "正月" && lunar["IDayCn"] == "初一") || (lunar["IMonthCn"] == "腊月" && lunar["IDayCn"] == "三十") || (lunar["IMonthCn"] == "腊月" && lunar["IDayCn"] == "廿九")) {
+if ((lunar["IMonthCn"] == "正月" && lunar["IDayCn"] == "初六") || (lunar["IMonthCn"] == "正月" && lunar["IDayCn"] == "初五") || (lunar["IMonthCn"] == "正月" && lunar["IDayCn"] == "初三") || (lunar["IMonthCn"] == "正月" && lunar["IDayCn"] == "初二") || (lunar["IMonthCn"] == "正月" && lunar["IDayCn"] == "初一") || (lunar["IMonthCn"] == "腊月" && lunar["IDayCn"] == "三十") || (lunar["IMonthCn"] == "腊月" && lunar["IDayCn"] == "廿九")) {
     //春节，本来只有大年三十到初六，但是有时候除夕是大年二十九，所以也加上了
     if (sessionStorage.getItem("isPopupWindow") != "1") {
         Swal.fire(y.toString() + "年新年快乐\n🎊祝你心想事成，诸事顺利🎊");
+        sessionStorage.setItem("isPopupWindow", "1");
+    }
+}
+if ((lunar["IMonthCn"] == "正月" && lunar["IDayCn"] == "初四")) {
+    //博主生日
+    if (sessionStorage.getItem("isPopupWindow") != "1") {
+        Swal.fire("今天是博主的生日\n博主祝你天天开心呀🎂");
         sessionStorage.setItem("isPopupWindow", "1");
     }
 }
@@ -166,7 +173,7 @@ if ((lunar["IMonthCn"] == "九月" && lunar["IDayCn"] == "初九")) {
 }
 
 // 切换主题提醒
-// if (y == 2022 && m == 12 && (dd >= 18 && dd <= 20)) {
+// if (y == 2023 && m == 12 && (dd >= 18 && dd <= 20)) {
 //     if (sessionStorage.getItem("isPopupWindow") != "1") {
 //         Swal.fire("网站换成冬日限定主题啦⛄");
 //         sessionStorage.setItem("isPopupWindow", "1");
@@ -174,7 +181,7 @@ if ((lunar["IMonthCn"] == "九月" && lunar["IDayCn"] == "初九")) {
 // }
 
 // test
-if (y == 2023 && m == 2 && (dd >= 9 && dd <= 11)) {
+if (y == 2023 && m == 3 && (dd >= 12 && dd <= 15)) {
     if (sessionStorage.getItem("isPopupWindow") != "1") {
         Swal.fire("今天是" + y.toString() + "年" + m.toString() + "月" + dd.toString() + "日\n🎊这是一个测试弹窗🎊");
         sessionStorage.setItem("isPopupWindow", "1");
