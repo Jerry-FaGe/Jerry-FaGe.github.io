@@ -23,52 +23,6 @@
 }
 
 
-/* 首页文章卡片 */
-#recent-posts > .recent-post-item {
-  background: var(--trans-light);
-  backdrop-filter: var(--backdrop-filter);
-  border-radius: 12px;
-  border: var(--style-border);
-}
-/* 首页侧栏卡片 */
-#aside-content .card-widget {
-  background: var(--trans-light);
-  backdrop-filter: var(--backdrop-filter);
-  border-radius: 10px;
-  border: var(--style-border);
-}
-/* 文章页、归档页、普通页面 */
-div#post,
-div#page,
-div#archive {
-  background: var(--trans-light);
-  backdrop-filter: var(--backdrop-filter);
-  border: var(--style-border);
-  border-radius: 20px;
-}
-/* 导航栏 */
-#page-header.nav-fixed #nav {
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: var(--backdrop-filter);
-}
-[data-theme="dark"] #page-header.nav-fixed #nav {
-  background: rgba(0, 0, 0, 0.7) !important;
-}
-/* 夜间模式遮罩 */
-[data-theme="dark"] #recent-posts > .recent-post-item,
-[data-theme="dark"] #aside-content .card-widget,
-[data-theme="dark"] div#post,
-[data-theme="dark"] div#archive,
-[data-theme="dark"] div#page {
-  background: var(--trans-dark);
-}
-/* 夜间模式页脚页头遮罩透明 */
-[data-theme="dark"] #footer::before {
-  background: transparent !important;
-}
-[data-theme="dark"] #page-header::before {
-  background: transparent !important;
-}
 /* 阅读模式 */
 .read-mode #aside-content .card-widget {
   background: rgba(158, 204, 171, 0.5) !important;
@@ -90,18 +44,36 @@ div#archive {
 /* 滚动条 */
 ::-webkit-scrollbar {
   width: 6px;
-  height: 8px;
+  height: 6px;
 }
-::-webkit-scrollbar-thumb {
-  background-color: var(--anzhiyu-main);
+/* 滑轨部分（外层） */
+::-webkit-scrollbar-track {
+  background-color: rgba(73, 177, 245, 0.2);
   border-radius: 2em;
 }
+/* 滑块部分 */
+::-webkit-scrollbar-thumb {
+  background-color: var(--theme-color);
+  background-image: -webkit-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.4) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0.4) 75%,
+    transparent 75%,
+    transparent
+  );
+  border-radius: 2em;
+}
+/* 边角，即两个滚动条的交汇处 */
 ::-webkit-scrollbar-corner {
   background-color: transparent;
 }
+/* 火狐吧 */
 ::-moz-selection {
   color: #fff;
-  background-color: var(--anzhiyu-main);
+  background-color: var(--theme-color);
 }
 
 
@@ -127,7 +99,7 @@ div#archive {
 .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
   left: 0 !important;
   transition: all 0.3s;
-  /* 鼠标悬停是左侧缩进归零，完全显示按钮 */
+  /* 鼠标悬停时左侧缩进归零，完全显示按钮 */
 }
 .aplayer.aplayer-fixed {
   z-index: 999999 !important;
@@ -147,6 +119,9 @@ div#archive {
   width: fit-content !important;
   left: 50% !important;
   transform: translateX(-50%) !important;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 /* 子菜单横向展示 */
 #nav .menus_items .menus_item:hover .menus_item_child {
@@ -165,26 +140,26 @@ div#archive {
   font-display: swap;
   font-weight: lighter;
 } */
-@font-face {
-  font-family: ZhuZiAYuanJWD;
+/* @font-face {
+  font-family: ZhuZiAWan;
   src: url(https://npm.elemecdn.com/anzhiyu-blog@1.1.6/fonts/ZhuZiAWan.woff2);
   font-display: swap;
   font-weight: lighter;
-}
+} */
 /* 更改一些主要元素为这个字体 */
-div#menus {
-  font-family: "ZhuZiAYuanJWD";
+/* div#menus {
+  font-family: "ZhuZiAWan";
 }
 h1#site-title {
-  font-family: ZhuZiAYuanJWD;
+  font-family: ZhuZiAWan;
   font-size: 3em !important;
 }
 a.article-title,
 a.blog-slider__title,
 a.categoryBar-list-link,
 h1.post-title {
-  font-family: ZhuZiAYuanJWD;
-}
+  font-family: ZhuZiAWan;
+} */
 
 
 /* 阿里多彩图标 */
@@ -243,7 +218,7 @@ svg.social_icon {
   height: 100%;
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
-  background-color: var(--anzhiyu-theme);
+  background-color: var(--theme-color);
   background-position: center;
   background-size: cover;
 }
@@ -318,31 +293,6 @@ svg.social_icon {
 #body-wrap.error .aside-list .aside-list-item .content time {
   display: -webkit-box;
   color: white;
-}
-
-
-/* 侧边栏个人信息卡片动态渐变色 */
-#aside-content > .card-widget.card-info {
-  background: linear-gradient(-45deg, #e8d8b9, #eccec5, #a3e9eb, #bdbdf0, #eec1ea);
-  background-size: 400%;
-  box-shadow: var(--anzhiyu-shadow-black);
-  animation: gradient 15s ease infinite;
-  position: relative;
-  color: var(--anzhiyu-white);
-}
-.site-data > a .headline,
-.site-data > a .length-num {
-  color: var(--anzhiyu-white);
-}
-/* 黑夜模式适配 */
-[data-theme="dark"] #aside-content > .card-widget.card-info {
-  background: var(--anzhiyu-background);
-}
-/* 个人信息Follow me按钮 */
-#aside-content > .card-widget.card-info > #card-info-btn {
-  /* background-color: #3eb8be; */
-  background-color: var(--anzhiyu-theme);
-  border-radius: 8px;
 }
 
 
@@ -422,7 +372,7 @@ h6::before {
 #content-inner.layout h4:hover,
 #content-inner.layout h5:hover,
 #content-inner.layout h6:hover {
-  color: var(--anzhiyu-theme);
+  color: var(--theme-color);
 }
 #content-inner.layout h1:hover::before,
 #content-inner.layout h2:hover::before,
@@ -430,7 +380,7 @@ h6::before {
 #content-inner.layout h4:hover::before,
 #content-inner.layout h5:hover::before,
 #content-inner.layout h6:hover::before {
-  color: var(--anzhiyu-theme);
+  color: var(--theme-color);
   -webkit-animation: ccc 5s linear infinite;
   animation: ccc 5s linear infinite;
 }
@@ -813,13 +763,13 @@ h6::before {
 }
 @keyframes huxi_light {
   0% {
-    box-shadow: 0px 0px 1px 1px #e9f5fa;
+    box-shadow: 0px 0px 1px 1px #9ff2d2;
   }
   50% {
-    box-shadow: 0px 0px 5px 5px #e9f5fa;
+    box-shadow: 0px 0px 5px 5px #9ff2d2;
   }
   100% {
-    box-shadow: 0px 0px 1px 1px #e9f5fa;
+    box-shadow: 0px 0px 1px 1px #9ff2d2;
   }
 }
 @keyframes huxi_dark {
@@ -835,15 +785,33 @@ h6::before {
 }
 
 
+/* 侧边栏个人信息卡片动态渐变色 */
+/* #aside-content > .card-widget.card-info {
+  background: linear-gradient(-45deg, #e8d8b9, #eccec5, #a3e9eb, #bdbdf0, #eec1ea);
+  background-size: 400%;
+  box-shadow: var(--anzhiyu-shadow-black);
+  animation: gradient 15s ease infinite;
+  position: relative;
+  color: var(--anzhiyu-white);
+}
+.site-data > a .headline,
+.site-data > a .length-num {
+  color: var(--anzhiyu-white);
+}
+[data-theme="dark"] #aside-content > .card-widget.card-info {
+  background: var(--anzhiyu-background);
+} */
+
+
 /* 个人信息卡片背景图 */
 [data-theme="light"] #aside-content > .card-widget.card-info {
-  background-image: url(https://sourcebucket.s3.ladydaily.com/img/snowflower.webp);
+  background-image: url(https://tuchuang.voooe.cn/images/2023/02/28/springBg.png);
   background-repeat: no-repeat;
   background-attachment: inherit;
   background-size: 100%;
 }
 [data-theme="dark"] #aside-content > .card-widget.card-info {
-  background-image: url(https://sourcebucket.s3.ladydaily.com/img/aurora.webp);
+  background-image: url(https://tuchuang.voooe.cn/images/2023/02/28/aurora.webp);
   background-repeat: no-repeat;
   background-attachment: inherit;
   background-size: 100%;

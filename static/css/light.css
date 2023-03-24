@@ -1,14 +1,14 @@
 /* 夜间模式菜单栏发光字 */
 [data-theme="dark"] #nav .site-page,
 [data-theme="dark"] #nav .menus_items .menus_item .menus_item_child li a {
-  text-shadow: 0 0 2px rgb(57, 197, 187) !important;
+  text-shadow: var(--menu-shadow) !important;
 }
 /* 手机端适配 */
 [data-theme="dark"] #sidebar #sidebar-menus .menus_items .site-page {
-  text-shadow: 0 0 2px rgb(57, 197, 187) !important;
+  text-shadow: var(--menu-shadow) !important;
 }
 /* 闪烁变动颜色连续渐变 */
-#site-name,
+.site-name,
 #site-title,
 #site-subtitle,
 #post-info,
@@ -19,14 +19,14 @@
 
 
 /* 日间模式不生效 */
-[data-theme="light"] #site-name,
+[data-theme="light"] .site-name,
 [data-theme="light"] #site-title,
 [data-theme="light"] #site-subtitle,
 [data-theme="light"] #post-info {
-  animation: none;
+  animation: none !important;
 }
 /* 夜间模式生效 */
-[data-theme="dark"] #site-name,
+[data-theme="dark"] .site-name,
 [data-theme="dark"] #site-title {
   animation: light_15px 10s linear infinite;
 }

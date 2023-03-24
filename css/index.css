@@ -1335,11 +1335,11 @@ canvas:not(#ribbon-canvas),
   }
 }
 :root {
-  --global-font-size: 15px;
+  --global-font-size: 15.5px;
   --global-bg: #fff;
   --font-color: #4c4948;
-  --hr-border: #a4d8fa;
-  --hr-before-color: #80c8f8;
+  --hr-border: #d2ebfd;
+  --hr-before-color: #bfe4fb;
   --search-bg: #f6f8fa;
   --search-input-color: #4c4948;
   --search-result-title: #4c4948;
@@ -1377,7 +1377,7 @@ body {
   background: var(--global-bg);
   color: var(--font-color);
   font-size: var(--global-font-size);
-  font-family: ZhuZiAYuanJWD;
+  font-family: var(--global-font), -apple-system, 'Quicksand', 'Nimbus Roman No9 L', 'PingFang SC', 'Hiragino Sans GB', 'Noto Serif SC', 'Microsoft Yahei', 'WenQuanYi Micro Hei', 'ST Heiti', sans-serif;;
   line-height: 2;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
@@ -1403,7 +1403,7 @@ input::placeholder {
   z-index: -999;
   width: 100%;
   height: 100%;
-  background: url("https://sourcebucket.s3.ladydaily.com/img/dm14.webp");
+  background: url("https://data-static.netdun.net/Fomalhaut/img/default_cover_53.webp");
   background-attachment: local;
   background-position: center;
   background-size: cover;
@@ -1508,7 +1508,7 @@ a:hover {
 .site-name,
 #aside-content .author-info__name,
 #aside-content .author-info__description {
-  font-family: Titillium Web, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  font-family: var(--global-font);
 }
 .is-center {
   text-align: center;
@@ -1681,8 +1681,8 @@ figure.highlight pre .javascript .function {
 }
 #article-container pre,
 #article-container code {
-  font-size: 14px;
-  font-family: consolas, Menlo, 'PingFang SC', 'Microsoft YaHei', sans-serif !important;
+  font-size: 14.5px;
+  font-family: Consolas_1, var(--global-font), "Microsoft YaHei", Menlo, "PingFang SC", "Microsoft JhengHei", sans-serif !important;
 }
 #article-container code {
   padding: 2px 4px;
@@ -1709,7 +1709,7 @@ figure.highlight pre .javascript .function {
 #article-container figure.highlight figcaption,
 #article-container figure.highlight .caption {
   padding: 6px 0 2px 14px;
-  font-size: 14px;
+  font-size: 14.5px;
   line-height: 1em;
 }
 #article-container figure.highlight figcaption a,
@@ -1741,7 +1741,7 @@ figure.highlight pre .javascript .function {
   height: 2.15em;
   background: var(--hltools-bg);
   color: var(--hltools-color);
-  font-size: 14px;
+  font-size: 14.5px;
 }
 #article-container .highlight-tools.closed ~ * {
   display: none;
@@ -1995,7 +1995,7 @@ figure.highlight pre .javascript .function {
   height: 100%;
   vertical-align: top;
   text-align: center;
-  font-family: Titillium Web, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  font-family: var(--global-font);
 }
 @media screen and (max-width: 768px) {
   .error404 #error-wrap .error-content .error-info {
@@ -2429,7 +2429,7 @@ figure.highlight pre .javascript .function {
   box-shadow: 0 4px 8px 0px rgba(0,0,0,0.1), 0 2px 4px 0px rgba(0,0,0,0.1), 0 4px 8px 0px rgba(0,0,0,0.1), 0 8px 16px 0px rgba(0,0,0,0.1);
 }
 .site-card:hover .info .title {
-  color: #ff5722;
+  color: #ff7242;
 }
 #recent-posts > .recent-post-item:not(:first-child) {
   margin-top: 20px;
@@ -4044,7 +4044,7 @@ h1.page-title + .tag-cloud-list {
   overflow-wrap: break-word;
 }
 #article-container a {
-  color: #49b1f5;
+  color: #a591e0;
 }
 #article-container a:hover {
   text-decoration: underline;
@@ -4271,11 +4271,11 @@ h1.page-title + .tag-cloud-list {
   transition: box-shadow 0.3s ease-in-out;
   overflow: hidden;
   border-radius: 12px !important;
-  background: -webkit-linear-gradient(45deg, #f6d8f5, #c2f1f0, #f0debf);
-  background: -moz-linear-gradient(45deg, #f6d8f5, #c2f1f0, #f0debf);
-  background: -o-linear-gradient(45deg, #f6d8f5, #c2f1f0, #f0debf);
-  background: -ms-linear-gradient(45deg, #f6d8f5, #c2f1f0, #f0debf);
-  background: linear-gradient(45deg, #f6d8f5, #c2f1f0, #f0debf);
+  background: -webkit-linear-gradient(45deg, #ffd7e4 0%, #c8f1ff 100%);
+  background: -moz-linear-gradient(45deg, #ffd7e4 0%, #c8f1ff 100%);
+  background: -o-linear-gradient(45deg, #ffd7e4 0%, #c8f1ff 100%);
+  background: -ms-linear-gradient(45deg, #ffd7e4 0%, #c8f1ff 100%);
+  background: linear-gradient(45deg, #ffd7e4 0%, #c8f1ff 100%);
 }
 #post .post-copyright:before {
   background: var(--heo-post-blockquote-bg);
@@ -4346,8 +4346,8 @@ h1.page-title + .tag-cloud-list {
   background: #07080a;
   text-shadow: #bfbeb8 0 0 2px;
   border: 1px solid #131201;
-  -webkit-box-shadow: 0 0 5px #1478d2;
-  box-shadow: 0 0 5px #1478d2;
+  -webkit-box-shadow: 0 0 5px var(--theme-color);
+  box-shadow: 0 0 5px var(--theme-color);
   -webkit-animation: flashlight 1s linear infinite alternate;
   -moz-animation: flashlight 1s linear infinite alternate;
   -o-animation: flashlight 1s linear infinite alternate;

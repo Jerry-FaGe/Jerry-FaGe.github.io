@@ -34,10 +34,6 @@
   --anzhiyu-black-acrylic2: #08080a !important;
   --anzhiyu-black-acrylic1: #0b0b0e !important;
   --anzhiyu-main-none: #b8b8b800 !important;
-
-  --trans-light: rgba(255, 255, 255, 0.88);
-  --trans-dark: rgba(25, 25, 25, 0.88);
-  --backdrop-filter: blur(5px) saturate(150%);
 }
   
 [data-theme="light"] {
@@ -95,16 +91,4 @@
   --anzhiyu-shadow-lightblack: 0 5px 12px -5px rgba(102, 68, 68, 0);
   --anzhiyu-shadow-light2black: 0 5px 12px -5px rgba(102, 68, 68, 0);
   --anzhiyu-card-border: #42444a;
-}
-
-::selection {
-    background: var(--anzhiyu-fontcolor);
-    color: var(--anzhiyu-background);
-  }
-  
-@media screen and (max-width: 768px){
-  :root{
-    --style-border: 0px solid var(--anzhiyu-card-border);
-    --style-border-hover: 0px solid var(--anzhiyu-theme);
-  }
 }

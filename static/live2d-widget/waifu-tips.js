@@ -86,7 +86,9 @@ function loadWidget(config) {
 			setTimeout(() => {
 				document.getElementById("waifu").style.display = "none";
 				document.getElementById("waifu-toggle").classList.add("waifu-toggle-active");
-			}, 3000);
+			}, 2000);
+			// 设置模块适配
+			document.getElementById("live2d_on").checked = false;
 		});
 		const devtools = () => {};
 		console.log("%c", devtools);
@@ -278,6 +280,8 @@ function initWidget(config, apiPath) {
 				document.getElementById("waifu").style.bottom = 0;
 			}, 0);
 		}
+		// 设置模块适配
+		document.getElementById("live2d_on").checked = true;
 	});
 	if (localStorage.getItem("waifu-display") && Date.now() - localStorage.getItem("waifu-display") <= 86400000) {
 		toggle.setAttribute("first-time", true);
