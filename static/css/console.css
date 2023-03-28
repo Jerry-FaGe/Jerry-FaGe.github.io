@@ -76,8 +76,12 @@
 
 /* winbox样式(这块照抄即可) */
 .winbox {
-    border-radius: 12px;
+    border-radius: 10px;
     overflow: hidden;
+}
+
+.wb-title {
+    font-family: var(--global-font);
 }
 
 .wb-body {

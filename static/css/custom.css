@@ -7,10 +7,11 @@
 }
   
 /* 白天模式遮罩透明 */
-#footer::before {
-  background: transparent !important;
+[data-theme=light] #footer {
+  /* background: transparent !important; */
+  background: rgba(0, 0, 0, .25) !important;
 }
-#page-header::before {
+[data-theme=light] #page-header::before {
   background: transparent !important;
 }
   

@@ -7,10 +7,10 @@
 <h2 id="生成-API-Key"><a href="#生成-API-Key" class="headerlink" title="生成 API Key"></a>生成 API Key</h2><p>调用 API 需要 API Key ，前提是你得有个 <a href="https://platform.openai.com/account">OpenAI</a> 的账号，咋注册就不在这说了教程一大把。</p>
 <ul>
 <li><p>打开<a href="https://platform.openai.com/account/api-keys">这个页面</a>，点击 <code>Creat new secret key</code> 。</p>
-<p> <img src="/images/生成API Key.png" alt="生成API Key"></p>
+<p> <img src="https://cdn.staticaly.com/gh/Jerry-FaGe/jerry-fage-static@master/img/posts/%E7%94%9F%E6%88%90API%20Key.png" alt="生成 API Key"></p>
 </li>
 <li><p>弹出的窗口里就是你的 API Key ，复制出来找个地方妥善保存，因为<emp>这个 key 就只会显示这一次</emp>，关掉了这个弹框你就再也找不到完整的 key 了，如果不及时保存就只能删除目前这个再重新生成一个。</p>
-<p> <img src="/images/复制API Key.png" alt="复制API Key"></p>
+<p> <img src="https://cdn.staticaly.com/gh/Jerry-FaGe/jerry-fage-static@master/img/posts/%E5%A4%8D%E5%88%B6API%20Key.png" alt="复制 API Key"></p>
 </li>
 </ul>
 <h2 id="编写代码"><a href="#编写代码" class="headerlink" title="编写代码"></a>编写代码</h2><p>咋装 Python 啥的咱就不讲了，先装个包<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install openai</span><br></pre></td></tr></table></figure><br>当然不用这个包也行，随便用个请求库比如 requests，在请求头里写上 <code>&quot;Authorization&quot;: &quot;Bearer 你的API Key&quot;</code> post 方式直接请求 <a href="https://api.openai.com/v1/chat/completions">API 地址</a>。</p>
@@ -63,18 +63,8 @@
     <url>/posts/3a8940f.html</url>
     <content><![CDATA[<p>废话不多说相信很多人都是因为苹果的坑爹政策才被要求了解苹果登录的流程，本文不涉及前端操作（因为我不会），只介绍后端是如何验证的。</p>
 <h2 id="你会从前端得到什么"><a href="#你会从前端得到什么" class="headerlink" title="你会从前端得到什么"></a>你会从前端得到什么</h2><p>这里是通过 RESTful API 接口来获取数据，所以我不会管前端是咋获取的，我只管接收和处理数据</p>
-<pre><code>----&gt;&gt; User Id - 000592.729afa20xxxxxxx9929f3958f03c6c9e.0948
-
-----&gt;&gt; User Name - givenName: Lu familyName: Xs 
-
-----&gt;&gt; User Email - 494xxx875@qq.com
-
-----&gt;&gt; Real User Status - 1
-
-----&gt;&gt; Identity Token eyJraWQiOiJxxxxxxxxxxxxxxxnIjoiUlMyNTYifQ.eyJpc3M
-
-----&gt;&gt; authorizationCode ca57c019ae48c4a42xxxxxxxxxxe9e80b.0.nvzs.HTxxxxxxxxxxxE64NZpbWEeALQ
-</code></pre><span id="more"></span>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">----&gt;&gt; User Id - 000592.729afa20xxxxxxx9929f3958f03c6c9e.0948</span><br><span class="line"></span><br><span class="line">----&gt;&gt; User Name - givenName: Lu familyName: Xs </span><br><span class="line"></span><br><span class="line">----&gt;&gt; User Email - 494xxx875@qq.com</span><br><span class="line"></span><br><span class="line">----&gt;&gt; Real User Status - 1</span><br><span class="line"></span><br><span class="line">----&gt;&gt; Identity Token eyJraWQiOiJxxxxxxxxxxxxxxxnIjoiUlMyNTYifQ.eyJpc3M</span><br><span class="line"></span><br><span class="line">----&gt;&gt; authorizationCode ca57c019ae48c4a42xxxxxxxxxxe9e80b.0.nvzs.HTxxxxxxxxxxxE64NZpbWEeALQ</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
 <ul>
 <li><code>User Id</code> 坑爹的来了，这个ID其实和你费老大劲后面绕了一大大大圈解析出来的那个sub是一样的，但你还是得搞，为了所谓的安全性</li>
 <li><code>User Name</code> 顾名思义用户名，不过这个用户名是可以由用户自由指定的（甚至可以为空），不一定是用户在苹果的真实用户名</li>
@@ -85,29 +75,32 @@
 <p>现在我们已经从前端获取到了一些关键信息，注意 <code>User Name</code>，<code>User Email</code>只有在用户第一次授权的时候才能拿到，所以如果用得上的话要及时储存起来。</p>
 <h2 id="服务端向苹果请求验证"><a href="#服务端向苹果请求验证" class="headerlink" title="服务端向苹果请求验证"></a>服务端向苹果请求验证</h2><p>接下来我们需要拼接从前端获取的参数，用POST方法访问苹果提供的 <a href="https://appleid.apple.com/auth/token">https://appleid.apple.com/auth/token</a> 接口，接口相关信息苹果有提供 <a href="https://developer.apple.com/documentation/sign_in_with_apple/generate_and_validate_tokens">Generate and validate tokens</a> 。</p>
 <p>下面着重介绍几个参数及其获取方法。首先先看下该接口需要的参数，如下</p>
-<pre><code>client_id： string (必要) 您的应用程序的标识符（应用程序ID或服务ID）。该标识符不得包含您的团队ID，以帮助减轻敏感数据对最终用户的影响。授权代码和刷新令牌验证请求均需要此参数。
-
-client_secret： string (必要) 开发人员生成的秘密JSON Web令牌，使用与您的开发人员帐户关联的“使用Apple登录”私钥。授权代码和刷新令牌验证请求均需要此参数。
-
-code： string 授权响应中收到的授权代码已发送到您的应用。该代码仅供一次性使用，有效期为五分钟。授权参数验证请求需要此参数。
-
-grant_type： string (Required) 授予类型确定客户端应用程序如何与验证服务器交互。授权代码和刷新令牌验证请求均需要此参数。要进行授权码验证，请使用。对于刷新令牌验证请求，请使用 authorization_coderefresh_token。
-
-refresh_token： string 授权请求期间从验证服务器收到的刷新令牌。刷新令牌验证请求需要此参数。
-
-redirect_uri： string 在授权用户使用您的应用程序（如果适用）时，授权请求中提供的目标URI。URI必须使用HTTPS协议，包括域名，并且不能包含IP地址或localhost。授权参数验证请求需要此参数。
-</code></pre><p>其中 <code>client_id</code> 为app的 <code>bundle identifier</code> ， <code>code</code> 即为手机端获取到的 <code>authorizationCode</code> 信息， <code>grant_type</code> 传入固定字符串 <code>authorization_code</code>  即可。还剩下一个必要参数 <code>client_secret</code> 那么这个参数相对麻烦点，需要我们自己生成。client_secret参数是一个JWT，singature部分使用非对称加密 RSASSA【RSA签名算法】 和 ECDSA【椭圆曲线数据签名算法】。</p>
+<ul>
+<li><p><code>client_id</code>: string (必要) 您的应用程序的标识符（应用程序ID或服务ID）。该标识符不得包含您的团队ID，以帮助减轻敏感数据对最终户的影响。授权代码和刷新令牌验证请求均需要此参数。</p>
+</li>
+<li><p><code>client_secret</code>: string (必要) 开发人员生成的秘密JSON Web令牌，使用与您的开发人员帐户关联的“使用Apple登录”私钥。授权代码和新令牌验证请求均需要此参数。</p>
+</li>
+<li><p><code>code</code>: string 授权响应中收到的授权代码已发送到您的应用。该代码仅供一次性使用，有效期为五分钟。授权参数验证请求需要此参数。</p>
+</li>
+<li><p><code>grant_type</code>: string (必要) 授予类型确定客户端应用程序如何与验证服务器交互。授权代码和刷新令牌验证请求均需要此参数。要进行授码验证，请使用。对于刷新令牌验证请求，请使用 authorization_coderefresh_token。</p>
+</li>
+<li><p><code>refresh_token</code>: string 授权请求期间从验证服务器收到的刷新令牌。刷新令牌验证请求需要此参数。</p>
+</li>
+<li><p><code>redirect_uri</code>： string 在授权用户使用您的应用程序（如果适用）时，授权请求中提供的目标URI。URI必须使用HTTPS协议，包括域名，且不能包含IP地址或localhost。授权参数验证请求需要此参数。</p>
+</li>
+</ul>
+<p>其中 <code>client_id</code> 为app的 <code>bundle identifier</code> ， <code>code</code> 即为手机端获取到的 <code>authorizationCode</code> 信息， <code>grant_type</code> 传入固定字符串 <code>authorization_code</code>  即可。还剩下一个必要参数 <code>client_secret</code> 那么这个参数相对麻烦点，需要我们自己生成。client_secret参数是一个JWT，singature部分使用非对称加密 RSASSA【RSA签名算法】 和 ECDSA【椭圆曲线数据签名算法】。</p>
 <p><strong>生成 client_secret 之前，我们需要做如下工作</strong></p>
 <ul>
 <li>获取 APP 的 <code>bundleID</code></li>
 <li>获取开发者账号的 <code>TeamID</code></li>
 </ul>
-<p><img src="/images/pasted-1.png" alt="upload successful"></p>
+<p><img src="https://cdn.staticaly.com/gh/Jerry-FaGe/jerry-fage-static@master/img/posts/pasted-1.png" alt="找到 ID"></p>
 <ul>
 <li>创建 privateKey，获取到 <code>Key ID</code> 和 <code>私钥</code></li>
 </ul>
-<p><img src="/images/pasted-2.png" alt="upload successful"></p>
-<p><img src="/images/pasted-3.png" alt="upload successful"></p>
+<p><img src="https://cdn.staticaly.com/gh/Jerry-FaGe/jerry-fage-static@master/img/posts/pasted-2.png" alt="创建 key"></p>
+<p><img src="https://cdn.staticaly.com/gh/Jerry-FaGe/jerry-fage-static@master/img/posts/pasted-3.png" alt="记住 ID，下载私钥"></p>
 <p>创建完之后把私钥下载下来，并保存好，<strong>注意，私钥只能下载一次。</strong></p>
 <p>拿到上面所有信息之后，可以通过如下代码生成 <code>client_secret</code> ，代码为 Ruby 代码，确保已安装ruby环境。</p>
 <figure class="highlight ruby"><table><tr><td class="code"><pre><span class="line"><span class="keyword">require</span> <span class="string">&quot;jwt&quot;</span></span><br><span class="line"></span><br><span class="line">key_file = <span class="string">&quot;/Your/path/to/AuthKey_XXXXX.p8&quot;</span> <span class="comment"># 私钥文件地址</span></span><br><span class="line">team_id = <span class="string">&quot;KXXXXXGBU&quot;</span> <span class="comment"># Team ID</span></span><br><span class="line">client_id = <span class="string">&quot;XXXXXXX&quot;</span> <span class="comment"># App Bundle ID</span></span><br><span class="line">key_id = <span class="string">&quot;KXXXXXXZ8&quot;</span> <span class="comment"># 私钥的Key ID</span></span><br><span class="line">validity_period = <span class="number">180</span> <span class="comment"># In days. Max 180 (6 months) according to Apple docs.</span></span><br><span class="line"></span><br><span class="line">private_key = <span class="title class_">OpenSSL::PKey::EC</span>.new <span class="variable constant_">IO</span>.read key_file</span><br><span class="line"></span><br><span class="line">token = <span class="variable constant_">JWT</span>.encode(</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="symbol">iss:</span> team_id,</span><br><span class="line">		<span class="symbol">iat:</span> <span class="title class_">Time</span>.now.to_i,</span><br><span class="line">		<span class="symbol">exp:</span> <span class="title class_">Time</span>.now.to_i + <span class="number">86400</span> * validity_period,</span><br><span class="line">		<span class="symbol">aud:</span> <span class="string">&quot;https://appleid.apple.com&quot;</span>,</span><br><span class="line">		<span class="symbol">sub:</span> client_id</span><br><span class="line">	&#125;,</span><br><span class="line">	private_key,</span><br><span class="line">	<span class="string">&quot;ES256&quot;</span>,</span><br><span class="line">	header_fields=</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="symbol">kid:</span> key_id </span><br><span class="line">	&#125;</span><br><span class="line">)</span><br><span class="line">puts token</span><br></pre></td></tr></table></figure>
@@ -150,70 +143,6 @@ redirect_uri： string 在授权用户使用您的应用程序（如果适用）
         <tag>Python</tag>
         <tag>后端</tag>
         <tag>第三方登录</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Windows 下开机自启动命令行程序并隐藏 cmd 窗口</title>
-    <url>/posts/fc6eb02e.html</url>
-    <content><![CDATA[<p>最近搭建了一个 <a href="https://github.com/fatedier/frp">frp</a> 内网穿透来让我搭建在本地的 AI 绘图 <a href="https://jihulab.com/hunter0725/stable-diffusion-webui">stable-diffusion-webui</a> 能通过公网访问，但由于 frpc 在 Windows 下是个命令行程序，所以用 bat 配置开机自启动后每次开机都会先弹出一个大黑框还不能关，实在是让人不爽，遂研究了一下有没有什么方法能隐藏掉这个框。</p>
-<h2 id="隐藏窗口启动"><a href="#隐藏窗口启动" class="headerlink" title="隐藏窗口启动"></a>隐藏窗口启动</h2><p>直接上结论：<br><figure class="highlight vbs"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Set</span> ws = <span class="built_in">CreateObject</span>(<span class="string">&quot;WScript.Shell&quot;</span>)</span><br><span class="line">ws.run <span class="string">&quot;.\frpc -c frpc.ini&quot;</span>,vbhide</span><br></pre></td></tr></table></figure></p>
-<p>随便创建个什么文本文件并在其中写入上面的代码，然后把文件后缀名改成 vbs。</p>
-<p>这就是一个 VBScript 脚本，vbs 是一种 Windows 脚本语言，可以用来执行一些简单的任务，大致解释下每段的作用：</p>
-<ul>
-<li><code>Set ws = CreateObject(&quot;WScript.Shell&quot;)</code>: 创建一个名为 ws 的对象，这个对象可以调用 WScript.Shell 的方法和属性。WScript.Shell 是一个提供对系统命令行窗口、环境变量、注册表等的访问和操作的对象。</li>
-<li><code>ws.run &quot;.\frpc -c frpc.ini&quot;</code>: 用 ws 对象的 Run 方法来运行当前目录下的 frpc 程序（当然也可以是运行这个程序的 bat 脚本），并传递参数 <code>-c frpc.ini</code> 给它，这个参数表示 frpc 应该使用哪一个配置文件。这里的相对路径也可以换成绝对路径，这样这个脚本就可以放在任意地方而不是非得放在要运行的程序所在的目录下了。</li>
-<li><code>vbhide</code>: 使用这个关键字可以隐藏程序的 cmd 窗口，<code>vbhide</code> 也可以换成 <code>0</code> 效果是一样的。</li>
-</ul>
-<p>写完后可以测试一下：停掉你的程序，双击这个脚本（这时候理论上不会有什么反应但是程序已经启动成功了），用任务管理器或者其他什么方式看看是否有该程序的进程。</p>
-<h2 id="开机自启动"><a href="#开机自启动" class="headerlink" title="开机自启动"></a>开机自启动</h2><p>这个就很简单了，如果你在脚本中使用了绝对路径可以直接把脚本放在 Windows 的 Startup 文件夹里，可以按快捷键 <kbd>win</kbd> + <kbd>R</kbd> 调出运行窗口，在输入框输入命令 <code>shell:startup</code> 打开 Startup 文件夹的位置。如果使用了相对路径，可以右键脚本生成一个快捷方式，再把快捷方式放在 Startup 文件夹里。</p>
-]]></content>
-      <categories>
-        <category>技巧</category>
-      </categories>
-      <tags>
-        <tag>Windows</tag>
-        <tag>VBS</tag>
-        <tag>cmd</tag>
-        <tag>自启动</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>About Me</title>
-    <url>//about/</url>
-    <content><![CDATA[<blockquote>
-<h1 id="About-Me"><a href="#About-Me" class="headerlink" title="About Me"></a>About Me</h1><hr>
-<p>我的名字叫 <del>Bo良ki影</del> ，24岁。晚上2点睡，每天要睡足6个小时。睡前，我一定喝一杯温牛奶，然后做20分钟的柔软操，上了床，马上熟睡。一觉到天亮，决不把疲劳和压力，留到第二天。医生都说我很正常。<br><span id="more"></span></p>
-<ul>
-<li>爱好：<a href="https://baike.baidu.com/item/ACGN" title="贰刺猿贰刺猿">ACGN</a>、手指极限运动、安卓搞机、音乐</li>
-<li>喜欢：抽烟、喝酒、烫头（但我是个好男孩）、LL（单推东条希）、盗墓笔记、Minecraft</li>
-<li>讨厌：抖音、快手以及其他类似短视频平台以及公共场合外放的人、做自己不喜欢的事</li>
-<li>目标：后端工程师 || 全栈工程师 || 游戏开发者</li>
-<li>梦想：没有梦想，想到哪做到哪</li>
-</ul>
-</blockquote>
-<p><img src="https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/meme/no-work.jpg" alt=""></p>
-<details class="toggle" style="border: 1px solid bg"><summary class="toggle-button" style="background-color: bg;color: color">此生想要完成的事情</summary><div class="toggle-content"><div class='checkbox checked'><input type="checkbox" checked="checked"/>
-            <p>活下去</p>
-            </div></div></details>
-<ul>
-<li>姓名：Jerry_FaGe</li>
-<li>现居：吉林</li>
-<li>QQ: 619092968</li>
-<li>微信: w619092968</li>
-<li>Email: <a href="jerry_fage@foxmail.com">jerry_fage@foxmail.com</a></li>
-<li>GitHub: <a href="https://github.com/Jerry-FaGe">Jerry-FaGe</a></li>
-<li>Twitter: @Jerry619092968</li>
-<li>BiliBili: <a href="https://space.bilibili.com/111990999">Jerry_FaGe</a>（传过几个视频，太凄惨了没有动力继续，现在主要用来看番和MC视频）</li>
-<li>网易云音乐: <a href="https://music.163.com/#/user/home?id=273447395">Jerry-痞孓</a>（主EDM、史诗、日系、欧美流行、不挑，好听就行）</li>
-<li>RSS: <a href="https://jerry-fage.github.io/atom.xml">https://jerry-fage.github.io/atom.xml</a>（虽然没什么用但还是整了，反正也不要钱XD）</li>
-</ul>
-<!-- GitCalendar容器 -->
-<div id="gitZone"></div>]]></content>
-      <categories>
-        <category>杂谈</category>
-      </categories>
-      <tags>
-        <tag>随笔</tag>
       </tags>
   </entry>
   <entry>
@@ -1159,6 +1088,70 @@ redirect_uri： string 在授权用户使用您的应用程序（如果适用）
       </tags>
   </entry>
   <entry>
+    <title>Windows 下开机自启动命令行程序并隐藏 cmd 窗口</title>
+    <url>/posts/fc6eb02e.html</url>
+    <content><![CDATA[<p>最近搭建了一个 <a href="https://github.com/fatedier/frp">frp</a> 内网穿透来让我搭建在本地的 AI 绘图 <a href="https://jihulab.com/hunter0725/stable-diffusion-webui">stable-diffusion-webui</a> 能通过公网访问，但由于 frpc 在 Windows 下是个命令行程序，所以用 bat 配置开机自启动后每次开机都会先弹出一个大黑框还不能关，实在是让人不爽，遂研究了一下有没有什么方法能隐藏掉这个框。</p>
+<h2 id="隐藏窗口启动"><a href="#隐藏窗口启动" class="headerlink" title="隐藏窗口启动"></a>隐藏窗口启动</h2><p>直接上结论：<br><figure class="highlight vbs"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Set</span> ws = <span class="built_in">CreateObject</span>(<span class="string">&quot;WScript.Shell&quot;</span>)</span><br><span class="line">ws.run <span class="string">&quot;.\frpc -c frpc.ini&quot;</span>,vbhide</span><br></pre></td></tr></table></figure></p>
+<p>随便创建个什么文本文件并在其中写入上面的代码，然后把文件后缀名改成 vbs。</p>
+<p>这就是一个 VBScript 脚本，vbs 是一种 Windows 脚本语言，可以用来执行一些简单的任务，大致解释下每段的作用：</p>
+<ul>
+<li><code>Set ws = CreateObject(&quot;WScript.Shell&quot;)</code>: 创建一个名为 ws 的对象，这个对象可以调用 WScript.Shell 的方法和属性。WScript.Shell 是一个提供对系统命令行窗口、环境变量、注册表等的访问和操作的对象。</li>
+<li><code>ws.run &quot;.\frpc -c frpc.ini&quot;</code>: 用 ws 对象的 Run 方法来运行当前目录下的 frpc 程序（当然也可以是运行这个程序的 bat 脚本），并传递参数 <code>-c frpc.ini</code> 给它，这个参数表示 frpc 应该使用哪一个配置文件。这里的相对路径也可以换成绝对路径，这样这个脚本就可以放在任意地方而不是非得放在要运行的程序所在的目录下了。</li>
+<li><code>vbhide</code>: 使用这个关键字可以隐藏程序的 cmd 窗口，<code>vbhide</code> 也可以换成 <code>0</code> 效果是一样的。</li>
+</ul>
+<p>写完后可以测试一下：停掉你的程序，双击这个脚本（这时候理论上不会有什么反应但是程序已经启动成功了），用任务管理器或者其他什么方式看看是否有该程序的进程。</p>
+<h2 id="开机自启动"><a href="#开机自启动" class="headerlink" title="开机自启动"></a>开机自启动</h2><p>这个就很简单了，如果你在脚本中使用了绝对路径可以直接把脚本放在 Windows 的 Startup 文件夹里，可以按快捷键 <kbd>win</kbd> + <kbd>R</kbd> 调出运行窗口，在输入框输入命令 <code>shell:startup</code> 打开 Startup 文件夹的位置。如果使用了相对路径，可以右键脚本生成一个快捷方式，再把快捷方式放在 Startup 文件夹里。</p>
+]]></content>
+      <categories>
+        <category>技巧</category>
+      </categories>
+      <tags>
+        <tag>Windows</tag>
+        <tag>VBS</tag>
+        <tag>cmd</tag>
+        <tag>自启动</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>About Me</title>
+    <url>//about/</url>
+    <content><![CDATA[<blockquote>
+<h1 id="About-Me"><a href="#About-Me" class="headerlink" title="About Me"></a>About Me</h1><hr>
+<p>我的名字叫 <del>Bo良ki影</del> ，24岁。晚上2点睡，每天要睡足6个小时。睡前，我一定喝一杯温牛奶，然后做20分钟的柔软操，上了床，马上熟睡。一觉到天亮，决不把疲劳和压力，留到第二天。医生都说我很正常。<br><span id="more"></span></p>
+<ul>
+<li>爱好：<a href="https://baike.baidu.com/item/ACGN" title="贰刺猿贰刺猿">ACGN</a>、手指极限运动、安卓搞机、音乐</li>
+<li>喜欢：抽烟、喝酒、烫头（但我是个好男孩）、LL（单推东条希）、盗墓笔记、Minecraft</li>
+<li>讨厌：抖音、快手以及其他类似短视频平台以及公共场合外放的人、做自己不喜欢的事</li>
+<li>目标：后端工程师 || 全栈工程师 || 游戏开发者</li>
+<li>梦想：没有梦想，想到哪做到哪</li>
+</ul>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/meme/no-work.jpg" alt=""></p>
+<details class="toggle" style="border: 1px solid bg"><summary class="toggle-button" style="background-color: bg;color: color">此生想要完成的事情</summary><div class="toggle-content"><div class='checkbox checked'><input type="checkbox" checked="checked"/>
+            <p>活下去</p>
+            </div></div></details>
+<ul>
+<li>姓名：Jerry_FaGe</li>
+<li>现居：吉林</li>
+<li>QQ: 619092968</li>
+<li>微信: w619092968</li>
+<li>Email: <a href="jerry_fage@foxmail.com">jerry_fage@foxmail.com</a></li>
+<li>GitHub: <a href="https://github.com/Jerry-FaGe">Jerry-FaGe</a></li>
+<li>Twitter: @Jerry619092968</li>
+<li>BiliBili: <a href="https://space.bilibili.com/111990999">Jerry_FaGe</a>（传过几个视频，太凄惨了没有动力继续，现在主要用来看番和MC视频）</li>
+<li>网易云音乐: <a href="https://music.163.com/#/user/home?id=273447395">Jerry-痞孓</a>（主EDM、史诗、日系、欧美流行、不挑，好听就行）</li>
+<li>RSS: <a href="https://blog.jerryfage.top/atom.xml">https://blog.jerryfage.top/atom.xml</a>（虽然没什么用但还是整了，反正也不要钱XD）</li>
+</ul>
+<!-- GitCalendar容器 -->
+<div id="gitZone"></div>]]></content>
+      <categories>
+        <category>杂谈</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hello World</title>
     <url>/posts/4a17b156.html</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -1171,49 +1164,6 @@ redirect_uri： string 在授权用户使用您的应用程序（如果适用）
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
-  </entry>
-  <entry>
-    <title>暂时做一些东西的备份</title>
-    <url>/posts/628a9e28.html</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="10f71b94dd622bc3f1cab9e8beccef9d6b55ffff222b8f4bcee932f9292f9fb4">4630436162ade97ba2718b7d0c4b3b63cb3a3f659c5ca08b4bca0f58459281868a883f6750ac4a867d76d0a3d8ee2b760140469f9ac05663a1a98e8b5ef67819c3f392ca49bf351e3b6fc54d90fd6b4062b82345d676e42a1a5661aa3284d830df0f58505c513c6b3c20403dfb94ffa2db88d3dc749df9d90c70ea74dee1e2b6afc6d2ab6af3ddfa70cc7c7b2c3aee7eeed99fe7b72b02d2cfcebd555b5f82c586a7b52ce539aa75d4566d93feb67b877495603a3f726e7392441465e8fdd5227bee147e523a4868b97c4820f9d37dcd2d64938ebfe00cf55f24ae4dbd99cd91eb8e2167be240d2c5f71624608d07f637b2cd90ebca6d9a41a92f012eb3c3734fc56379a22c8b403267eb740b7ca552c4cfc991f8d0453e28bf78c15bfe7462a59aa53a3a116082d0f018aea8e81b190e3abf2d83c342888660d23e1d6246946676460ce7145b2f1a7f2209bd2faed64217bb703477431e00819da8a0b16aff991b692d142049ea566bdc5c91c20e8c80b8c87f34c2beecaff76280e682381cbc64df1e04a754bc580a1bf8e72646f2f23349b014ac9333ed46547ed3e6731afc59b38044a58e017c9a8092bc9db07b17ae4f25bfee6a18374396a5036c2ba98f170aafd64a6b4d47b4b10c4048cff15d12bc86ff877286606b8bc7625f809e7ea5ead775bdaae2ab342a67a5b1f69e2116b4124c77941c72aec0b080e56a12d677facaee016b0adff7735c3b419c857bfde019e9f80a1aecb5615bb8d9d52b7684a3d87da2e716bb57c878edc64220c485462ce79784e39257d75bea8d0326613452065cbb514bbd35fab0bb88d751388d2e5a16cfe43291cc54efed46f0f91ff3ccc9c7ee957f7a39018e5818dd306bd55fab282d6d5caac49db8408760bc8a170e14b89b02ca24b7323acbc9d20a5076a6454a2b88717f3b3d8a170e5f1843735af2b20d147b2a413d1e314cbecf2aa950d9f11947c23e25fcf6c2ab3fbf810353c069a1857fa24d3e65ed549fd7baabfd1a175bf0161e3158adb2f65fcf86288841cb7c6d5afb0025f659540f95d617f905b90086233485fc10b5e713fbd87e8e3cf80edd0bdf43b42c90e3134f53eb3bfa678bdbb52af083a944cf38b57134a8950a44f2d8ebccaa56dba03f0b98923bf2c800c9e044dec0bdf6b9e30bf433f564ecd72ae59b9a751245d14e1bb6dc414600d3b1b7fed0276b3add3a9348bf3dd0956210d262452648fc89df98e7fab3469bef358cda754c28d30ff638df7cf729686856e2bf9fae8580e600a34fe99c98966ad881eaee0a170492fbf896dbf1112962800e1735caa15eab8f2897c2cbc275b4826ae4b72f6891be19a8e88ec3bcfe5b3155e47d0f74feb0f1ac24957024047fa1c9a38120ba47a428f6d525c2ffbb6784cdad42930802c518d86f838dbe045f37aae992b2fefa7ff97f10e48ba73da3e98783d3d01950630cdf9f64383216419b179e02b65a8ed259d73cf6882488009da06b24d3fe0e7dded60011c53accc41aa3935fabaa4a05021a8a4f3ee8b52d01ed7f10a5251d78f3e078f3a4bab95d0cf307f2d5d67936d63fdda8602cb5b774138ec011597c32265868e1247126258601566d4e933be3e448729075dee0c5833e6d004b9a011b40e0c612e6cc7c213c204d5b6d53f857a3cde3dc66edf820fca6f606511872b0ad87e0cad79ad95244f8da67846fd1dd5a680529efb10c873f8e969e10c148c8beb6173ae3c613d977a4917de55bdd84f27876a2c6281065cf1d492126373bd892cc59a6455d60599df53f3d6d5c8b897e0d3af9a18a01b9f80e969c2cee7d6aecc19edcd05d50f402a6932bb07effa53d59421003515e0074fce57b4742fcbcfceb21e777402f2b4eb7c630ab64639396dd2d6173d9cb71e6fa8cc2def986d263dedb250367318259a14f6f014b650c4364e980917c9a067eaeb17b5ca6b09a8b26f7024120ed30501ff81e3a978ec40922905f2c07120aa3d233d66ac24063956f632c08bab3b39e57978e441b21c5c55b30464337ab99de8cbdc1037065b485f1105f28a0f427f63c78b9afc904d365570b162f53a47973a59105630d42ab54ee67ff29abd0148bb56edab99c3422c76c172a0deaf28d05f83e35a8c3aed09841ed4546e7ca28a855fbc13e8a56a7f6657d64f4c991d30e1603930e676941227da4633ec7b56059df046caac6e2dad2f04d994c4571c2c55d815bcc6cda1c8ea900eb90d22904d114f42a8a2c27855218309907045c0fda5b2c31ee2783ff59e0b9c92569e2f35d237aa1c9a50f32d7164c2e8a77ce843c6fc011bf3bb10c45dec86575e1037bc8b1db01e0ce8afcb0c9f7cdd76a0c7240c379ecfe36cda2f62157503635192d4a4ddf2c58d1704b3f3001007dd206e074526acca78c4bb0c0ec83934c386977bcc7dfde8820c802419d7385628dab2e10ba655b3b625d2d07cec141c921c3cf35e11c54a64546e06d179a11cad7c5d5f1b9ec20f18fd327607b2bffc75a8b4a12ec552587ea77343b978e718b7426561ee3dd4fe8795237c8c73</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-xray">
-      <input class="hbe hbe-input-field hbe-input-field-xray" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-xray" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-xray">您好, 这里需要密码.</span>
-      </label>
-      <svg class="hbe hbe-graphic hbe-graphic-xray" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
-        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
-        <path d="M0,2.5c0,0,298.666,0,399.333,0C448.336,2.5,513.994,13,597,13c77.327,0,135-10.5,200.999-10.5c95.996,0,402.001,0,402.001,0"></path>
-      </svg>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-  </entry>
-  <entry>
-    <title>这是第二篇凑数博客</title>
-    <url>/posts/a2def012.html</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="3d224c2d23231f20d64338395f0c95167a36051004cd5eb0167dc819c6718145">07af130939aaaa5dcfa0bfd80f23368597dbb442f3f2c1ddf6cae9cdb82506172ed1a601b8495510f8023fe66211c58b</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-xray">
-      <input class="hbe hbe-input-field hbe-input-field-xray" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-xray" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-xray">您好, 这里需要密码.</span>
-      </label>
-      <svg class="hbe hbe-graphic hbe-graphic-xray" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
-        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
-        <path d="M0,2.5c0,0,298.666,0,399.333,0C448.336,2.5,513.994,13,597,13c77.327,0,135-10.5,200.999-10.5c95.996,0,402.001,0,402.001,0"></path>
-      </svg>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      <tags>
-        <tag>小秘密</tag>
-      </tags>
   </entry>
   <entry>
     <title>致爱莉希雅</title>
@@ -1238,6 +1188,26 @@ redirect_uri： string 在授权用户使用您的应用程序（如果适用）
         <tag>摘录</tag>
         <tag>《崩环三》</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>暂时做一些东西的备份</title>
+    <url>/posts/628a9e28.html</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="de6723e468d8e4076443be4e997d48a01e0d0ec99401c03ae2bee24c05f70014">4630436162ade97ba2718b7d0c4b3b63cb3a3f659c5ca08b4bca0f58459281868a883f6750ac4a867d76d0a3d8ee2b760140469f9ac05663a1a98e8b5ef67819c3f392ca49bf351e3b6fc54d90fd6b4062b82345d676e42a1a5661aa3284d830df0f58505c513c6b3c20403dfb94ffa2db88d3dc749df9d90c70ea74dee1e2b6afc6d2ab6af3ddfa70cc7c7b2c3aee7eeed99fe7b72b02d2cfcebd555b5f82c586a7b52ce539aa75d4566d93feb67b877495603a3f726e7392441465e8fdd5227bee147e523a4868b97c4820f9d37dcd2d64938ebfe00cf55f24ae4dbd99cd91eb8e2167be240d2c5f71624608d07f637b2cd90ebca6d9a41a92f012eb3c3734fc56379a22c8b403267eb740b7ca552c4cfc991f8d0453e28bf78c15bfe7462a59aa53a3a116082d0f018aea8e81b190e3abf2d83c342888660d23e1d6246946676460ce7145b2f1a7f2209bd2faed64217bb703477431e00819da8a0b16aff991b692d142049ea566bdc5c91c20e8c80b8c87f34c2beecaff76280e682381cbc64df1e04a754bc580a1bf8e72646f2f23349b014ac9333ed46547ed3e6731afc59b38044a58e017c9a8092bc9db07b17ae4f25bfee6a18374396a5036c2ba98f170aafd64a6b4d47b4b10c4048cff15d12bc86ff877286606b8bc7625f809e7ea5ead775bdaae2ab342a67a5b1f69e2116b4124c77941c72aec0b080e56a12d677facaee016b0adff7735c3b419c857bfde019e9f80a1aecb5615bb8d9d52b7684a3d87da2e716bb57c878edc64220c485462ce79784e39257d75bea8d0326613452065cbb514bbd35fab0bb88d751388d2e5a16cfe43291cc54efed46f0f91ff3ccc9c7ee957f7a39018e5818dd306bd55fab282d6d5caac49db8408760bc8a170e14b89b02ca24b7323acbc9d20a5076a6454a2b88717f3b3d8a170e5f1843735af2b20d147b2a413d1e314cbecf2aa950d9f11947c23e25fcf6c2ab3fbf810353c069a1857fa24d3e65ed549fd7baabfd1a175bf0161e3158adb2f65fcf86288841cb7c6d5afb0025f659540f95d617f905b90086233485fc10b5e713fbd87e8e3cf80edd0bdf43b42c90e3134f53eb3bfa678bdbb52af083a944cf38b57134a8950a44f2d8ebccaa56dba03f0b98923bf2c800c9e044dec0bdf6b9e30bf433f564ecd72ae59b9a751245d14e1bb6dc414600d3b1b7fed0276b3add3a9348bf3dd0956210d262452648fc89df98e7fab3469bef358cda754c28d30ff638df7cf729686856e2bf9fae8580e600a34fe99c98966ad881eaee0a170492fbf896dbf1112962800e1735caa15eab8f2897c2cbc275b4826ae4b72f6891be19a8e88ec3bcfe5b3155e47d0f74feb0f1ac24957024047fa1c9a38120ba47a428f6d525c2ffbb6784cdad42930802c518d86f838dbe045f37aae992b2fefa7ff97f10e48ba73da3e98783d3d01950630cdf9f64383216419b179e02b65a8ed259d73cf6882488009da06b24d3fe0e7dded60011c53accc41aa3935fabaa4a05021a8a4f3ee8b52d01ed7f10a5251d78f3e078f3a4bab95d0cf307f2d5d67936d63fdda8602cb5b774138ec011597c32265868e1247126258601566d4e933be3e448729075dee0c5833e6d004b9a011b40e0c612e6cc7c213c204d5b6d53f857a3cde3dc66edf820fca6f606511872b0ad87e0cad79ad95244f8da67846fd1dd5a680529efb10c873f8e969e10c148c8beb6173ae3c613d977a4917de55bdd84f27876a2c6281065cf1d492126373bd892cc59a6455d60599df53f3d6d5c8b897e0d3af9a18a01b9f80e969c2cee7d6aecc19edcd05d50f402a6932bb07effa53d59421003515e0074fce57b4742fcbcfceb21e777402f2b4eb7c630ab64639396dd2d6173d9cb71e6fa8cc2def986d263dedb250367318259a14f6f014b650c4364e980917c9a067eaeb17b5ca6b09a8b26f7024120ed30501ff81e3a978ec40922905f2c07120aa3d233d66ac24063956f632c08bab3b39e57978e441b21c5c55b30464337ab99de8cbdc1037065b485f11d420356d2cdb67a5e388024bc17e70f69c5b8fd517c37432bf615371cd613f1561d12119edf404eaa65ad1d9b9cbb0eba99be7a06e3224fcdfb8a1d0a5942c490eb154ae092ccefe8fc70cd35af6d94b0781a295a89c8a3e0ba81c37b3e03e778e7336968ae9d7ae639aeaf611d38ed53fae1f251c35ab7c228b0884e7fbc1467a0a5ccc5608e4bc0ed7c423d5c295dbe56877f0996d65b0f48087403451218449de1b20ff70223655f42ee3494b228052b231de39697e7698b9a206860827279d631edd429b8b4aa273a084a70549010d9f352eafac996e3235bc94491f0d4923bf7c75b275f98ef302ab4abae3dcfd7e227945e34052b0ee2026bf39857972fcc4d0aa869d0a296d043e3ac2a62fe7e7de5c05d8c2caa0e27d221e6c1d9d978187fc51946f668073c8b04d32cf959a94504b1177ced5c2d405480659cf965c58d8653bc422c4dba67a7e193d644ab24a4250036a2bcb152a2913cbd71ba0d11bf4ee95f3ba32397bdec6055b2e5e39bfe11e45f50e5724a849cd2abd1f972678fcd16cdd375da54e51bb1f83440e0037aadff76c80e1fe7f7f35945df8eec52c211df0793523da4980b1b2e21f18344f12769b087a374d8e492fab7bc8a888f8fe0b7f7dae76e9980c037aaed18ba71606ce5d6c9e17dfe0388c045da0b7dc04edcdef8c3bff8c79b081ef97a89fd466e97cc88172b6a622f3fbadc451a1407c22d338a42b69a10f0e356f6825fee528a40f3c50678f5f3d94e29287b73c12d20d3e08f6a1a0c0f14a5f4790d97f5dbb9ed57d640534993bb5e99e56b190af7429f0e639518a692e1afe7ec9fddaedff0a61ad780da9d68cb218d967c7e5fed0b5a26fe72fa759bca3d4e593505f5b</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-xray">
+      <input class="hbe hbe-input-field hbe-input-field-xray" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-xray" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-xray">您好, 这里需要密码.</span>
+      </label>
+      <svg class="hbe hbe-graphic hbe-graphic-xray" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
+        <path d="M0,2.5c0,0,298.666,0,399.333,0C448.336,2.5,513.994,13,597,13c77.327,0,135-10.5,200.999-10.5c95.996,0,402.001,0,402.001,0"></path>
+      </svg>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
   </entry>
   <entry>
     <title>这是第三篇凑数博客</title>
@@ -1310,5 +1280,28 @@ redirect_uri： string 在授权用户使用您的应用程序（如果适用）
 </ul>
 <p>以上是一份可能的需求文档，具体需求还需要根据项目的实际情况进行调整和修改。</p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>这是第二篇凑数博客</title>
+    <url>/posts/a2def012.html</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="3d224c2d23231f20d64338395f0c95167a36051004cd5eb0167dc819c6718145">07af130939aaaa5dcfa0bfd80f23368597dbb442f3f2c1ddf6cae9cdb82506172ed1a601b8495510f8023fe66211c58b</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-xray">
+      <input class="hbe hbe-input-field hbe-input-field-xray" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-xray" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-xray">您好, 这里需要密码.</span>
+      </label>
+      <svg class="hbe hbe-graphic hbe-graphic-xray" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
+        <path d="M0,2.5c0,0,298.666,0,399.333,0C448.336,2.5,513.994,13,597,13c77.327,0,135-10.5,200.999-10.5c95.996,0,402.001,0,402.001,0"></path>
+      </svg>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <tags>
+        <tag>小秘密</tag>
+      </tags>
   </entry>
 </search>
