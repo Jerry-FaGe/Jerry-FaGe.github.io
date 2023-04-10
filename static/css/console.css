@@ -17,8 +17,8 @@
     --color-gray: rgb(150, 150, 150);
     --color-black: rgb(45, 45, 45);
     --color-whitegray: rgb(241, 241, 241);
-    --btn-bg: var(--theme-color)!important;
-    --scrollbar-color: var(--theme-color)!important;
+    --btn-bg: var(--theme-color) !important;
+    --scrollbar-color: var(--theme-color) !important;
     --border-style: 1px solid rgba(169, 169, 169, 0.7);
     /* 菜单栏悬浮带透明度的颜色 初始为rgba(73, 205, 245, 0.7) 已由js设置*/
     /* 代码框行数背景色 */
@@ -168,7 +168,7 @@
 }
 
 a:hover {
-    color: var(--theme-color);
+    color: var(--theme-color) !important;
 }
 
 blockquote {
@@ -177,6 +177,50 @@ blockquote {
 
 #article-container .highlight-tools .copy-button:hover {
     color: var(--theme-color);
+}
+
+/* 文章内 a 标签 hover 效果 */
+#article-container a:not(.fancybox,.imgbox,.swf,.box,.pimgbox,.magnet_link,.gallery_link):hover {
+  text-decoration: none;
+  color: #fefefe;
+  background: var(--text-bg-hover)!important;
+  border-radius: 4px;
+  box-shadow: 0 8px 12px -3px #4259ef23;
+  padding: 2px;
+  transition: all .3s ease-in-out
+}
+/* 不知道干啥的 */--timeline-color
+#article-container #hpp_talk p img {
+  display: inline;
+}
+
+#article-container h1:hover:before,
+#article-container h2:hover:before,
+#article-container h3:hover:before,
+#article-container h4:hover:before,
+#article-container h5:hover:before,
+#article-container h6:hover:before {
+    color: var(--theme-color) !important;
+}
+
+#article-container li::marker {
+    color: var(--theme-color) !important;
+}
+
+#article-container .tabs>.nav-tabs>.tab.active button {
+    border-top: 2px solid var(--theme-color);
+}
+
+#article-container .timeline {
+    border-left: 2px solid var(--timeline-color, var(--theme-color));
+}
+
+#article-container .timeline .timeline-item:hover .item-circle:before {
+    border-color: var(--timeline-color, var(--theme-color));
+}
+
+#article-container .timeline .timeline-item.headline .timeline-item-title .item-circle:before {
+    border: 4px solid var(--timeline-color, var(--theme-color));
 }
 
 .error404 #error-wrap .error-content .error-img img {
@@ -275,19 +319,6 @@ blockquote {
     background: var(--theme-color) !important;
 }
 
-#article-container h1:hover:before,
-#article-container h2:hover:before,
-#article-container h3:hover:before,
-#article-container h4:hover:before,
-#article-container h5:hover:before,
-#article-container h6:hover:before {
-    color: var(--theme-color) !important;
-}
-
-#article-container li::marker {
-    color: var(--theme-color) !important;
-}
-
 #post .tag_share .post-meta__tags {
     border: 1px solid var(--theme-color) !important;
     color: var(--theme-color);
@@ -312,22 +343,6 @@ blockquote {
 .hide-inline>.hide-button,
 .hide-block>.hide-button {
     background: var(--theme-color);
-}
-
-#article-container .tabs>.nav-tabs>.tab.active button {
-    border-top: 2px solid var(--theme-color);
-}
-
-#article-container .timeline {
-    border-left: 2px solid var(--timeline-color, var(--theme-color));
-}
-
-#article-container .timeline .timeline-item:hover .item-circle:before {
-    border-color: var(--timeline-color, var(--theme-color));
-}
-
-#article-container .timeline .timeline-item.headline .timeline-item-title .item-circle:before {
-    border: 4px solid var(--timeline-color, var(--theme-color));
 }
 
 .search-dialog .search-nav {
@@ -404,7 +419,7 @@ input#pic-link {
     border-radius: 12px;
     background-clip: content-box;
     display: inline-block;
-    -webkit-appearance: none;
+    appearance: none;
     user-select: none;
     outline: none;
     transform: translateY(5px);
@@ -468,7 +483,7 @@ input#pic-link {
 /* 透明度和模糊半径滑块 */
 input[type="range"] {
     display: block;
-    -webkit-appearance: none;
+    appearance: none;
     background-color: #bdc3c7;
     width: 100%;
     height: 5px;
@@ -589,6 +604,10 @@ input[type="range"]::-webkit-slider-thumb {
     backdrop-filter: var(--backdrop-filter);
     border-radius: 18px;
     border: var(--border-style);
+}
+/* 侧栏卡片小图片 */
+#aside-content .aside-list>.aside-list-item .thumbnail {
+    border-radius: 8px !important;
 }
 
 /* 文章页、归档页、普通页面 */

@@ -181,7 +181,7 @@ if ((lunar["IMonthCn"] == "九月" && lunar["IDayCn"] == "初九")) {
 // }
 
 // test
-if (y == 2023 && m == 3 && (dd >= 12 && dd <= 15)) {
+if (y == 2023 && m == 4 && (dd >= 4 && dd <= 5)) {
     if (sessionStorage.getItem("isPopupWindow") != "1") {
         Swal.fire("今天是" + y.toString() + "年" + m.toString() + "月" + dd.toString() + "日\n🎊这是一个测试弹窗🎊");
         sessionStorage.setItem("isPopupWindow", "1");

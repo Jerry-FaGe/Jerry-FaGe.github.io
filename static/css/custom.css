@@ -78,15 +78,6 @@
 }
 
 
-/* md网站下划线 */
-/* #article-container a:hover {
-  text-decoration: none !important;
-}
-#article-container #hpp_talk p img {
-  display: inline;
-} */
-
-
 /* 音乐播放器 */
 /* 隐藏歌词 */
 /* .aplayer .aplayer-lrc {
@@ -111,6 +102,8 @@
 #pagination {
   width: 100%;
   margin: auto;
+  /* 文末翻页图圆角先放这了 */
+  border-radius: 12px;
 }
 
 
@@ -129,38 +122,12 @@
   display: flex !important;
 }
 /* 这里的2是代表导航栏的第2个元素，即有子菜单的元素，可以按自己需求修改 */
-.menus_items .menus_item:nth-child(5) .menus_item_child {
+.menus_items .menus_item:nth-child(2) .menus_item_child {
   left: -75px;
 }
-
-
-/* 字体配置 */
-/* @font-face {
-  font-family: Candyhome;
-  src: url(https://npm.elemecdn.com/anzhiyu-blog@1.1.6/fonts/Candyhome.ttf);
-  font-display: swap;
-  font-weight: lighter;
-} */
-/* @font-face {
-  font-family: ZhuZiAWan;
-  src: url(https://npm.elemecdn.com/anzhiyu-blog@1.1.6/fonts/ZhuZiAWan.woff2);
-  font-display: swap;
-  font-weight: lighter;
-} */
-/* 更改一些主要元素为这个字体 */
-/* div#menus {
-  font-family: "ZhuZiAWan";
+.menus_items .menus_item:nth-child(3) .menus_item_child {
+  left: -75px;
 }
-h1#site-title {
-  font-family: ZhuZiAWan;
-  font-size: 3em !important;
-}
-a.article-title,
-a.blog-slider__title,
-a.categoryBar-list-link,
-h1.post-title {
-  font-family: ZhuZiAWan;
-} */
 
 
 /* 阿里多彩图标 */
@@ -201,6 +168,7 @@ svg.social_icon {
   max-width: 1000px;
   transform: translate(0, -50%);
 }
+
 #error-wrap .error-content {
   display: flex;
   flex-direction: row;
@@ -213,6 +181,7 @@ svg.social_icon {
   box-shadow: var(--card-box-shadow);
   transition: all 0.3s;
 }
+
 #error-wrap .error-content .error-img {
   box-flex: 1;
   flex: 1;
@@ -223,13 +192,14 @@ svg.social_icon {
   background-position: center;
   background-size: cover;
 }
+
 #error-wrap .error-content .error-info {
   box-flex: 1;
   flex: 1;
   padding: 0.5rem;
   text-align: center;
   font-size: 14px;
-  font-family: Titillium Web, "PingFang SC", "Hiragino Sans GB", "Microsoft JhengHei", "Microsoft YaHei", sans-serif;
+  font-family: var(--global-font);
 }
 #error-wrap .error-content .error-info .error_title {
   margin-top: -4rem;
@@ -246,7 +216,9 @@ svg.social_icon {
   padding: 0.3rem 1.5rem;
   background: var(--btn-bg);
   color: var(--btn-color);
+  border-radius: 10px;
 }
+
 #body-wrap.error .aside-list {
   display: flex;
   flex-direction: row;
@@ -257,6 +229,7 @@ svg.social_icon {
   width: 100%;
   overflow: scroll;
 }
+
 #body-wrap.error .aside-list .aside-list-group {
   display: flex;
   flex-direction: row;
@@ -264,21 +237,24 @@ svg.social_icon {
   max-width: 1200px;
   margin: 0 auto;
 }
+
 #body-wrap.error .aside-list .aside-list-item {
   padding: 0.5rem;
 }
+
 #body-wrap.error .aside-list .aside-list-item img {
   width: 100%;
   object-fit: cover;
   border-radius: 12px;
 }
+
 #body-wrap.error .aside-list .aside-list-item .thumbnail {
   overflow: hidden;
   width: 230px;
   height: 143px;
-  /* background: var(--anzhiyu-card-bg); */
   display: flex;
 }
+
 #body-wrap.error .aside-list .aside-list-item .content .title {
   -webkit-line-clamp: 2;
   overflow: hidden;
@@ -289,12 +265,16 @@ svg.social_icon {
   align-items: flex-end;
   align-content: center;
   padding-top: 0.5rem;
-  color: white;
+  color: var(--text-highlight-color);
 }
-#body-wrap.error .aside-list .aside-list-item .content time {
-  display: -webkit-box;
-  color: white;
+
+#body-wrap.error a.button--animated:hover {
+  color: var(--text-highlight-color) !important;
 }
+
+/* #body-wrap.error .aside-list .aside-list-item .content time {
+  display: none;
+} */
 
 
 /* 文章页H1-H6图标样式效果 */
@@ -428,7 +408,11 @@ h6::before {
 
 /* 宽屏适配 */
 /* 全局宽度 */
-.layout {
+/* .layout {
+  max-width: 1400px;
+} */
+.page .layout,
+.post .layout {
   max-width: 1400px;
 }
 /* 侧边卡片栏宽度 */
@@ -442,6 +426,33 @@ h6::before {
     max-width: none !important;
     padding: 0 5px 0 5px;
   }
+}
+
+.layout > div:first-child {
+  width: calc(100% - 300px);
+}
+
+.card-widget.card-clock {
+  font-size: 14px;
+}
+
+/* #article-container a:not([data-fancybox="gallery"]):not(.headerlink):not(.cf-friends-link):not(.tag-Link):not(.btn-beautify) {
+  font-weight: 500;
+  border-bottom: solid 2px var(--anzhiyu-lighttext);
+  color: var(--anzhiyu-fontcolor);
+  padding: 0 0.2em;
+  text-decoration: none;
+}
+#article-container a:not([data-fancybox="gallery"]):not(.headerlink):not(.cf-friends-link):not(.btn-beautify):hover {
+  color: var(--anzhiyu-white);
+  background: var(--anzhiyu-theme);
+  box-shadow: var(--anzhiyu-shadow-lightblack);
+  border-radius: 0.25em;
+  text-decoration: none;
+} */
+
+html.hide-aside .layout > div:first-child {
+  width: 100%;
 }
 
 
@@ -574,9 +585,10 @@ h6::before {
   max-height: 80px;
   border-radius: 10px;
 }
-/* 头像悬浮颜色框 */
+/* 头像悬浮动画 */
 .ft-item-2 .ft-img-group .img-group-item a img:hover {
-  border: 2px solid var(--theme-color);
+  scale: 1.1;
+  transition: all .3s ease-in-out
 }
 
 @media screen and (max-width: 768px) {
@@ -710,14 +722,14 @@ h6::before {
   height: 28px;
   border: 1px solid #d0d7de;
   border-radius: 2em;
-  background-color: #f8f8f8f8;
+  background-color: var(--trans-light);
   transition: 0.4s;
   overflow: hidden;
   color: #222222f2;
 }
 
 [data-theme="dark"] .card-info-avatar .author-status-box {
-  background-color: #222222f2;
+  background-color: var(--trans-dark);
   border: 1px solid #5c6060;
   color: #f8f8f8f8;
 }

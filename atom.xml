@@ -2,11 +2,11 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Jerry_FaGe&#39;s Blog</title>
   <icon>https://www.gravatar.com/avatar/7c04d9c34984e73102245aec3975f679</icon>
-  <subtitle>啥都往里塞的记事本儿</subtitle>
+  <subtitle>鸟与飞花，真我无瑕。</subtitle>
   <link href="https://blog.jerryfage.top/atom.xml" rel="self"/>
   
   <link href="https://blog.jerryfage.top/"/>
-  <updated>2023-03-28T16:31:06.493Z</updated>
+  <updated>2023-03-28T18:10:49.390Z</updated>
   <id>https://blog.jerryfage.top/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://blog.jerryfage.top/posts/7c5b6897.html"/>
     <id>https://blog.jerryfage.top/posts/7c5b6897.html</id>
     <published>2023-03-02T06:28:52.000Z</published>
-    <updated>2023-03-28T16:31:06.493Z</updated>
+    <updated>2023-03-28T18:10:49.390Z</updated>
     
     
       
@@ -44,6 +44,8 @@
     <category term="OpenAI" scheme="https://blog.jerryfage.top/tags/OpenAI/"/>
     
     <category term="API" scheme="https://blog.jerryfage.top/tags/API/"/>
+    
+    <category term="Python" scheme="https://blog.jerryfage.top/tags/Python/"/>
     
   </entry>
   
@@ -98,7 +100,7 @@
     <link href="https://blog.jerryfage.top/posts/628a9e28.html"/>
     <id>https://blog.jerryfage.top/posts/628a9e28.html</id>
     <published>2023-01-05T16:23:48.000Z</published>
-    <updated>2023-03-28T16:28:53.594Z</updated>
+    <updated>2023-04-04T18:20:15.549Z</updated>
     
     
     <summary type="html">有东西被加密了, 请输入密码查看.</summary>
@@ -182,9 +184,9 @@
     <category term="教程" scheme="https://blog.jerryfage.top/categories/%E6%95%99%E7%A8%8B/"/>
     
     
-    <category term="Sign in with Apple" scheme="https://blog.jerryfage.top/tags/Sign-in-with-Apple/"/>
-    
     <category term="Python" scheme="https://blog.jerryfage.top/tags/Python/"/>
+    
+    <category term="Sign in with Apple" scheme="https://blog.jerryfage.top/tags/Sign-in-with-Apple/"/>
     
     <category term="后端" scheme="https://blog.jerryfage.top/tags/%E5%90%8E%E7%AB%AF/"/>
     
@@ -213,8 +215,8 @@
   
   <entry>
     <title>About Me</title>
-    <link href="https://blog.jerryfage.top/about/"/>
-    <id>https://blog.jerryfage.top/about/</id>
+    <link href="https://blog.jerryfage.top/about-old/"/>
+    <id>https://blog.jerryfage.top/about-old/</id>
     <published>2020-08-17T14:04:00.000Z</published>
     <updated>2022-12-29T10:28:00.000Z</updated>
     
