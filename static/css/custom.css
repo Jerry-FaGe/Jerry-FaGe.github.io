@@ -128,6 +128,10 @@
 .menus_items .menus_item:nth-child(3) .menus_item_child {
   left: -75px;
 }
+/* 子菜单 hover 圆角效果覆盖 */
+#nav .menus_items .menus_item .menus_item_child,#nav .menus_items .menus_item .menus_item_child li,#nav .menus_items .menus_item .menus_item_child li:first-child,#nav .menus_items .menus_item .menus_item_child li:last-child {
+  border-radius: 8px
+}
 
 
 /* 阿里多彩图标 */
