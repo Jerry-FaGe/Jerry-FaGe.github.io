@@ -37,8 +37,6 @@
     <category term="教程" scheme="https://blog.jerryfage.top/categories/%E6%95%99%E7%A8%8B/"/>
     
     
-    <category term="Python" scheme="https://blog.jerryfage.top/tags/Python/"/>
-    
     <category term="AI" scheme="https://blog.jerryfage.top/tags/AI/"/>
     
     <category term="ChatGPT" scheme="https://blog.jerryfage.top/tags/ChatGPT/"/>
@@ -46,6 +44,8 @@
     <category term="OpenAI" scheme="https://blog.jerryfage.top/tags/OpenAI/"/>
     
     <category term="API" scheme="https://blog.jerryfage.top/tags/API/"/>
+    
+    <category term="Python" scheme="https://blog.jerryfage.top/tags/Python/"/>
     
   </entry>
   
@@ -184,9 +184,9 @@
     <category term="教程" scheme="https://blog.jerryfage.top/categories/%E6%95%99%E7%A8%8B/"/>
     
     
-    <category term="Sign in with Apple" scheme="https://blog.jerryfage.top/tags/Sign-in-with-Apple/"/>
-    
     <category term="Python" scheme="https://blog.jerryfage.top/tags/Python/"/>
+    
+    <category term="Sign in with Apple" scheme="https://blog.jerryfage.top/tags/Sign-in-with-Apple/"/>
     
     <category term="后端" scheme="https://blog.jerryfage.top/tags/%E5%90%8E%E7%AB%AF/"/>
     
