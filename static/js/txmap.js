@@ -29,8 +29,9 @@ $.ajax({
         }
         
         function showWelcome() {
-        
-            let dist = getDistance(125.14757, 42.90693, ipLoacation.result.location.lng, ipLoacation.result.location.lat);
+            // 辽源 125.14757, 42.90693
+            // 厦门 118.16226，24.66157
+            let dist = getDistance(118.16226, 24.66157, ipLoacation.result.location.lng, ipLoacation.result.location.lat);
             let pos = ipLoacation.result.ad_info.nation;
             let ip = ipLoacation.result.ip;
             let posdesc;
