@@ -1007,31 +1007,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Windows 下开机自启动命令行程序并隐藏 cmd 窗口</title>
-    <url>/posts/fc6eb02e.html</url>
-    <content><![CDATA[<p>最近搭建了一个 <a href="https://github.com/fatedier/frp">frp</a> 内网穿透来让我搭建在本地的 AI 绘图 <a href="https://jihulab.com/hunter0725/stable-diffusion-webui">stable-diffusion-webui</a> 能通过公网访问，但由于 frpc 在 Windows 下是个命令行程序，所以用 bat 配置开机自启动后每次开机都会先弹出一个大黑框还不能关，实在是让人不爽，遂研究了一下有没有什么方法能隐藏掉这个框。</p>
-<h2 id="隐藏窗口启动"><a href="#隐藏窗口启动" class="headerlink" title="隐藏窗口启动"></a>隐藏窗口启动</h2><p>直接上结论：<br><figure class="highlight vbs"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Set</span> ws = <span class="built_in">CreateObject</span>(<span class="string">&quot;WScript.Shell&quot;</span>)</span><br><span class="line">ws.run <span class="string">&quot;.\frpc -c frpc.ini&quot;</span>,vbhide</span><br></pre></td></tr></table></figure></p>
-<p>随便创建个什么文本文件并在其中写入上面的代码，然后把文件后缀名改成 vbs。</p>
-<p>这就是一个 VBScript 脚本，vbs 是一种 Windows 脚本语言，可以用来执行一些简单的任务，大致解释下每段的作用：</p>
-<ul>
-<li><code>Set ws = CreateObject(&quot;WScript.Shell&quot;)</code>: 创建一个名为 ws 的对象，这个对象可以调用 WScript.Shell 的方法和属性。WScript.Shell 是一个提供对系统命令行窗口、环境变量、注册表等的访问和操作的对象。</li>
-<li><code>ws.run &quot;.\frpc -c frpc.ini&quot;</code>: 用 ws 对象的 Run 方法来运行当前目录下的 frpc 程序（当然也可以是运行这个程序的 bat 脚本），并传递参数 <code>-c frpc.ini</code> 给它，这个参数表示 frpc 应该使用哪一个配置文件。这里的相对路径也可以换成绝对路径，这样这个脚本就可以放在任意地方而不是非得放在要运行的程序所在的目录下了。</li>
-<li><code>vbhide</code>: 使用这个关键字可以隐藏程序的 cmd 窗口，<code>vbhide</code> 也可以换成 <code>0</code> 效果是一样的。</li>
-</ul>
-<p>写完后可以测试一下：停掉你的程序，双击这个脚本（这时候理论上不会有什么反应但是程序已经启动成功了），用任务管理器或者其他什么方式看看是否有该程序的进程。</p>
-<h2 id="开机自启动"><a href="#开机自启动" class="headerlink" title="开机自启动"></a>开机自启动</h2><p>这个就很简单了，如果你在脚本中使用了绝对路径可以直接把脚本放在 Windows 的 Startup 文件夹里，可以按快捷键 <kbd>win</kbd> + <kbd>R</kbd> 调出运行窗口，在输入框输入命令 <code>shell:startup</code> 打开 Startup 文件夹的位置。如果使用了相对路径，可以右键脚本生成一个快捷方式，再把快捷方式放在 Startup 文件夹里。</p>
-]]></content>
-      <categories>
-        <category>技巧</category>
-      </categories>
-      <tags>
-        <tag>Windows</tag>
-        <tag>VBS</tag>
-        <tag>cmd</tag>
-        <tag>自启动</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Sign in with Apple（苹果授权登陆）python服务端code验证</title>
     <url>/posts/3a8940f.html</url>
     <content><![CDATA[<p>废话不多说相信很多人都是因为苹果的坑爹政策才被要求了解苹果登录的流程，本文不涉及前端操作（因为我不会），只介绍后端是如何验证的。</p>
@@ -1157,6 +1132,31 @@
       </categories>
       <tags>
         <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Windows 下开机自启动命令行程序并隐藏 cmd 窗口</title>
+    <url>/posts/fc6eb02e.html</url>
+    <content><![CDATA[<p>最近搭建了一个 <a href="https://github.com/fatedier/frp">frp</a> 内网穿透来让我搭建在本地的 AI 绘图 <a href="https://jihulab.com/hunter0725/stable-diffusion-webui">stable-diffusion-webui</a> 能通过公网访问，但由于 frpc 在 Windows 下是个命令行程序，所以用 bat 配置开机自启动后每次开机都会先弹出一个大黑框还不能关，实在是让人不爽，遂研究了一下有没有什么方法能隐藏掉这个框。</p>
+<h2 id="隐藏窗口启动"><a href="#隐藏窗口启动" class="headerlink" title="隐藏窗口启动"></a>隐藏窗口启动</h2><p>直接上结论：<br><figure class="highlight vbs"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Set</span> ws = <span class="built_in">CreateObject</span>(<span class="string">&quot;WScript.Shell&quot;</span>)</span><br><span class="line">ws.run <span class="string">&quot;.\frpc -c frpc.ini&quot;</span>,vbhide</span><br></pre></td></tr></table></figure></p>
+<p>随便创建个什么文本文件并在其中写入上面的代码，然后把文件后缀名改成 vbs。</p>
+<p>这就是一个 VBScript 脚本，vbs 是一种 Windows 脚本语言，可以用来执行一些简单的任务，大致解释下每段的作用：</p>
+<ul>
+<li><code>Set ws = CreateObject(&quot;WScript.Shell&quot;)</code>: 创建一个名为 ws 的对象，这个对象可以调用 WScript.Shell 的方法和属性。WScript.Shell 是一个提供对系统命令行窗口、环境变量、注册表等的访问和操作的对象。</li>
+<li><code>ws.run &quot;.\frpc -c frpc.ini&quot;</code>: 用 ws 对象的 Run 方法来运行当前目录下的 frpc 程序（当然也可以是运行这个程序的 bat 脚本），并传递参数 <code>-c frpc.ini</code> 给它，这个参数表示 frpc 应该使用哪一个配置文件。这里的相对路径也可以换成绝对路径，这样这个脚本就可以放在任意地方而不是非得放在要运行的程序所在的目录下了。</li>
+<li><code>vbhide</code>: 使用这个关键字可以隐藏程序的 cmd 窗口，<code>vbhide</code> 也可以换成 <code>0</code> 效果是一样的。</li>
+</ul>
+<p>写完后可以测试一下：停掉你的程序，双击这个脚本（这时候理论上不会有什么反应但是程序已经启动成功了），用任务管理器或者其他什么方式看看是否有该程序的进程。</p>
+<h2 id="开机自启动"><a href="#开机自启动" class="headerlink" title="开机自启动"></a>开机自启动</h2><p>这个就很简单了，如果你在脚本中使用了绝对路径可以直接把脚本放在 Windows 的 Startup 文件夹里，可以按快捷键 <kbd>win</kbd> + <kbd>R</kbd> 调出运行窗口，在输入框输入命令 <code>shell:startup</code> 打开 Startup 文件夹的位置。如果使用了相对路径，可以右键脚本生成一个快捷方式，再把快捷方式放在 Startup 文件夹里。</p>
+]]></content>
+      <categories>
+        <category>技巧</category>
+      </categories>
+      <tags>
+        <tag>Windows</tag>
+        <tag>VBS</tag>
+        <tag>cmd</tag>
+        <tag>自启动</tag>
       </tags>
   </entry>
   <entry>
