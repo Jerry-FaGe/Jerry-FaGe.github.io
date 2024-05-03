@@ -460,14 +460,6 @@ html.hide-aside .layout > div:first-child {
 }
 
 
-/* 加载界面头像图片 */
-.loading-img {
-  /* 安知鱼头像 https://npm.elemecdn.com/anzhiyu-blog@2.1.1/img/avatar.webp */
-  background: url(/static/img/avatar.webp) no-repeat center center;
-  background-size: cover;
-}
-
-
 /* tzy页脚样式 */
 #ft {
   max-width: 1200px;
@@ -843,9 +835,9 @@ html.hide-aside .layout > div:first-child {
   height: fit-content;
   top: 10%;
   left: 10%;
-    /* 菜单面板背景色 */
+  /* 菜单面板背景色 */
   background-color: var(--card-bg);
-    /* 菜单面板文字颜色 */
+  /* 菜单面板文字颜色 */
   border: 1px solid var(--font-color);
   border-radius: 8px;
   z-index: 100;

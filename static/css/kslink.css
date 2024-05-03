@@ -11,7 +11,7 @@
     color: var(--global-bg);
     padding: 15px;
     border-radius: 12px;
-    background: var(--search-result-title);
+    background: var(--search-input-color);
     align-items: center;
 }
 
