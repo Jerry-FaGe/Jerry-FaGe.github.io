@@ -56,24 +56,6 @@
   </url>
   
   <url>
-    <loc>https://blog.jerryfage.top/movies/index.html</loc>
-    
-    <lastmod>2023-09-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.jerryfage.top/music/index.html</loc>
-    
-    <lastmod>2023-09-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.jerryfage.top/about/index.html</loc>
     
     <lastmod>2023-09-22</lastmod>
@@ -92,7 +74,16 @@
   </url>
   
   <url>
-    <loc>https://blog.jerryfage.top/posts/4a17b156.html</loc>
+    <loc>https://blog.jerryfage.top/movies/index.html</loc>
+    
+    <lastmod>2023-09-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.jerryfage.top/music/index.html</loc>
     
     <lastmod>2023-09-22</lastmod>
     
@@ -119,7 +110,7 @@
   </url>
   
   <url>
-    <loc>https://blog.jerryfage.top/posts/628a9e28.html</loc>
+    <loc>https://blog.jerryfage.top/posts/4a17b156.html</loc>
     
     <lastmod>2023-09-22</lastmod>
     
@@ -138,6 +129,15 @@
   
   <url>
     <loc>https://blog.jerryfage.top/posts/b7d85702.html</loc>
+    
+    <lastmod>2023-09-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.jerryfage.top/posts/628a9e28.html</loc>
     
     <lastmod>2023-09-22</lastmod>
     
@@ -182,20 +182,6 @@
 
   
   <url>
-    <loc>https://blog.jerryfage.top/tags/Docker/</loc>
-    <lastmod>2024-05-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.jerryfage.top/tags/%E4%BB%A3%E7%90%86/</loc>
-    <lastmod>2024-05-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.jerryfage.top/tags/AI/</loc>
     <lastmod>2024-05-28</lastmod>
     <changefreq>weekly</changefreq>
@@ -231,14 +217,21 @@
   </url>
   
   <url>
-    <loc>https://blog.jerryfage.top/tags/Markdown/</loc>
+    <loc>https://blog.jerryfage.top/tags/Docker/</loc>
     <lastmod>2024-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.jerryfage.top/tags/%E5%A4%96%E6%8C%82%E6%A0%87%E7%AD%BE/</loc>
+    <loc>https://blog.jerryfage.top/tags/%E4%BB%A3%E7%90%86/</loc>
+    <lastmod>2024-05-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.jerryfage.top/tags/%E9%9A%8F%E7%AC%94/</loc>
     <lastmod>2024-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -294,7 +287,14 @@
   </url>
   
   <url>
-    <loc>https://blog.jerryfage.top/tags/%E5%B0%8F%E7%A7%98%E5%AF%86/</loc>
+    <loc>https://blog.jerryfage.top/tags/Markdown/</loc>
+    <lastmod>2024-05-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.jerryfage.top/tags/%E5%A4%96%E6%8C%82%E6%A0%87%E7%AD%BE/</loc>
     <lastmod>2024-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -322,7 +322,7 @@
   </url>
   
   <url>
-    <loc>https://blog.jerryfage.top/tags/%E9%9A%8F%E7%AC%94/</loc>
+    <loc>https://blog.jerryfage.top/tags/%E5%B0%8F%E7%A7%98%E5%AF%86/</loc>
     <lastmod>2024-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -338,7 +338,7 @@
   </url>
   
   <url>
-    <loc>https://blog.jerryfage.top/categories/%E6%BC%94%E7%A4%BA/</loc>
+    <loc>https://blog.jerryfage.top/categories/%E6%9D%82%E8%B0%88/</loc>
     <lastmod>2024-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -352,7 +352,7 @@
   </url>
   
   <url>
-    <loc>https://blog.jerryfage.top/categories/%E6%9D%82%E8%B0%88/</loc>
+    <loc>https://blog.jerryfage.top/categories/%E6%BC%94%E7%A4%BA/</loc>
     <lastmod>2024-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
