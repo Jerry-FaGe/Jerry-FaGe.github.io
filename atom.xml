@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Jerry_FaGe&#39;s Blog</title>
+  <icon>https://www.gravatar.com/avatar/7c04d9c34984e73102245aec3975f679</icon>
+  <subtitle>鸟与飞花，真我无瑕。</subtitle>
+  <link href="https://blog.jerryfage.top/atom.xml" rel="self"/>
+  
+  <link href="https://blog.jerryfage.top/"/>
+  <updated>2024-05-28T05:45:06.537Z</updated>
+  <id>https://blog.jerryfage.top/</id>
+  
+  <author>
+    <name>Jerry_FaGe</name>
+    <email>jerry_fage@foxmail.com</email>
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Docker 中配置代理的几种方式</title>
+    <link href="https://blog.jerryfage.top/posts/63849dac.html"/>
+    <id>https://blog.jerryfage.top/posts/63849dac.html</id>
+    <published>2024-04-11T02:57:32.000Z</published>
+    <updated>2024-05-28T05:45:06.537Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;在日常使用 Docker 的过程中，我们可能会遇到需要通过代理服务器来进行网络通信的情况。例如，在构建 Docker 镜像、运行容器或者下载 Docker</summary>
+        
+      
+    
+    
+    
+    <category term="教程" scheme="https://blog.jerryfage.top/categories/%E6%95%99%E7%A8%8B/"/>
+    
+    
+    <category term="Docker" scheme="https://blog.jerryfage.top/tags/Docker/"/>
+    
+    <category term="代理" scheme="https://blog.jerryfage.top/tags/%E4%BB%A3%E7%90%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ChatGPT API 简单体验</title>
+    <link href="https://blog.jerryfage.top/posts/7c5b6897.html"/>
+    <id>https://blog.jerryfage.top/posts/7c5b6897.html</id>
+    <published>2023-03-02T06:28:52.000Z</published>
+    <updated>2023-09-22T03:02:52.853Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;a href=&quot;https://openai.com&quot;&gt;OpenAI&lt;/a&gt; 大半夜 4 点给我发邮件说 &lt;a href=&quot;https://chat.openai.com/chat&quot;&gt;ChatGPT&lt;/a&gt; 使用的模型</summary>
+        
+      
+    
+    
+    
+    <category term="教程" scheme="https://blog.jerryfage.top/categories/%E6%95%99%E7%A8%8B/"/>
+    
+    
+    <category term="AI" scheme="https://blog.jerryfage.top/tags/AI/"/>
+    
+    <category term="ChatGPT" scheme="https://blog.jerryfage.top/tags/ChatGPT/"/>
+    
+    <category term="OpenAI" scheme="https://blog.jerryfage.top/tags/OpenAI/"/>
+    
+    <category term="API" scheme="https://blog.jerryfage.top/tags/API/"/>
+    
+    <category term="Python" scheme="https://blog.jerryfage.top/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Windows 下开机自启动命令行程序并隐藏 cmd 窗口</title>
+    <link href="https://blog.jerryfage.top/posts/fc6eb02e.html"/>
+    <id>https://blog.jerryfage.top/posts/fc6eb02e.html</id>
+    <published>2023-02-18T07:41:11.000Z</published>
+    <updated>2023-09-22T03:02:52.854Z</updated>
+    
+    
+    <summary type="html">命令行程序配置 Windows 开机自启动并隐藏启动时的 cmd 窗口</summary>
+    
+    
+    
+    <category term="技巧" scheme="https://blog.jerryfage.top/categories/%E6%8A%80%E5%B7%A7/"/>
+    
+    
+    <category term="Windows" scheme="https://blog.jerryfage.top/tags/Windows/"/>
+    
+    <category term="VBS" scheme="https://blog.jerryfage.top/tags/VBS/"/>
+    
+    <category term="cmd" scheme="https://blog.jerryfage.top/tags/cmd/"/>
+    
+    <category term="自启动" scheme="https://blog.jerryfage.top/tags/%E8%87%AA%E5%90%AF%E5%8A%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>致爱莉希雅</title>
+    <link href="https://blog.jerryfage.top/posts/b7d85702.html"/>
+    <id>https://blog.jerryfage.top/posts/b7d85702.html</id>
+    <published>2023-01-28T16:11:32.000Z</published>
+    <updated>2023-09-22T03:02:52.854Z</updated>
+    
+    
+    <summary type="html">“某一日，祂从天坠落。人们抬头仰望，于是看见了星空。”</summary>
+    
+    
+    
+    
+    <category term="爱莉希雅" scheme="https://blog.jerryfage.top/tags/%E7%88%B1%E8%8E%89%E5%B8%8C%E9%9B%85/"/>
+    
+    <category term="摘录" scheme="https://blog.jerryfage.top/tags/%E6%91%98%E5%BD%95/"/>
+    
+    <category term="《崩环三》" scheme="https://blog.jerryfage.top/tags/%E3%80%8A%E5%B4%A9%E7%8E%AF%E4%B8%89%E3%80%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>暂时做一些东西的备份</title>
+    <link href="https://blog.jerryfage.top/posts/628a9e28.html"/>
+    <id>https://blog.jerryfage.top/posts/628a9e28.html</id>
+    <published>2023-01-05T16:23:48.000Z</published>
+    <updated>2023-09-22T03:02:52.854Z</updated>
+    
+    
+    <summary type="html">有东西被加密了, 请输入密码查看.</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>这是第三篇凑数博客</title>
+    <link href="https://blog.jerryfage.top/posts/cbbbdc3.html"/>
+    <id>https://blog.jerryfage.top/posts/cbbbdc3.html</id>
+    <published>2022-12-29T09:57:28.000Z</published>
+    <updated>2023-09-22T03:02:52.854Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;打车平台&quot;&gt;&lt;a href=&quot;#打车平台&quot; class=&quot;headerlink&quot; title=&quot;打车平台&quot;&gt;&lt;/a&gt;打车平台&lt;/h1&gt;&lt;h2 id=&quot;关于打车功能的一些建议&quot;&gt;&lt;a href=&quot;#关于打车功能的一些建议&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>这是第二篇凑数博客</title>
+    <link href="https://blog.jerryfage.top/posts/a2def012.html"/>
+    <id>https://blog.jerryfage.top/posts/a2def012.html</id>
+    <published>2022-12-29T09:57:17.000Z</published>
+    <updated>2023-09-22T03:02:52.855Z</updated>
+    
+    
+    <summary type="html">有东西被加密了, 请输入密码查看.</summary>
+    
+    
+    
+    
+    <category term="小秘密" scheme="https://blog.jerryfage.top/tags/%E5%B0%8F%E7%A7%98%E5%AF%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Markdown 语法与外挂标签写法汇总</title>
+    <link href="https://blog.jerryfage.top/posts/ddeeb867.html"/>
+    <id>https://blog.jerryfage.top/posts/ddeeb867.html</id>
+    <published>2022-08-09T10:19:03.000Z</published>
+    <updated>2022-10-23T14:00:00.000Z</updated>
+    
+    
+    <summary type="html">🥧本文汇总 Markdown 格式以及外挂标签在网页端的渲染效果，可作为文档进行查询</summary>
+    
+    
+    
+    <category term="演示" scheme="https://blog.jerryfage.top/categories/%E6%BC%94%E7%A4%BA/"/>
+    
+    
+    <category term="Markdown" scheme="https://blog.jerryfage.top/tags/Markdown/"/>
+    
+    <category term="外挂标签" scheme="https://blog.jerryfage.top/tags/%E5%A4%96%E6%8C%82%E6%A0%87%E7%AD%BE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Sign in with Apple（苹果授权登陆）python服务端code验证</title>
+    <link href="https://blog.jerryfage.top/posts/3a8940f.html"/>
+    <id>https://blog.jerryfage.top/posts/3a8940f.html</id>
+    <published>2020-08-25T21:56:30.000Z</published>
+    <updated>2023-09-22T03:02:52.854Z</updated>
+    
+    
+    <summary type="html">后端接入苹果第三方登录的教程</summary>
+    
+    
+    
+    <category term="教程" scheme="https://blog.jerryfage.top/categories/%E6%95%99%E7%A8%8B/"/>
+    
+    
+    <category term="Python" scheme="https://blog.jerryfage.top/tags/Python/"/>
+    
+    <category term="Sign in with Apple" scheme="https://blog.jerryfage.top/tags/Sign-in-with-Apple/"/>
+    
+    <category term="后端" scheme="https://blog.jerryfage.top/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="第三方登录" scheme="https://blog.jerryfage.top/tags/%E7%AC%AC%E4%B8%89%E6%96%B9%E7%99%BB%E5%BD%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="https://blog.jerryfage.top/posts/4a17b156.html"/>
+    <id>https://blog.jerryfage.top/posts/4a17b156.html</id>
+    <published>2020-08-20T07:42:00.000Z</published>
+    <updated>2023-09-22T03:02:52.854Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;Quick-Start&quot;&gt;&lt;a href=&quot;#Quick-Start&quot; class=&quot;headerlink&quot; title=&quot;Quick Start&quot;&gt;&lt;/a&gt;Quick Start&lt;/h2&gt;&lt;h3 id=&quot;Create-a-new-post&quot;&gt;&lt;a href=&quot;#Create-a-new-post&quot; class=&quot;headerlink&quot; title=&quot;Create a new post&quot;&gt;&lt;/a&gt;Create a new post&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo new &lt;span class=&quot;string&quot;&gt;&amp;quot;My New Post&amp;quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/writing.html&quot;&gt;Writing&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Run-server&quot;&gt;&lt;a href=&quot;#Run-server&quot; class=&quot;headerlink&quot; title=&quot;Run server&quot;&gt;&lt;/a&gt;Run server&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo server&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/server.html&quot;&gt;Server&lt;/a&gt;</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>About Me</title>
+    <link href="https://blog.jerryfage.top/about-old/"/>
+    <id>https://blog.jerryfage.top/about-old/</id>
+    <published>2020-08-17T14:04:00.000Z</published>
+    <updated>2022-12-29T10:28:00.000Z</updated>
+    
+    
+    <summary type="html">关于我的一些事</summary>
+    
+    
+    
+    <category term="杂谈" scheme="https://blog.jerryfage.top/categories/%E6%9D%82%E8%B0%88/"/>
+    
+    
+    <category term="随笔" scheme="https://blog.jerryfage.top/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+</feed>

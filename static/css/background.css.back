@@ -1,0 +1,27 @@
+#web_bg{
+    background-image: url("https://ae01.alicdn.com/kf/H18a4b998752a4ae68b8e85d432a5aef0l.png"),
+    linear-gradient(60deg, rgba(20, 20, 20, 0.5) 5%, rgba(100, 115, 115, 0.35)),
+    url("https://i.loli.net/2020/09/23/YMovm5S9HEa6rf4.jpg");
+}
+
+/* 文章页背景(下面覆盖了，无效) */
+.layout_post>#post {
+    /* 以下代表白色透明度为0.9 */
+    background: rgba(255,255,255,.9);
+}
+
+#content-inner {
+    --light_bg_color:rgb(255, 255, 255, 0.9);
+    --dark_bg_color:rgba(18, 18, 18, 0.8)
+}
+
+/* 所有背景（包括首页卡片、文章页、页面页等） */
+#aside_content .card-widget,#recent-posts>.recent-post-item,.layout_page>div:first-child:not(.recent-posts),.layout_post>#page,.layout_post>#post,.read-mode .layout_post>#post {
+	/* 应用浅色模式预设值 */
+    background: var(--light_bg_color)
+}
+
+[data-theme=dark] #aside_content .card-widget,[data-theme=dark] #recent-posts>.recent-post-item,[data-theme=dark] .layout_page>div:first-child:not(.recent-posts),[data-theme=dark] .layout_post>#page,[data-theme=dark] .layout_post>#post,[data-theme=dark].read-mode .layout_post>#post {
+	/* 应用深色模式预设值 */
+    background: var(--dark_bg_color)
+}
