@@ -6,7 +6,7 @@
   <link href="https://blog.jerryfage.top/atom.xml" rel="self"/>
   
   <link href="https://blog.jerryfage.top/"/>
-  <updated>2023-09-20T14:15:12.751Z</updated>
+  <updated>2026-05-23T17:28:49.338Z</updated>
   <id>https://blog.jerryfage.top/</id>
   
   <author>
@@ -17,11 +17,38 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Docker 中配置代理的几种方式</title>
+    <link href="https://blog.jerryfage.top/posts/63849dac.html"/>
+    <id>https://blog.jerryfage.top/posts/63849dac.html</id>
+    <published>2024-04-11T02:57:32.000Z</published>
+    <updated>2026-05-23T17:28:49.338Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;在日常使用 Docker 的过程中，我们可能会遇到需要通过代理服务器来进行网络通信的情况。例如，在构建 Docker 镜像、运行容器或者下载 Docker</summary>
+        
+      
+    
+    
+    
+    <category term="教程" scheme="https://blog.jerryfage.top/categories/%E6%95%99%E7%A8%8B/"/>
+    
+    
+    <category term="Docker" scheme="https://blog.jerryfage.top/tags/Docker/"/>
+    
+    <category term="代理" scheme="https://blog.jerryfage.top/tags/%E4%BB%A3%E7%90%86/"/>
+    
+  </entry>
+  
+  <entry>
     <title>ChatGPT API 简单体验</title>
     <link href="https://blog.jerryfage.top/posts/7c5b6897.html"/>
     <id>https://blog.jerryfage.top/posts/7c5b6897.html</id>
     <published>2023-03-02T06:28:52.000Z</published>
-    <updated>2023-09-20T14:15:12.751Z</updated>
+    <updated>2026-05-22T14:03:44.424Z</updated>
     
     
       
@@ -54,7 +81,7 @@
     <link href="https://blog.jerryfage.top/posts/fc6eb02e.html"/>
     <id>https://blog.jerryfage.top/posts/fc6eb02e.html</id>
     <published>2023-02-18T07:41:11.000Z</published>
-    <updated>2023-02-22T07:24:26.695Z</updated>
+    <updated>2026-05-22T14:03:44.458Z</updated>
     
     
     <summary type="html">命令行程序配置 Windows 开机自启动并隐藏启动时的 cmd 窗口</summary>
@@ -79,7 +106,7 @@
     <link href="https://blog.jerryfage.top/posts/b7d85702.html"/>
     <id>https://blog.jerryfage.top/posts/b7d85702.html</id>
     <published>2023-01-28T16:11:32.000Z</published>
-    <updated>2023-02-04T15:23:52.491Z</updated>
+    <updated>2026-05-22T14:03:44.499Z</updated>
     
     
     <summary type="html">“某一日，祂从天坠落。人们抬头仰望，于是看见了星空。”</summary>
@@ -100,7 +127,7 @@
     <link href="https://blog.jerryfage.top/posts/628a9e28.html"/>
     <id>https://blog.jerryfage.top/posts/628a9e28.html</id>
     <published>2023-01-05T16:23:48.000Z</published>
-    <updated>2023-09-20T14:15:12.750Z</updated>
+    <updated>2026-05-22T14:03:44.487Z</updated>
     
     
     <summary type="html">有东西被加密了, 请输入密码查看.</summary>
@@ -115,7 +142,7 @@
     <link href="https://blog.jerryfage.top/posts/cbbbdc3.html"/>
     <id>https://blog.jerryfage.top/posts/cbbbdc3.html</id>
     <published>2022-12-29T09:57:28.000Z</published>
-    <updated>2023-03-08T17:47:45.937Z</updated>
+    <updated>2026-05-22T14:03:44.508Z</updated>
     
     
       
@@ -136,7 +163,7 @@
     <link href="https://blog.jerryfage.top/posts/a2def012.html"/>
     <id>https://blog.jerryfage.top/posts/a2def012.html</id>
     <published>2022-12-29T09:57:17.000Z</published>
-    <updated>2023-02-11T09:12:03.384Z</updated>
+    <updated>2026-05-22T14:03:44.518Z</updated>
     
     
     <summary type="html">有东西被加密了, 请输入密码查看.</summary>
@@ -174,7 +201,7 @@
     <link href="https://blog.jerryfage.top/posts/3a8940f.html"/>
     <id>https://blog.jerryfage.top/posts/3a8940f.html</id>
     <published>2020-08-25T21:56:30.000Z</published>
-    <updated>2023-09-20T14:15:12.748Z</updated>
+    <updated>2026-05-22T14:03:44.448Z</updated>
     
     
     <summary type="html">后端接入苹果第三方登录的教程</summary>
@@ -199,7 +226,7 @@
     <link href="https://blog.jerryfage.top/posts/4a17b156.html"/>
     <id>https://blog.jerryfage.top/posts/4a17b156.html</id>
     <published>2020-08-20T07:42:00.000Z</published>
-    <updated>2023-01-30T15:43:50.873Z</updated>
+    <updated>2026-05-22T14:03:44.478Z</updated>
     
     
     <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;

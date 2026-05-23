@@ -106,7 +106,6 @@
   border-radius: 12px;
 }
 
-
 /* 一级菜单居中 */
 #nav .menus_items {
   position: absolute !important;
@@ -223,7 +222,8 @@ svg.social_icon {
   border-radius: 10px;
 }
 
-#body-wrap.error .aside-list {
+#body-wrap.error .aside-list,
+#body-wrap.type-404 .aside-list {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -234,7 +234,8 @@ svg.social_icon {
   overflow: scroll;
 }
 
-#body-wrap.error .aside-list .aside-list-group {
+#body-wrap.error .aside-list .aside-list-group,
+#body-wrap.type-404 .aside-list .aside-list-group {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -242,24 +243,28 @@ svg.social_icon {
   margin: 0 auto;
 }
 
-#body-wrap.error .aside-list .aside-list-item {
+#body-wrap.error .aside-list .aside-list-item,
+#body-wrap.type-404 .aside-list .aside-list-item {
   padding: 0.5rem;
 }
 
-#body-wrap.error .aside-list .aside-list-item img {
+#body-wrap.error .aside-list .aside-list-item img,
+#body-wrap.type-404 .aside-list .aside-list-item img {
   width: 100%;
   object-fit: cover;
   border-radius: 12px;
 }
 
-#body-wrap.error .aside-list .aside-list-item .thumbnail {
+#body-wrap.error .aside-list .aside-list-item .thumbnail,
+#body-wrap.type-404 .aside-list .aside-list-item .thumbnail {
   overflow: hidden;
   width: 230px;
   height: 143px;
   display: flex;
 }
 
-#body-wrap.error .aside-list .aside-list-item .content .title {
+#body-wrap.error .aside-list .aside-list-item .content .title,
+#body-wrap.type-404 .aside-list .aside-list-item .content .title {
   -webkit-line-clamp: 2;
   overflow: hidden;
   display: -webkit-box;
@@ -272,7 +277,8 @@ svg.social_icon {
   color: var(--text-highlight-color);
 }
 
-#body-wrap.error a.button--animated:hover {
+#body-wrap.error a.button--animated:hover,
+#body-wrap.type-404 a.button--animated:hover {
   color: var(--text-highlight-color) !important;
 }
 
@@ -814,16 +820,18 @@ html.hide-aside .layout > div:first-child {
 
 /* 个人信息卡片背景图 */
 [data-theme="light"] #aside-content > .card-widget.card-info {
-  background-image: url(https://tuchuang.voooe.cn/images/2023/02/28/springBg.png);
+  background-image: linear-gradient(135deg, rgba(255, 248, 235, 0.78), rgba(166, 233, 235, 0.52)), url(https://sourcebucket.s3.bitiful.net/img/springBg.png);
   background-repeat: no-repeat;
   background-attachment: inherit;
-  background-size: 100%;
+  background-size: cover;
+  background-position: center;
 }
 [data-theme="dark"] #aside-content > .card-widget.card-info {
-  background-image: url(https://tuchuang.voooe.cn/images/2023/02/28/aurora.webp);
+  background-image: linear-gradient(135deg, rgba(12, 18, 34, 0.76), rgba(57, 197, 187, 0.28)), url(https://sourcebucket.s3.bitiful.net/img/aurora.webp);
   background-repeat: no-repeat;
   background-attachment: inherit;
-  background-size: 100%;
+  background-size: cover;
+  background-position: center;
 }
 
 

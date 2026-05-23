@@ -62,20 +62,16 @@ rmf.showRightMenu = function (isTrue, x = 0, y = 0) {
     }
 }
 rmf.switchDarkMode = function () {
-    const nowMode = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'
-    if (nowMode === 'light') {
-        activateDarkMode()
-        saveToLocal.set('theme', 'dark', 2)
+    const willChangeMode = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'
+    if (willChangeMode === 'dark') {
+        btf.activateDarkMode()
         GLOBAL_CONFIG.Snackbar !== undefined && btf.snackbarShow(GLOBAL_CONFIG.Snackbar.day_to_night)
     } else {
-        activateLightMode()
-        saveToLocal.set('theme', 'light', 2)
+        btf.activateLightMode()
         GLOBAL_CONFIG.Snackbar !== undefined && btf.snackbarShow(GLOBAL_CONFIG.Snackbar.night_to_day)
     }
-    // handle some cases
-    typeof utterancesTheme === 'function' && utterancesTheme()
-    typeof FB === 'object' && window.loadFBComment()
-    window.DISQUS && document.getElementById('disqus_thread').children.length && setTimeout(() => window.disqusReset(), 200)
+    btf.saveToLocal.set('theme', willChangeMode, 2)
+    Object.values((window.globalFn && window.globalFn.themeChange) || {}).forEach(fn => fn(willChangeMode))
 };
 rmf.yinyong=function(){
     var e = document.getElementsByClassName("el-textarea__inner")[0],
@@ -131,6 +127,12 @@ rmf.scrollToTop = function () {
     document.getElementsByClassName("menus_items")[1].setAttribute("style", "");
     // document.getElementById("name-container").setAttribute("style", "display:none");
     btf.scrollToDest(0, 500);
+}
+
+// 空降评论
+rmf.scrollToComment = function () {
+    const comment = document.getElementById("post-comment");
+    if (comment) btf.scrollToDest(btf.getEleTop(comment), 500);
 }
 
 // 简繁转换
