@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.jerryfage.top/posts/628a9e28.html</loc>
+    
+    <lastmod>2026-05-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.jerryfage.top/about/index.html</loc>
+    
+    <lastmod>2026-05-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.jerryfage.top/tags/index.html</loc>
     
     <lastmod>2026-05-23</lastmod>
@@ -74,15 +92,6 @@
   </url>
   
   <url>
-    <loc>https://blog.jerryfage.top/about/index.html</loc>
-    
-    <lastmod>2026-05-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.jerryfage.top/posts/a2def012.html</loc>
     
     <lastmod>2026-05-22</lastmod>
@@ -102,15 +111,6 @@
   
   <url>
     <loc>https://blog.jerryfage.top/posts/b7d85702.html</loc>
-    
-    <lastmod>2026-05-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.jerryfage.top/posts/628a9e28.html</loc>
     
     <lastmod>2026-05-22</lastmod>
     
@@ -182,20 +182,6 @@
 
   
   <url>
-    <loc>https://blog.jerryfage.top/tags/Docker/</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.jerryfage.top/tags/%E4%BB%A3%E7%90%86/</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.jerryfage.top/tags/AI/</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
@@ -225,6 +211,20 @@
   
   <url>
     <loc>https://blog.jerryfage.top/tags/Python/</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.jerryfage.top/tags/Docker/</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.jerryfage.top/tags/%E4%BB%A3%E7%90%86/</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

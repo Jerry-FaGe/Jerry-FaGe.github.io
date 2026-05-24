@@ -1,3 +1,5 @@
+https://blog.jerryfage.top/posts/628a9e28.html
+https://blog.jerryfage.top/about/index.html
 https://blog.jerryfage.top/tags/index.html
 https://blog.jerryfage.top/photos/index.html
 https://blog.jerryfage.top/music/index.html
@@ -6,11 +8,9 @@ https://blog.jerryfage.top/categories/index.html
 https://blog.jerryfage.top/posts/63849dac.html
 https://blog.jerryfage.top/static/live2d-widget/waifu-tips.json
 https://blog.jerryfage.top/movies/index.html
-https://blog.jerryfage.top/about/index.html
 https://blog.jerryfage.top/posts/a2def012.html
 https://blog.jerryfage.top/posts/cbbbdc3.html
 https://blog.jerryfage.top/posts/b7d85702.html
-https://blog.jerryfage.top/posts/628a9e28.html
 https://blog.jerryfage.top/posts/4a17b156.html
 https://blog.jerryfage.top/posts/fc6eb02e.html
 https://blog.jerryfage.top/posts/3a8940f.html
@@ -18,13 +18,13 @@ https://blog.jerryfage.top/posts/7c5b6897.html
 https://blog.jerryfage.top/about-old/
 https://blog.jerryfage.top/posts/ddeeb867.html
 https://blog.jerryfage.top/
-https://blog.jerryfage.top/tags/Docker/
-https://blog.jerryfage.top/tags/%E4%BB%A3%E7%90%86/
 https://blog.jerryfage.top/tags/AI/
 https://blog.jerryfage.top/tags/ChatGPT/
 https://blog.jerryfage.top/tags/OpenAI/
 https://blog.jerryfage.top/tags/API/
 https://blog.jerryfage.top/tags/Python/
+https://blog.jerryfage.top/tags/Docker/
+https://blog.jerryfage.top/tags/%E4%BB%A3%E7%90%86/
 https://blog.jerryfage.top/tags/Sign-in-with-Apple/
 https://blog.jerryfage.top/tags/%E5%90%8E%E7%AB%AF/
 https://blog.jerryfage.top/tags/%E7%AC%AC%E4%B8%89%E6%96%B9%E7%99%BB%E5%BD%95/
