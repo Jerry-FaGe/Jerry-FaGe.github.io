@@ -200,10 +200,11 @@ function setSnow() {
 
 // live2D 开关
 function setLive2D() {
-    if (localStorage.getItem("waifu-display") == undefined) {
-        document.querySelector("#waifu-tool .fa-times").click()
+    const checkbox = document.getElementById("live2d_on");
+    if (checkbox && !checkbox.checked) {
+        document.querySelector("#waifu-tool-quit, #waifu-tool .fa-times")?.click()
     } else {
-        document.getElementById("waifu-toggle").click()
+        document.getElementById("waifu-toggle")?.click()
     }
 }
 

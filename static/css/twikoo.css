@@ -169,8 +169,8 @@
   
   /* 右下角闭眼 */
   .el-textarea__inner {
-    background-image: url(https://tuchuang.voooe.cn/images/2023/01/02/open.webp) !important;
+    background-image: url(/static/img/zhifeiji.gif) !important;
   }
   .el-textarea__inner:focus {
-    background-image: url(https://tuchuang.voooe.cn/images/2023/01/02/close.webp) !important;
+    background-image: url(/static/img/zhifeiji.gif) !important;
   }
