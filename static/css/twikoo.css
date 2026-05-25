@@ -169,8 +169,8 @@
   
   /* 右下角闭眼 */
   .el-textarea__inner {
-    background-image: url(/static/img/zhifeiji.gif) !important;
+    background-image: url(/static/img/twikoo-open.webp) !important;
   }
   .el-textarea__inner:focus {
-    background-image: url(/static/img/zhifeiji.gif) !important;
+    background-image: url(/static/img/twikoo-close.webp) !important;
   }
