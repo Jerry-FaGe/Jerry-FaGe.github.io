@@ -12,7 +12,23 @@
   <rights>All rights reserved 2026, Jerry_FaGe</rights>
   <subtitle>鸟与飞花，真我无瑕。</subtitle>
   <title>Jerry_FaGe's Blog</title>
-  <updated>2026-05-24T14:52:15.252Z</updated>
+  <updated>2026-05-26T10:21:11.448Z</updated>
+  <entry>
+    <author>
+      <name>Jerry_FaGe</name>
+      <email>jerry_fage@foxmail.com</email>
+    </author>
+    <category term="演示" scheme="https://blog.jerryfage.top/categories/%E6%BC%94%E7%A4%BA/"/>
+    <category term="Hexo" scheme="https://blog.jerryfage.top/tags/Hexo/"/>
+    <category term="Markdown" scheme="https://blog.jerryfage.top/tags/Markdown/"/>
+    <category term="外挂标签" scheme="https://blog.jerryfage.top/tags/%E5%A4%96%E6%8C%82%E6%A0%87%E7%AD%BE/"/>
+    <id>https://blog.jerryfage.top/hexo-frontmatter/</id>
+    <link href="https://blog.jerryfage.top/hexo-frontmatter/"/>
+    <published>2026-02-16T07:28:06.000Z</published>
+    <summary>整理本站当前 Hexo、Butterfly 主题和已安装插件支持的 Frontmatter 字段，写文章时直接查这一篇。</summary>
+    <title>Hexo Frontmatter 速查手册</title>
+    <updated>2026-05-26T10:21:11.448Z</updated>
+  </entry>
   <entry>
     <author>
       <name>Jerry_FaGe</name>
@@ -26,13 +42,13 @@
     <category term="自动化" scheme="https://blog.jerryfage.top/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/"/>
     <id>https://blog.jerryfage.top/posts/59f4931b.html</id>
     <link href="https://blog.jerryfage.top/posts/59f4931b.html"/>
-    <published>2025-03-15T08:00:00.000Z</published>
+    <published>2025-03-15T08:41:29.000Z</published>
     <summary>
-      <![CDATA[<p>每次写完一篇博客，在本地 <code>hexo s</code> 预览完觉得没问题了，还得手动敲一遍 <code>hexo g &amp;&amp; hexo d</code>，等它慢慢推到 GitHub 上……说实话，烦死了。有几次我写完文章都凌晨两点了，敲完部署命令就去睡了，第二天起来发现 TM 的部署失败了，原因是本地 Node 版本跟远程不一致，生成的页面样式全崩了。</p>
+      <![CDATA[<p>每次写完一篇博客，在本地 <code>hexo s</code> 预览完觉得没问题了，还得手动敲一遍 <code>hexo g &amp;&amp; hexo d</code>，等它慢慢推到 GitHub 上……说实话，<del>烦死了</del>。有几次我写完文章都凌晨两点了，敲完部署命令就去睡了，第二天起来发现 TM 的部署失败了，原因是本地 Node 版本跟远程不一致，生成的页面样式全崩了。</p>
 <p>后来我寻思，这玩意儿不就是 CI&#x2F;CD 最典型的场景吗？push 代码 → 自动构建 → 自动部署。GitHub Actions 免费额度够用，配一次永久生效，咱就搞起来吧。</p>]]>
     </summary>
     <title>使用 GitHub Actions 自动部署 Hexo 博客</title>
-    <updated>2026-05-24T14:52:15.252Z</updated>
+    <updated>2026-05-26T08:47:19.976Z</updated>
   </entry>
   <entry>
     <author>
@@ -40,19 +56,29 @@
       <email>jerry_fage@foxmail.com</email>
     </author>
     <category term="教程" scheme="https://blog.jerryfage.top/categories/%E6%95%99%E7%A8%8B/"/>
-    <category term="Docker" scheme="https://blog.jerryfage.top/tags/Docker/"/>
     <category term="Python" scheme="https://blog.jerryfage.top/tags/Python/"/>
+    <category term="Docker" scheme="https://blog.jerryfage.top/tags/Docker/"/>
     <category term="部署" scheme="https://blog.jerryfage.top/tags/%E9%83%A8%E7%BD%B2/"/>
     <category term="容器" scheme="https://blog.jerryfage.top/tags/%E5%AE%B9%E5%99%A8/"/>
     <id>https://blog.jerryfage.top/posts/ab387864.html</id>
     <link href="https://blog.jerryfage.top/posts/ab387864.html"/>
-    <published>2024-09-10T02:00:00.000Z</published>
+    <published>2024-09-10T02:15:03.000Z</published>
     <summary>
       <![CDATA[<p>之前写了篇 <a href="https://jerry-fage.github.io/posts/63849dac/">Docker 配代理的文章</a>，把 Docker 拉镜像慢的坑给填了。这次来聊聊一个更实际的话题——咋把 Python 项目正经地 Docker 化部署。</p>
-<p>说实话，刚开始搞 Docker 的时候，我写的 Dockerfile 那叫一个粗糙，镜像动辄 1G+，构建还贼慢。后来踩了不少坑，才算摸出一套相对靠谱的写法。今天就从基础到进阶，一次性给大伙儿捋清楚。</p>]]>
+<p>说实话，刚开始搞 Docker 的时候，我写的 Dockerfile 那叫一个粗糙，镜像动辄 1G+，构建还贼慢。后来踩了不少坑，才算摸出一套相对靠谱的写法。今天就从基础到进阶，一次性给大伙儿捋清楚。</p>
+<div class="note success flat"><p><strong>前置条件清单</strong>（开搞之前先确认哈）</p>
+<div class='checkbox green checked'><input type="checkbox" checked="checked"/>
+            <p>已安装 Docker（<code>docker --version</code> 能正常输出）</p>
+            </div>
+<div class='checkbox green checked'><input type="checkbox" checked="checked"/>
+            <p>已安装 Docker Compose（<code>docker compose version</code> 或 <code>docker-compose --version</code>）</p>
+            </div>
+<div class='checkbox blue'><input type="checkbox" />
+            <p>有一个能跑的 Python 项目（带 <code>requirements.txt</code>）</p>
+            </div></div>]]>
     </summary>
     <title>Python 项目 Docker 化部署实战</title>
-    <updated>2026-05-24T14:52:15.097Z</updated>
+    <updated>2026-05-26T08:47:19.788Z</updated>
   </entry>
   <entry>
     <author>
@@ -66,14 +92,14 @@
     <category term="内网穿透" scheme="https://blog.jerryfage.top/tags/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/"/>
     <id>https://blog.jerryfage.top/posts/a7c3f281.html</id>
     <link href="https://blog.jerryfage.top/posts/a7c3f281.html"/>
-    <published>2024-07-02T03:00:00.000Z</published>
+    <published>2024-07-02T03:52:44.000Z</published>
     <summary>
       <![CDATA[<p>之前写了篇 frp 内网穿透的教程，当时是直接把 frps 二进制文件丢服务器上用 systemd 管理的。后来寻思这玩意儿能不能用 Docker 跑，一来方便管理不怕环境搞乱，二来换服务器的时候 <code>docker-compose up -d</code> 一行命令就搞定了不用重新配。折腾了一下发现还真挺好使，搞了个精简镜像才不到 30M，干脆开个仓库记录一下。</p>
 <p>仓库地址：<a href="https://github.com/Jerry-FaGe/frps-docker">https://github.com/Jerry-FaGe/frps-docker</a></p>
 <a class="ghcard" rel="external nofollow noopener noreferrer" href="https://github.com/Jerry-FaGe/frps-docker"><img src="https://helio-github-stats.vercel.app/api/pin/?username=Jerry-FaGe&repo=frps-docker&theme=vue&show_owner=true"/></a>]]>
     </summary>
     <title>用 Docker 一键部署 frps 服务端</title>
-    <updated>2026-05-25T11:11:40.904Z</updated>
+    <updated>2026-05-26T08:47:19.611Z</updated>
   </entry>
   <entry>
     <author>
@@ -104,14 +130,14 @@
     <category term="网络" scheme="https://blog.jerryfage.top/tags/%E7%BD%91%E7%BB%9C/"/>
     <id>https://blog.jerryfage.top/posts/8298e5e9.html</id>
     <link href="https://blog.jerryfage.top/posts/8298e5e9.html"/>
-    <published>2024-03-20T07:00:00.000Z</published>
+    <published>2024-03-20T07:38:12.000Z</published>
     <summary>
-      <![CDATA[<p>之前搭了个 frp 把本地的 stable-diffusion-webui 暴露到公网上，当时在<a href="/posts/fc6eb02e.html">那篇隐藏 cmd 窗口的文章</a>里简单提了一嘴 frp，但没细讲怎么配。后来有不少同学私信问 frp 咋搭的，干脆写一篇从零开始的完整教程吧。</p>
-<div class="note info flat"><p>本文基于 frp <strong>v0.52.0+</strong> 版本，使用 <strong>TOML</strong> 格式配置文件。旧版的 INI 格式（<code>frps.ini</code> &#x2F; <code>frpc.ini</code>）已经不推荐使用了，新功能只能在 TOML&#x2F;YAML&#x2F;JSON 格式下生效。</p>
+      <![CDATA[<p>之前搭了个 frp 把本地的 stable-diffusion-webui 暴露到公网上，当时在<a href="/posts/fc6eb02e.html">那篇隐藏 cmd 窗口的文章</a>里简单提了一嘴 frp，但没细讲怎么配。后来寻思着这东西挺实用的，干脆写一篇从零开始的完整教程吧。</p>
+<div class="note info flat"><p>本文基于 frp <strong>v0.52.0+</strong> 版本，使用 <strong>TOML</strong> 格式配置文件。旧版的 <del>INI 格式（<code>frps.ini</code> &#x2F; <code>frpc.ini</code>）</del>已经不推荐使用了，新功能只能在 TOML&#x2F;YAML&#x2F;JSON 格式下生效。</p>
 </div>]]>
     </summary>
     <title>frp 内网穿透从零搭建指南</title>
-    <updated>2026-05-24T18:11:19.356Z</updated>
+    <updated>2026-05-26T08:47:19.386Z</updated>
   </entry>
   <entry>
     <author>
@@ -125,12 +151,12 @@
     <category term="踩坑" scheme="https://blog.jerryfage.top/tags/%E8%B8%A9%E5%9D%91/"/>
     <id>https://blog.jerryfage.top/posts/64a7c5e9.html</id>
     <link href="https://blog.jerryfage.top/posts/64a7c5e9.html"/>
-    <published>2023-11-08T12:00:00.000Z</published>
+    <published>2023-11-08T12:47:31.000Z</published>
     <summary>
-      <![CDATA[<p>之前一直在用线上的 Stable Diffusion 服务，生图速度嘛……懂的都懂，排队排到天荒地老。想着本地部署一个，毕竟咱有张 N 卡，不用白不用对吧？结果好家伙，这一部署直接给我整破防了，踩的坑比我画的二次元老婆还多。今天就把这些坑都记录下来，希望能帮到后面入坑的兄弟们。</p>]]>
+      <![CDATA[<p>之前一直在用线上的 Stable Diffusion 服务，生图速度嘛……懂的都懂，排队排到天荒地老。想着本地部署一个，毕竟咱有张 N 卡，不用白不用对吧？结果好家伙，这一部署直接给我整破防了，踩的坑比<emp>我画的二次元老婆</emp>还多。今天就把这些坑都记录下来，希望能帮到后面入坑的兄弟们。</p>]]>
     </summary>
     <title>Stable Diffusion WebUI 本地部署踩坑记录</title>
-    <updated>2026-05-24T14:44:22.202Z</updated>
+    <updated>2026-05-26T08:47:19.218Z</updated>
   </entry>
   <entry>
     <author>
@@ -145,14 +171,14 @@
     <category term="Python" scheme="https://blog.jerryfage.top/tags/Python/"/>
     <id>https://blog.jerryfage.top/posts/3f058d15.html</id>
     <link href="https://blog.jerryfage.top/posts/3f058d15.html"/>
-    <published>2023-06-15T06:00:00.000Z</published>
+    <published>2023-06-15T06:23:07.000Z</published>
     <summary>
       <![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>好家伙，OpenAI 这帮人真的是不让人睡觉。6月13号大半夜的，我又收到了那封熟悉的邮件——「OpenAI API Updates」。点开一看，好嘛，GPT-4 和 GPT-3.5 Turbo 都更新了，还降了价，但这都不是重点。重点是一个叫 <emp>Function Calling</emp> 的新功能。</p>
 <p>之前写了那篇 <a href="/2023/03/02/ChatGPT-API/">ChatGPT API 初体验</a>，当时就吐槽过 ChatGPT 不能直接调外部接口，输出的格式也不好控制。现在 OpenAI 直接给你整了个大活——让模型学会「打电话」叫函数了。</p>
 <p>二话不说，赶紧来试一波。</p>]]>
     </summary>
     <title>OpenAI Function Calling 初探</title>
-    <updated>2026-05-24T14:44:22.189Z</updated>
+    <updated>2026-05-26T08:47:19.053Z</updated>
   </entry>
   <entry>
     <author>
@@ -253,8 +279,8 @@
     <category term="演示" scheme="https://blog.jerryfage.top/categories/%E6%BC%94%E7%A4%BA/"/>
     <category term="Markdown" scheme="https://blog.jerryfage.top/tags/Markdown/"/>
     <category term="外挂标签" scheme="https://blog.jerryfage.top/tags/%E5%A4%96%E6%8C%82%E6%A0%87%E7%AD%BE/"/>
-    <id>https://blog.jerryfage.top/posts/ddeeb867.html</id>
-    <link href="https://blog.jerryfage.top/posts/ddeeb867.html"/>
+    <id>https://blog.jerryfage.top/markdown-tags/</id>
+    <link href="https://blog.jerryfage.top/markdown-tags/"/>
     <published>2022-08-09T10:19:03.000Z</published>
     <summary>🥧本文汇总 Markdown 格式以及外挂标签在网页端的渲染效果，可作为文档进行查询</summary>
     <title>Markdown 语法与外挂标签写法汇总</title>
