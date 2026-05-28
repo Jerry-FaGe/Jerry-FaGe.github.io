@@ -12,7 +12,7 @@
   <rights>All rights reserved 2026, Jerry_FaGe</rights>
   <subtitle>鸟与飞花，真我无瑕。</subtitle>
   <title>Jerry_FaGe's Blog</title>
-  <updated>2026-05-26T10:21:11.448Z</updated>
+  <updated>2026-05-28T10:38:45.143Z</updated>
   <entry>
     <author>
       <name>Jerry_FaGe</name>
@@ -27,7 +27,7 @@
     <published>2026-02-16T07:28:06.000Z</published>
     <summary>整理本站当前 Hexo、Butterfly 主题和已安装插件支持的 Frontmatter 字段，写文章时直接查这一篇。</summary>
     <title>Hexo Frontmatter 速查手册</title>
-    <updated>2026-05-26T10:21:11.448Z</updated>
+    <updated>2026-05-28T10:38:45.143Z</updated>
   </entry>
   <entry>
     <author>
@@ -48,7 +48,7 @@
 <p>后来我寻思，这玩意儿不就是 CI&#x2F;CD 最典型的场景吗？push 代码 → 自动构建 → 自动部署。GitHub Actions 免费额度够用，配一次永久生效，咱就搞起来吧。</p>]]>
     </summary>
     <title>使用 GitHub Actions 自动部署 Hexo 博客</title>
-    <updated>2026-05-26T08:47:19.976Z</updated>
+    <updated>2026-05-28T07:46:57.103Z</updated>
   </entry>
   <entry>
     <author>
@@ -56,8 +56,8 @@
       <email>jerry_fage@foxmail.com</email>
     </author>
     <category term="教程" scheme="https://blog.jerryfage.top/categories/%E6%95%99%E7%A8%8B/"/>
-    <category term="Python" scheme="https://blog.jerryfage.top/tags/Python/"/>
     <category term="Docker" scheme="https://blog.jerryfage.top/tags/Docker/"/>
+    <category term="Python" scheme="https://blog.jerryfage.top/tags/Python/"/>
     <category term="部署" scheme="https://blog.jerryfage.top/tags/%E9%83%A8%E7%BD%B2/"/>
     <category term="容器" scheme="https://blog.jerryfage.top/tags/%E5%AE%B9%E5%99%A8/"/>
     <id>https://blog.jerryfage.top/posts/ab387864.html</id>
@@ -78,7 +78,7 @@
             </div></div>]]>
     </summary>
     <title>Python 项目 Docker 化部署实战</title>
-    <updated>2026-05-26T08:47:19.788Z</updated>
+    <updated>2026-05-28T07:46:57.037Z</updated>
   </entry>
   <entry>
     <author>
@@ -99,7 +99,7 @@
 <a class="ghcard" rel="external nofollow noopener noreferrer" href="https://github.com/Jerry-FaGe/frps-docker"><img src="https://helio-github-stats.vercel.app/api/pin/?username=Jerry-FaGe&repo=frps-docker&theme=vue&show_owner=true"/></a>]]>
     </summary>
     <title>用 Docker 一键部署 frps 服务端</title>
-    <updated>2026-05-26T08:47:19.611Z</updated>
+    <updated>2026-05-28T07:46:57.123Z</updated>
   </entry>
   <entry>
     <author>
@@ -116,7 +116,7 @@
       <![CDATA[<p>在日常使用 Docker 的过程中，我们可能会遇到需要通过代理服务器来进行网络通信的情况。例如，在构建 Docker 镜像、运行容器或者下载 Docker]]>
     </summary>
     <title>Docker 中配置代理的几种方式</title>
-    <updated>2026-05-23T17:28:49.338Z</updated>
+    <updated>2026-05-28T07:46:56.997Z</updated>
   </entry>
   <entry>
     <author>
@@ -137,7 +137,7 @@
 </div>]]>
     </summary>
     <title>frp 内网穿透从零搭建指南</title>
-    <updated>2026-05-26T08:47:19.386Z</updated>
+    <updated>2026-05-28T07:46:57.084Z</updated>
   </entry>
   <entry>
     <author>
@@ -156,7 +156,7 @@
       <![CDATA[<p>之前一直在用线上的 Stable Diffusion 服务，生图速度嘛……懂的都懂，排队排到天荒地老。想着本地部署一个，毕竟咱有张 N 卡，不用白不用对吧？结果好家伙，这一部署直接给我整破防了，踩的坑比<emp>我画的二次元老婆</emp>还多。今天就把这些坑都记录下来，希望能帮到后面入坑的兄弟们。</p>]]>
     </summary>
     <title>Stable Diffusion WebUI 本地部署踩坑记录</title>
-    <updated>2026-05-26T08:47:19.218Z</updated>
+    <updated>2026-05-28T07:46:57.057Z</updated>
   </entry>
   <entry>
     <author>
@@ -178,7 +178,7 @@
 <p>二话不说，赶紧来试一波。</p>]]>
     </summary>
     <title>OpenAI Function Calling 初探</title>
-    <updated>2026-05-26T08:47:19.053Z</updated>
+    <updated>2026-05-28T07:46:57.026Z</updated>
   </entry>
   <entry>
     <author>
@@ -198,7 +198,7 @@
       <![CDATA[<p><a href="https://openai.com/">OpenAI</a> 大半夜 4 点给我发邮件说 <a href="https://chat.openai.com/chat">ChatGPT</a> 使用的模型]]>
     </summary>
     <title>ChatGPT API 简单体验</title>
-    <updated>2026-05-22T14:03:44.424Z</updated>
+    <updated>2026-05-28T10:38:45.133Z</updated>
   </entry>
   <entry>
     <author>
@@ -215,7 +215,7 @@
     <published>2023-02-18T07:41:11.000Z</published>
     <summary>命令行程序配置 Windows 开机自启动并隐藏启动时的 cmd 窗口</summary>
     <title>Windows 下开机自启动命令行程序并隐藏 cmd 窗口</title>
-    <updated>2026-05-22T14:03:44.458Z</updated>
+    <updated>2026-05-28T07:46:57.066Z</updated>
   </entry>
   <entry>
     <author>
@@ -230,7 +230,7 @@
     <published>2023-01-28T16:11:32.000Z</published>
     <summary>“某一日，祂从天坠落。人们抬头仰望，于是看见了星空。”</summary>
     <title>致爱莉希雅</title>
-    <updated>2026-05-27T13:30:46.344Z</updated>
+    <updated>2026-05-28T07:46:57.134Z</updated>
   </entry>
   <entry>
     <author>
@@ -242,7 +242,7 @@
     <published>2023-01-05T16:23:48.000Z</published>
     <summary>有东西被加密了, 请输入密码查看.</summary>
     <title>暂时做一些东西的备份</title>
-    <updated>2026-05-24T10:12:49.756Z</updated>
+    <updated>2026-05-28T10:38:45.161Z</updated>
   </entry>
   <entry>
     <author>
@@ -256,7 +256,7 @@
       <![CDATA[<h1 id="打车平台"><a href="#打车平台" class="headerlink" title="打车平台"></a>打车平台</h1><h2 id="关于打车功能的一些建议"><a href="#关于打车功能的一些建议" class="headerlink"]]>
     </summary>
     <title>这是第三篇凑数博客</title>
-    <updated>2026-05-22T14:03:44.508Z</updated>
+    <updated>2026-05-28T07:46:57.144Z</updated>
   </entry>
   <entry>
     <author>
@@ -269,7 +269,7 @@
     <published>2022-12-29T09:57:17.000Z</published>
     <summary>有东西被加密了, 请输入密码查看.</summary>
     <title>这是第二篇凑数博客</title>
-    <updated>2026-05-22T14:03:44.518Z</updated>
+    <updated>2026-05-28T07:46:57.153Z</updated>
   </entry>
   <entry>
     <author>
@@ -301,7 +301,7 @@
     <published>2020-08-25T21:56:30.000Z</published>
     <summary>后端接入苹果第三方登录的教程</summary>
     <title>Sign in with Apple（苹果授权登陆）python服务端code验证</title>
-    <updated>2026-05-22T14:03:44.448Z</updated>
+    <updated>2026-05-28T10:38:45.152Z</updated>
   </entry>
   <entry>
     <author>
@@ -321,7 +321,7 @@
 <p>More info: <a href="https://hexo.io/docs/server.html">Server</a>]]>
     </summary>
     <title>Hello World</title>
-    <updated>2026-05-22T14:03:44.478Z</updated>
+    <updated>2026-05-28T07:46:57.093Z</updated>
   </entry>
   <entry>
     <author>

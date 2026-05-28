@@ -617,6 +617,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (isToc && GLOBAL_CONFIG.percent.toc) {
         $tocPercentage.textContent = btf.getScrollPercent(currentTop, $article)
       }
+      updateHeaderPositions()
       findHeadPosition(currentTop)
     }, 100)
 

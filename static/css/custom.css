@@ -471,6 +471,12 @@ html.hide-aside .layout > div:first-child {
   width: 100%;
 }
 
+/* 分类磁贴插件写死 Font Awesome 6，当前主题加载 FA7 时会显示缺字方框。 */
+span.categoryBar-list-count::before {
+  font-family: "Font Awesome 7 Free", "Font Awesome 6 Free", "Font Awesome 5 Free" !important;
+  font-weight: 900 !important;
+}
+
 
 /* tzy页脚样式 */
 #ft {
