@@ -12,7 +12,25 @@
   <rights>All rights reserved 2026, Jerry_FaGe</rights>
   <subtitle>鸟与飞花，真我无瑕。</subtitle>
   <title>Jerry_FaGe's Blog</title>
-  <updated>2026-05-28T10:38:45.143Z</updated>
+  <updated>2026-06-01T09:08:27.231Z</updated>
+  <entry>
+    <author>
+      <name>Jerry_FaGe</name>
+      <email>jerry_fage@foxmail.com</email>
+    </author>
+    <category term="技巧" scheme="https://blog.jerryfage.top/categories/%E6%8A%80%E5%B7%A7/"/>
+    <category term="Hexo" scheme="https://blog.jerryfage.top/tags/Hexo/"/>
+    <category term="PicGo" scheme="https://blog.jerryfage.top/tags/PicGo/"/>
+    <category term="图床" scheme="https://blog.jerryfage.top/tags/%E5%9B%BE%E5%BA%8A/"/>
+    <category term="GitHub" scheme="https://blog.jerryfage.top/tags/GitHub/"/>
+    <category term="jsDelivr" scheme="https://blog.jerryfage.top/tags/jsDelivr/"/>
+    <id>https://blog.jerryfage.top/posts/8d3f2a1b.html</id>
+    <link href="https://blog.jerryfage.top/posts/8d3f2a1b.html"/>
+    <published>2026-06-01T10:30:00.000Z</published>
+    <summary>记录一次把博客图片仓库重新整理、替换历史引用、评估 CDN、顺便研究 PicGo 上传流程的折腾过程。</summary>
+    <title>折腾博客图床：从静态资源仓库到 PicGo 上传流程</title>
+    <updated>2026-06-01T09:08:27.231Z</updated>
+  </entry>
   <entry>
     <author>
       <name>Jerry_FaGe</name>
@@ -27,7 +45,7 @@
     <published>2026-02-16T07:28:06.000Z</published>
     <summary>整理本站当前 Hexo、Butterfly 主题和已安装插件支持的 Frontmatter 字段，写文章时直接查这一篇。</summary>
     <title>Hexo Frontmatter 速查手册</title>
-    <updated>2026-05-28T10:38:45.143Z</updated>
+    <updated>2026-06-01T08:37:06.554Z</updated>
   </entry>
   <entry>
     <author>
@@ -284,7 +302,7 @@
     <published>2022-08-09T10:19:03.000Z</published>
     <summary>🥧本文汇总 Markdown 格式以及外挂标签在网页端的渲染效果，可作为文档进行查询</summary>
     <title>Markdown 语法与外挂标签写法汇总</title>
-    <updated>2022-10-23T14:00:00.000Z</updated>
+    <updated>2026-05-29T17:33:01.012Z</updated>
   </entry>
   <entry>
     <author>
